@@ -1,0 +1,44 @@
+# Jak měnit zprávy?
+# Stačí jen upravit text v těchto věcech: ""
+# Pokud je na konci napsáno, že se používá %s, tak to použij.
+# Před každou zprávou je v # napsán komentář, který popisuje, kde se použíje
+# Kdybys chtěl vytvořit vlastní komentář, jen napiš # a za tím svůj komentář
+
+### Zprávy pluginu
+
+#Když se plugin zapíná
+enabling: "Zapíná se FakeDeathban"
+#Když se plugin vypíná
+disabling: "Vypíná se FakeDeathban"
+#Registrace příkazu (do konsole)
+r-command: "Registruji příkaz "
+#Registrace posluchače (do konsole)
+r-listener: "Registruji posluchače "
+#coming soon ||| Prefix pluginu
+#prefix = "[FakeDeathBan] "
+
+### Příkazové zprávy
+
+#Když hráč určen v příkazu není nalezen nebo je offline
+player-not-found: "Hráč %s neexistuje nebo je offline." # %s == hráč který je napsán v příkazu
+#Když se úspěšně použije příkaz /setspectate <player>
+default-player-set: "Výchozí spectatovaný hráč nastaven na: %s" # %s = hráč, který je nastaven na výchozího
+#Když se pokusíš spustin příkaz z konsole a nebo u command blocku a není to podporováno
+con-com-not-allowed: "Nemůžeš tento příkaz spustit z konsole anebo příkazového bloku!"
+#Když úspěšně použiješ příkaz /spectate <player>
+now-spectating: "Nyní spectatuješ: %s" # %s = hráč, kterého chceš spectatovat
+#Když úspěšně použiješ příkaz /undeathban bez argumentů
+all-undeathbanned: "Všichni deathbannutí hráči byli oživeni a teleportování k tobě"
+#Když hráč nemá deathban a použiješ na něj příkaz /undeathban [player...]
+already-alive: "Hráč %s nemá deathban" # %s = hráč, který nemá deathban
+#Když hráč byl úspěšně un-deathbannutý
+specific-undeathbanned: "Hráč %s byl un-deathbannutý" # %s = hráč, který byl un-deathbannutý
+
+### Zprávy posluchačů
+
+#Zpráva do konsole, když připojovací zpráva byla utišena
+join-silenced: "Připojovací zpráva byla utišena"
+#Zpráva do konsole, když odpojovací zpráva byla utišena
+leave-silenced: "Odpojovací zpráva byla utišena"
+#Zpráva, když hráč má deathban, chce se pohnout a spectatovací hráč není připojen
+move-not-allowed: "Máš deathban a hráč na spectatování opustil hru. /spectate <jiný hráč>"

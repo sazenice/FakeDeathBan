@@ -1,0 +1,41 @@
+name: FakeDeathBan
+version: 1.5
+main: cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan
+api-version: 1.20
+author: ILoveJef_Epstein
+commands:
+  undeathban:
+    description: "Teleportuje death-bannuté hráče k tobě a nastaví jejich gamemode na Adventure"
+    usage: /<command> [hráč...]
+    aliases:
+      - udb
+      - undb
+      - udban
+      - udeathb
+      - undeathb
+      - undban
+      - udeathban
+    permission: fakedeathban.undeathban
+  setspectate:
+    description: "Nastaví hráče, který se bude spectatovat když někdo má deathban."
+    usage: /<command> hráč
+    aliases:
+      - sets
+      - setspec
+      - sspec
+      - ss
+    permission: fakedeathban.setspectate
+  spectate:
+    description: "Nastaví hráče, který se bude spectatovat když ty máš deathban."
+    usage: /<command> hráč
+    aliases:
+      - spec
+      - s
+    permission: fakedeathban.spectate
+permissions:
+  fakedeathban.undeathban:
+    default: op
+  dakedeathban.setspectate:
+    default: op
+  fakedeathban.spectate:
+    default: true
