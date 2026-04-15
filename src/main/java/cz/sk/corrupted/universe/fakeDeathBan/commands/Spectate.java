@@ -17,19 +17,19 @@ public class Spectate implements CommandExecutor {
     public boolean onCommand(@NonNull CommandSender commandSender,@NonNull Command command,@NonNull String s, String @NonNull [] strings) {
 
         if (!(commandSender instanceof Player player)) {
-            commandSender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("con-com-not-allowed"));
+            commandSender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("p-f"));
             return true;
         }
 
         Player target = Bukkit.getPlayer(strings[0]);
 
         if (target == null) {
-            player.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("player-not-found", strings[0]));
+            player.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("spectate-f", strings[0]));
             return true;
         }
 
         player.setSpectatorTarget(target);
-        player.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("now-spectating", target.getName()));
+        player.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("spectate-s", target.getName()));
 
         return true;
     }

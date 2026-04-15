@@ -5,6 +5,7 @@ import cz.sk.corrupted.universe.fakeDeathBan.files.Messages;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -22,51 +23,60 @@ public class UnDeathban implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(@NonNull CommandSender commandSender,@NonNull Command command,@NonNull String s, String @NonNull [] strings) {
-
-        if (!(commandSender instanceof Player p)) {
-            commandSender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("con-com-not-allowed"));
-            return true;
-        }
-
+    public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
         List<String> deathbanned = plugin.getConfig().getStringList("deathbanned");
+        List<String> frozen = plugin.getConfig().getStringList("frozen");
 
-        if (strings.length == 0) {
+        if (args.length == 0) {
 
             for (Player player : Bukkit.getOnlinePlayers()) {
-                if (deathbanned.remove(player.getUniqueId().toString())) {
-                    player.teleport(p.getLocation());
-                    player.setGameMode(GameMode.ADVENTURE);
+                String uuidString = player.getUniqueId().toString();
+
+                if (deathbanned.remove(uuidString)) {
+                    frozen.remove(uuidString);
+                    player.setGameMode(GameMode.valueOf(plugin.getConfig().getString("default-gamemode")));
+                    if (sender instanceof Player executor) {
+                        executor.getWorld().playSound(executor, Sound.BLOCK_BEACON_ACTIVATE, 1, 1);
+                        player.teleport(executor.getLocation());
+                    }
                 }
             }
 
             plugin.getConfig().set("deathbanned", deathbanned);
+            plugin.getConfig().set("frozen", deathbanned);
             plugin.saveConfig();
 
-            p.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("all-undeathbanned"));
+            sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("udb-1-s"));
+
             return true;
         }
 
-        for (String arg : strings) {
-
+        for (String arg : args) {
             Player target = Bukkit.getPlayer(arg);
 
             if (target == null) {
-                p.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("player-not-found", arg));
+                sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED +
+                        Messages.getMessage("p-f", arg));
                 continue;
             }
 
-            if (deathbanned.remove(target.getUniqueId().toString())) {
-                target.teleport(p.getLocation());
-                target.setGameMode(GameMode.ADVENTURE);
+            String uuidString = target.getUniqueId().toString();
 
-                p.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("specific-undeathbanned"), target.getName());
+            if (deathbanned.remove(uuidString)) {
+                frozen.remove(uuidString);
+                target.setGameMode(GameMode.valueOf(plugin.getConfig().getString("default-gamemode")));
+                if (sender instanceof Player executor) {
+                    executor.getWorld().playSound(executor, Sound.BLOCK_BEACON_ACTIVATE, 1, 1);
+                    target.teleport(executor.getLocation());
+                }
+                sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("udb-2-s", target.getName()));
             } else {
-                p.sendMessage(FakeDeathBan.prefix + ChatColor.YELLOW + Messages.getMessage("already-alive", target.getName()));
+                sender.sendMessage(FakeDeathBan.prefix + ChatColor.YELLOW + Messages.getMessage("p-db-f", target.getName()));
             }
         }
 
         plugin.getConfig().set("deathbanned", deathbanned);
+        plugin.getConfig().set("frozen", deathbanned);
         plugin.saveConfig();
 
         return true;

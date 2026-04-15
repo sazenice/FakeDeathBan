@@ -11,12 +11,12 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public class HideJoinLeave implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
-        FakeDeathBan.console.sendMessage(FakeDeathBan.prefix + ChatColor.AQUA + Messages.getMessage("join-silenced"));
+        FakeDeathBan.console.sendMessage(FakeDeathBan.prefix + ChatColor.AQUA + Messages.getMessage("join-s"));
         event.setJoinMessage(null);
     }
     @EventHandler
     public void onLeave(PlayerQuitEvent event){
-        FakeDeathBan.console.sendMessage(FakeDeathBan.prefix + ChatColor.AQUA + Messages.getMessage("leave-silenced"));
+        FakeDeathBan.console.sendMessage(FakeDeathBan.prefix + ChatColor.AQUA + Messages.getMessage("leave-s"));
         event.setQuitMessage(null);
     }
 }

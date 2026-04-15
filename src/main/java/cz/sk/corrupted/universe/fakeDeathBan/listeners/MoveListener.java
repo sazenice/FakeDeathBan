@@ -24,21 +24,26 @@ public class MoveListener implements Listener {
     public void onMove(PlayerMoveEvent e){
         Player player = e.getPlayer();
         List<String> deathbanned = plugin.getConfig().getStringList("deathbanned");
+        List<String> frozen = plugin.getConfig().getStringList("frozen");
         if (deathbanned.contains(player.getUniqueId().toString())) {
             player.setGameMode(GameMode.SPECTATOR);
             String defaultPlayer = plugin.getConfig().getString("default-spectator");
-
+            if (frozen.contains(player.getUniqueId().toString())){
+                player.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("freeze-2-f"));
+                e.setCancelled(true);
+                return;
+            }
             if (defaultPlayer != null) {
                 Player target = Bukkit.getPlayer(defaultPlayer);
 
                 if (target == e.getPlayer()){ return; }
 
-                if (target != null) {
+                if (target != null ) {
                     player.setSpectatorTarget(target);
                     return;
                 }
             }
-            player.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("move-not-allowed"));
+            player.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("move-f"));
             e.setCancelled(true);
         }
     }

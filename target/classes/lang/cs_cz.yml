@@ -1,0 +1,32 @@
+### Zprávy pluginu
+
+enabling: "Zapíná se FakeDeathban"
+disabling: "Vypíná se FakeDeathban"
+r-command: "Registruji příkaz "
+r-listener: "Registruji posluchače "
+
+### Příkazové zprávy
+
+defg-s: "Výchozí herní mód po un-deathbanu byl nastaven na: %s"
+defg-f-1: "Musíš příkazu dát alespoň jeden argument! /defg <gamemode>"
+defg-f-2: "Gamemode musí být buď 'adventure' nebo 'creative' nebo 'survival' nebo 'spectator'!"
+sets-s: "Výchozí spectatovaný hráč nastaven na: %s"
+spectate-s: "Nyní spectatuješ: %s"
+spectate-f: "Hráč %s neexistuje nebo je offline."
+udb-1-s: "Všichni deathbannutí hráči byli oživeni a teleportování k tobě"
+udb-2-s: "Hráč %s byl un-deathbannutý"
+freeze-1-s: "Všichni deathbannutí hráči byli zmraženi"
+freeze-2-s: "Hráč %s byl zmražen"
+freeze-1-f: "Hráč %s již je zmražen"
+freeze-2-f: "Jsi zmražen"
+unfreeze-1-s: "Všichni zmražení hráči byli rozmraženi"
+unfreeze-2-s: "Hráč %s byl rozmražen"
+unfreeze-1-f: "Hráč %s není zmražen"
+p-f: "Nemůžeš tento příkaz spustit z konsole anebo příkazového bloku!"
+p-db-f: "Hráč %s nemá deathban"
+
+### Zprávy posluchačů
+
+join-s: "Připojovací zpráva byla utišena"
+leave-s: "Odpojovací zpráva byla utišena"
+move-f: "Máš deathban a hráč na spectatování opustil hru. /spectate <jiný hráč>"

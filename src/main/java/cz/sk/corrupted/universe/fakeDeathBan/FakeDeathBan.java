@@ -1,8 +1,6 @@
 package cz.sk.corrupted.universe.fakeDeathBan;
 
-import cz.sk.corrupted.universe.fakeDeathBan.commands.SetSpectate;
-import cz.sk.corrupted.universe.fakeDeathBan.commands.Spectate;
-import cz.sk.corrupted.universe.fakeDeathBan.commands.UnDeathban;
+import cz.sk.corrupted.universe.fakeDeathBan.commands.*;
 import cz.sk.corrupted.universe.fakeDeathBan.files.Messages;
 import cz.sk.corrupted.universe.fakeDeathBan.listeners.DeathListener;
 import cz.sk.corrupted.universe.fakeDeathBan.listeners.HideJoinLeave;
@@ -38,6 +36,10 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         registerCommand("setspectate", new SetSpectate(this));
         registerCommand("undeathban", new UnDeathban(this));
         registerCommand("spectate", new Spectate());
+        registerCommand("freeze", new Freeze(this));
+        registerCommand("unfreeze", new Unfreeze(this));
+        registerCommand("defg", new DefaultGamemode(this));
+        registerCommand("version", new Version());
     }
 
     @Override
@@ -49,7 +51,7 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         Bukkit.getPluginManager().registerEvents(listener, this);
     }
     private void registerCommand(String name, @NonNull CommandExecutor command){
-        sendMessage(ChatColor.GREEN + Messages.getMessage("r-command", name) + ChatColor.YELLOW + name);
+        sendMessage(ChatColor.GREEN + Messages.getMessage("r-command", command.toString()) + ChatColor.YELLOW + name);
         Objects.requireNonNull(getCommand(name)).setExecutor(command);
     }
 }

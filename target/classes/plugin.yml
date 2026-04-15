@@ -1,8 +1,9 @@
 name: FakeDeathBan
-version: 1.5
+version: 1.6
+load: STARTUP
 main: cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan
 api-version: 1.20
-author: ILoveJef_Epstein
+author: sazenice
 commands:
   undeathban:
     description: "Teleportuje death-bannuté hráče k tobě a nastaví jejich gamemode na Adventure"
@@ -31,11 +32,44 @@ commands:
     aliases:
       - spec
       - s
-    permission: fakedeathban.spectate
+    permission: fakedeathban.freeze
+  freeze:
+    description: "Zmrazí všechny hráče, co mají deathban"
+    usage: /<command> [hráč...]
+    aliases:
+      - fr
+    permission: fakedeathban.freeze
+  defg:
+    description: "Nastaví výchozí gamemode pro hráče, kterým se odstraní deathban"
+    usage: /<command> <gamemode>
+    aliases:
+      - defaultgamemode
+      - dgamemode
+      - defaultg
+      - dg
+    permission: fakedeathban.defg
+  unfreeze:
+    description: "Rozmrazí všechny hráče co jsou zmraženi"
+    usage: /<command> [hráč...]
+    aliases:
+      - unfr
+    permission: fakedeathban.unfreeze
+  version:
+    description: "Ukáže informace o pluginu"
+    usage: /<command>
+    permission: fakedeathban.version
 permissions:
   fakedeathban.undeathban:
     default: op
   dakedeathban.setspectate:
     default: op
   fakedeathban.spectate:
+    default: true
+  fakedeathban.freeze:
+    default: op
+  fakedeathban.defg:
+    default: op
+  fakedeathban.unfreeze:
+    default: op
+  fakedeathban.version:
     default: true

@@ -28,14 +28,14 @@ public class SetSpectate implements CommandExecutor {
         Player target = Bukkit.getPlayer(args[0]);
 
         if (target == null) {
-            sender.sendMessage(String.format(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("player-not-found", args[0])));
+            sender.sendMessage(String.format(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("p-f", args[0])));
             return true;
         }
 
         plugin.getConfig().set("default-spectator", target.getName());
         plugin.saveConfig();
 
-        sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("default-player-set", target.getName()));
+        sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("sets-s", target.getName()));
 
         return true;
     }

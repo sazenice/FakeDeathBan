@@ -18,10 +18,10 @@ public class Messages {
     public static void setup(Plugin pl){
         plugin = pl;
 
-        file = new File(plugin.getDataFolder(), "messages.yml");
+        file = new File(plugin.getDataFolder(), "lang/cs_cz.yml");
 
         if (!file.exists()) {
-            plugin.saveResource("messages.yml", false); // copies from jar if exists
+            plugin.saveResource("lang/cs_cz.yml", false);
         }
 
         configuration = YamlConfiguration.loadConfiguration(file);
@@ -38,7 +38,7 @@ public class Messages {
         try{
             configuration.save(file);
         }catch (IOException e){
-            plugin.getLogger().severe("Nepodařilo se uložit messages.yml!");
+            plugin.getLogger().severe("Nepodařilo se uložit cs_cz.yml!");
         }
     }
 
@@ -47,10 +47,10 @@ public class Messages {
 
         if (msg == null) {
             Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Pokud zprávy chybí a v messages.yml nic není,");
-            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "vymaž messages.yml a restartuj server!!");
+            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Pokud překlady chybí a v lang/cs_cz.yml nic není,");
+            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "vymaž cs_cz.yml a restartuj server!!");
             Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_RED + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            return ChatColor.RED + "Chybí zpráva: " + path;
+            return ChatColor.RED + "Chybí překlad: " + path + "\nAktualizoval jsi na novou verzi? vymaž lang/cs_cz.yml";
         }
 
         msg = String.format(msg, args);
