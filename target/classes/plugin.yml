@@ -4,9 +4,10 @@ load: STARTUP
 main: cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan
 api-version: 1.20
 author: sazenice
+website: https://github.com/sazenice/FakeDeathBan
 commands:
   undeathban:
-    description: "Teleportuje death-bannuté hráče k tobě a nastaví jejich gamemode na Adventure"
+    description: "Teleportuje všechny hráče s death banem k tobě a odstraní jim deathban"
     usage: /<command> [hráč...]
     aliases:
       - udb
@@ -18,8 +19,8 @@ commands:
       - udeathban
     permission: fakedeathban.undeathban
   setspectate:
-    description: "Nastaví hráče, který se bude spectatovat když někdo má deathban."
-    usage: /<command> hráč
+    description: "Nastaví hráče, který se bude spectatovat když někdo má deathban"
+    usage: /<command> <hráč>
     aliases:
       - sets
       - setspec
@@ -27,8 +28,8 @@ commands:
       - ss
     permission: fakedeathban.setspectate
   spectate:
-    description: "Nastaví hráče, který se bude spectatovat když ty máš deathban."
-    usage: /<command> hráč
+    description: "Nastaví hráče, který se bude spectatovat když ty máš deathban"
+    usage: /<command> <hráč>
     aliases:
       - spec
       - s
@@ -49,7 +50,7 @@ commands:
       - dg
     permission: fakedeathban.defg
   unfreeze:
-    description: "Rozmrazí všechny hráče co jsou zmraženi"
+    description: "Rozmrazí všechny hráče, co jsou zmraženi"
     usage: /<command> [hráč...]
     aliases:
       - unfr
