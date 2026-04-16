@@ -11,7 +11,8 @@ jen je určen pro skriptované servery (*jako třeba __Corrupted Universe__ :)*)
 
 ___
 
-### Jak to funguje?FDDB nezabanuje hráče,
+### Jak to funguje?
+FDB nezabanuje hráče,
 jen je dá do spectator módu a zakáže jakýkoliv pohyb
 
 ___
