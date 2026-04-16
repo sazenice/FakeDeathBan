@@ -11,15 +11,8 @@ jen je určen pro skriptované servery (*jako třeba __Corrupted Universe__ :)*)
 
 ___
 
-### Jak to funguje?
-FDB poslouchá na 4 hlavní eventy:
-
-- PlayerJoin (Připojení)
-- PlayerQuit (Odpojení)
-- PlayerDeath (Smrt hráče)
-- PlayerMove (Pohyb hráče)
-
-Pomocí těchto eventů může dělat různé věci, které rozeberu podrobněji dole.
+### Jak to funguje?FDDB nezabanuje hráče,
+jen je dá do spectator módu a zakáže jakýkoliv pohyb
 
 ___
 
