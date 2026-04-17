@@ -20,11 +20,14 @@ public class Spectate implements CommandExecutor {
             commandSender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("p-f"));
             return true;
         }
+        if(strings.length < 0){
+            commandSender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("spectate-1-f"));
+        }
 
         Player target = Bukkit.getPlayer(strings[0]);
 
         if (target == null) {
-            player.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("spectate-f", strings[0]));
+            player.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("spectate-2-f", strings[0]));
             return true;
         }
 

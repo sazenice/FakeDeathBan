@@ -141,6 +141,21 @@ Nastaví hráče, který se bude spectatovat, když ty máš deathban.
 
 </details>
 
+<details>
+<summary><strong>Check</strong></summary>
+
+Zjistí, zda všechny proměné, co mají být v config.yml existují
+
+**Povolení:** Všichni
+
+**Použití:** `/check`
+
+**Aliasy:**
+- health
+- chk
+
+</details>
+
 ___
 
 ### Posluchače

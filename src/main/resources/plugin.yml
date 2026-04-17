@@ -59,6 +59,13 @@ commands:
     description: "Ukáže informace o pluginu"
     usage: /<command>
     permission: fakedeathban.version
+  check:
+    description: "Zjistí, zda všechny proměné, co mají být v config.yml existují"
+    usage: /<command>
+    aliases:
+      - health
+      - chk
+    permission: fakedeathban.check
 permissions:
   fakedeathban.undeathban:
     default: op
@@ -73,4 +80,6 @@ permissions:
   fakedeathban.unfreeze:
     default: op
   fakedeathban.version:
+    default: true
+  fakedeathban.check:
     default: true
