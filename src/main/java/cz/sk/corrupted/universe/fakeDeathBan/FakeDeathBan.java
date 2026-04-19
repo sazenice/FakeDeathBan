@@ -66,6 +66,7 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         registerCommand("defg", new DefaultGamemode(this));
         registerCommand("version", new Version());
         registerCommand("check", new Check(this));
+        registerCommand("setsound", new SetSound(this));
 
         sendMessage(ChatColor.GREEN + "===  Plugin načten   ===");
     }

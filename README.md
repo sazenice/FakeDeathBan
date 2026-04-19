@@ -1,7 +1,7 @@
 # Fake Death Ban
 ## Plugin od sazenice, pro corrupted universe ❤️
 ___
-## !!! INFO
+## INFO
 Oficiální github je pouze [**ZDE**](https://github.com/sazenice/FakeDeathBan)
 
 Chyby prosím hlašte [sem](https://github.com/sazenice/FakeDeathBan/issues)

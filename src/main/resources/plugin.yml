@@ -1,5 +1,5 @@
 name: FakeDeathBan
-version: 1.7-pre-2
+version: 1.7-pre-3
 load: STARTUP
 main: cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan
 api-version: 1.20
@@ -66,6 +66,10 @@ commands:
       - health
       - chk
     permission: fakedeathban.check
+  setsound:
+    description: "Nastaví zvuk když někdo umře nebo se oživí"
+    usage: /<command> <death|revive> <sound>
+    permission: fakedeathban.setsound
 permissions:
   fakedeathban.undeathban:
     default: op
@@ -83,3 +87,5 @@ permissions:
     default: true
   fakedeathban.check:
     default: true
+  fakedeathban.setsound:
+    default: op

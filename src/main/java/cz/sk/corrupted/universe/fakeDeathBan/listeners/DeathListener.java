@@ -21,6 +21,17 @@ public class DeathListener implements Listener {
     public void onDeath(PlayerDeathEvent e){
         Player player = e.getEntity();
 
+        String soundString = plugin.getConfig().getString("death-sound");
+        NamespacedKey key = NamespacedKey.fromString(soundString);
+
+        Sound sound;
+
+        if (key != null) {
+            sound = Registry.SOUNDS.get(key);
+        } else {
+            sound = null;
+        }
+
         List<String> deathbanned = plugin.getConfig().getStringList("deathbanned");
         if (!deathbanned.contains(player.getUniqueId().toString())) {
             deathbanned.add(player.getUniqueId().toString());
@@ -30,7 +41,9 @@ public class DeathListener implements Listener {
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
             Bukkit.broadcastMessage("§e" + player.getName() + " left the game");
             player.setGameMode(GameMode.SPECTATOR);
-            player.getWorld().playSound(player.getLocation(), Sound.ENTITY_WITHER_SPAWN, 5f, 1);
+            if (sound != null){
+                player.getWorld().playSound(player.getLocation(), Sound.ENTITY_WITHER_SPAWN, 5f, 1);
+            }
         }, 2L);
     }
 }
