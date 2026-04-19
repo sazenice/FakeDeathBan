@@ -1,5 +1,5 @@
 ---
-name: Požadavek na novou funkci
+name: Žádost o novou funkci
 about: Navrhni nápad pro tento projekt
 title: "[NÁPAD]"
 labels: vylepšení
