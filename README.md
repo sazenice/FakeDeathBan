@@ -8,7 +8,7 @@ Chyby prosím hlašte [sem](https://github.com/sazenice/FakeDeathBan/issues)
 
 Pokud chcete přidat do pluginu něco svého nebo ho vylepšit, klikněte [sem](https://github.com/sazenice/FakeDeathBan/pulls)
 
-Návod / Wiki je [zde](https://sazenice.gitbook.io/sazenice-docs)
+**Návod / Wiki je [zde](https://sazenice.gitbook.io/sazenice-docs)**
 ___ 
 
 Death ban pluginy jsou určeny pro SMP servery.
