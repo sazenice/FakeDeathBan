@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="fake-death-ban:jar">
-    <output-path>$USER_HOME$/output</output-path>
-    <root id="archive" name="fake-death-ban.jar">
-      <element id="module-output" name="fake-death-ban" />
-    </root>
-  </artifact>
-</component>
