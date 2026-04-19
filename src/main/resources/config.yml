@@ -1,5 +1,5 @@
-deathbanned:
-frozen:
+deathbanned: []
+frozen: []
 
 default-spectator: "PandakYT"
 default-gamemode: "ADVENTURE" #musí být vše velký

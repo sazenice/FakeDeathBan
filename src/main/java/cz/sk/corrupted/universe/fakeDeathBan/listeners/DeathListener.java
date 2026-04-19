@@ -42,7 +42,7 @@ public class DeathListener implements Listener {
             Bukkit.broadcastMessage("§e" + player.getName() + " left the game");
             player.setGameMode(GameMode.SPECTATOR);
             if (sound != null){
-                player.getWorld().playSound(player.getLocation(), Sound.ENTITY_WITHER_SPAWN, 5f, 1);
+                player.getWorld().playSound(player.getLocation(), sound, 5f, 1);
             }
         }, 2L);
     }

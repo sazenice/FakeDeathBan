@@ -1,8 +1,8 @@
 name: FakeDeathBan
-version: 1.7-pre-3
-load: STARTUP
+version: 1.7-pre-4
+load: POSTWORLD
 main: cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan
-api-version: 1.20
+api-version: 1.21
 author: sazenice
 website: https://github.com/sazenice/FakeDeathBan
 commands:
@@ -73,7 +73,7 @@ commands:
 permissions:
   fakedeathban.undeathban:
     default: op
-  dakedeathban.setspectate:
+  fakedeathban.setspectate:
     default: op
   fakedeathban.spectate:
     default: true

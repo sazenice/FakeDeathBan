@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cz.sk.unstable.smp</groupId>
-    <artifactId>fake-death-ban</artifactId>
-    <version>1.1</version>
+    <artifactId>fakedeathban</artifactId>
+    <version>1.7-pre4</version>
     <packaging>jar</packaging>
 
-    <name>fake-death-ban</name>
+    <name>fakedeathban</name>
 
     <properties>
         <java.version>21</java.version>
@@ -59,10 +59,10 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.21.11-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
+        <groupId>org.spigotmc</groupId>
+        <artifactId>spigot-api</artifactId>
+        <version>1.21.11-R0.1-SNAPSHOT</version>
+        <scope>provided</scope>
+    </dependency>
     </dependencies>
 </project>

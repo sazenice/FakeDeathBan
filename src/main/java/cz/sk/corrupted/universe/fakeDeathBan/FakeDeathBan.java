@@ -27,6 +27,7 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
+        saveDefaultConfig();
         Messages.setup(this);
         Messages.get().options().copyDefaults(true);
         Messages.save();
@@ -37,19 +38,11 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         paths.add("frozen");
         paths.add("default-spectator");
         paths.add("default-gamemode");
+        paths.add("death-sound");
+        paths.add("revive-sound");
+        sendMessage(ChatColor.YELLOW + "===Načítání=== Hledání chyb je vypnuto v produkci");
 
-        for (String path : paths){
-            if (!this.getConfig().contains(path)){
-                sendMessage(ChatColor.DARK_RED + "ZÁVAŽNÁ CHYBA!" +
-                        "\nChybí cesta " + path + " v config.yml!!!!!!" +
-                        "\nOdstraň config.yml a restartuj server" +
-                        "\nnebo přidej tuto cestu do config.yml a restartuj server!" +
-                        "\n\n===    Plugin se teď vypne.  ===\n");
-                Bukkit.getPluginManager().disablePlugin(this);
-            }else{
-                sendMessage(ChatColor.DARK_GREEN + "Nalezeno " + path + " v config.yml");
-            }
-        }
+
         sendMessage(ChatColor.AQUA + "===Načítání=== fáze 2/3");
 
         registerEvent(new MoveListener(this));
