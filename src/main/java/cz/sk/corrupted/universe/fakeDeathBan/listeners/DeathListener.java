@@ -26,6 +26,7 @@ public class DeathListener implements Listener {
 
         Sound sound;
 
+        // Pokud proměná soundStringu existuje
         if (key != null) {
             sound = Registry.SOUNDS.get(key);
         } else {
@@ -33,6 +34,13 @@ public class DeathListener implements Listener {
         }
 
         List<String> deathbanned = plugin.getConfig().getStringList("deathbanned");
+
+        // Pokud hráč nemá imunitu proti deathbanu
+        if (!player.hasPermission("fakedeathban.bypass.deathban")){
+            return;
+        }
+
+        // Pokud hráč ještě nemá deathban
         if (!deathbanned.contains(player.getUniqueId().toString())) {
             deathbanned.add(player.getUniqueId().toString());
             plugin.getConfig().set("deathbanned", deathbanned);

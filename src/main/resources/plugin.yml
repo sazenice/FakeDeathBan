@@ -1,6 +1,6 @@
 name: FakeDeathBan
-version: 1.7-pre-4
-load: POSTWORLD
+version: 1.7-pre-5
+load: STARTUP
 main: cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan
 api-version: 1.21
 author: sazenice
@@ -70,7 +70,14 @@ commands:
     description: "Nastaví zvuk když někdo umře nebo se oživí"
     usage: /<command> <death|revive> <sound>
     permission: fakedeathban.setsound
+  lobby:
+    description: "Nastaví režim Lobby"
+    usage: /<command>
+    prmission: fakedeathban.lobby
+    aliases:
+      - lob
 permissions:
+  # Příkazové oprávnění
   fakedeathban.undeathban:
     default: op
   fakedeathban.setspectate:
@@ -88,4 +95,22 @@ permissions:
   fakedeathban.check:
     default: true
   fakedeathban.setsound:
+    default: op
+  fakedeathban.lobby:
+    default: op
+  # Imunitní oprávnění
+  fakedeathban.bypass:
+    description: Imunita proti všemu
+    default: op
+  fakedeathban.bypass.deathban:
+    description: Imunita proti DeathBanu
+    default: op
+  fakedeathban.bypass.freeze:
+    description: Imunita proti zmražení
+    default: op
+  fakedeathban.bypass.joinquit:
+    description: Ukazování Join/Quit zpráv
+    default: op
+  fakedeathban.bypass.move:
+    description: Možnost pohybovat se s DeathBanem
     default: op

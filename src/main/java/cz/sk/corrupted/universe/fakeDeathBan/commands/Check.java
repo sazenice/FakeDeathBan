@@ -42,7 +42,9 @@ public class Check implements CommandExecutor {
                 "\ndeathbaned: " + config.getMapList("deathbanned") +
                 "\nfrozen: " + config.getMapList("frozen") +
                 "\ndefault-spectator: " + config.getString("default-spectator") +
-                "\ndefault-gamemode: " + config.getString("default-gamemode"));
+                "\ndefault-gamemode: " + config.getString("default-gamemode") +
+                "\ndeath-sound: " + config.getString("death-sound") +
+                "\nrevive-sound: " + config.getString("revive-sound"));
 
         return true;
     }

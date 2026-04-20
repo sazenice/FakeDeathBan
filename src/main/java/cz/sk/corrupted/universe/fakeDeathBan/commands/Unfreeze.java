@@ -25,21 +25,28 @@ public class Unfreeze implements CommandExecutor {
 
         List<String> frozen = plugin.getConfig().getStringList("frozen");
 
+        // Pokud nemá argumenty
         if (args.length == 0) {
+
+            // Pro každého online hráče "player"
             for (Player player : Bukkit.getOnlinePlayers()) {
                 frozen.remove(player.getUniqueId().toString());
             }
             sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("unfreeze-1-s"));
         } else {
+
+            // Pro každý argument "arg"
             for (String arg : args) {
                 Player target = Bukkit.getPlayer(arg);
+
+                // Pokud hráč "arg" neexistuje
                 if (target == null) {
-                    sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED +
-                            Messages.getMessage("p-f", arg));
+                    sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("p-f", arg));
                     continue;
                 }
-
                 String uuid = target.getUniqueId().toString();
+
+                // Pokud se úspěšně odstranil
                 if (frozen.remove(uuid)) {
                     sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("unfreeze-2-s", target.getName()));
                 } else {

@@ -25,20 +25,28 @@ public class MoveListener implements Listener {
         Player player = e.getPlayer();
         List<String> deathbanned = plugin.getConfig().getStringList("deathbanned");
         List<String> frozen = plugin.getConfig().getStringList("frozen");
-        if (deathbanned.contains(player.getUniqueId().toString())) {
+
+        // Pokud má deathban a nemá imunitu
+        if (deathbanned.contains(player.getUniqueId().toString()) && !player.hasPermission("fakedeathban.bypass.move")) {
             player.setGameMode(GameMode.SPECTATOR);
             String defaultPlayer = plugin.getConfig().getString("default-spectator");
-            if (frozen.contains(player.getUniqueId().toString())){
+
+            // Pokud je zmražen a nemá imunitu
+            if (frozen.contains(player.getUniqueId().toString()) && !player.hasPermission("fakedeathban.bypass.freeze")){
                 player.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("freeze-2-f"));
                 e.setCancelled(true);
                 return;
             }
+
+            // Pokud *Proměná* výchozího spectatovanýho hráče existuje
             if (defaultPlayer != null) {
                 Player target = Bukkit.getPlayer(defaultPlayer);
 
+                // Pokud spectatovaný hráč je ten samý hráč
                 if (target == e.getPlayer()){ return; }
 
-                if (target != null ) {
+                // Pokud výchozí spectatovaný hráč existuje
+                if (target != null) {
                     player.setSpectatorTarget(target);
                     return;
                 }

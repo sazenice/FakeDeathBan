@@ -3,10 +3,13 @@ package cz.sk.corrupted.universe.fakeDeathBan;
 import cz.sk.corrupted.universe.fakeDeathBan.commands.*;
 import cz.sk.corrupted.universe.fakeDeathBan.files.Messages;
 import cz.sk.corrupted.universe.fakeDeathBan.listeners.DeathListener;
-import cz.sk.corrupted.universe.fakeDeathBan.listeners.HideJoinLeave;
+import cz.sk.corrupted.universe.fakeDeathBan.listeners.JoinQuitListener;
 import cz.sk.corrupted.universe.fakeDeathBan.listeners.MoveListener;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.event.Listener;
@@ -23,6 +26,10 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
     public static final String prefix = "[" + ChatColor.BOLD + ChatColor.LIGHT_PURPLE + "FakeDeathBan" + ChatColor.RESET + "] ";
     public static void sendMessage(String message){console.sendMessage(prefix + message);}
 
+    public static boolean isLobby = false;
+    public static boolean isEnabled = true;
+    public static BossBar lobbyBar = Bukkit.createBossBar(ChatColor.GREEN + "Režim Lobby", BarColor.GREEN, BarStyle.SOLID);
+
     public static List<String> paths = new ArrayList<String>();
 
     @Override
@@ -34,22 +41,26 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
 
         sendMessage(ChatColor.AQUA + "===Načítání=== fáze 1/3");
 
+        // Inicalizace proměných + setup
         paths.add("deathbanned");
         paths.add("frozen");
         paths.add("default-spectator");
         paths.add("default-gamemode");
         paths.add("death-sound");
         paths.add("revive-sound");
-        sendMessage(ChatColor.YELLOW + "===Načítání=== Hledání chyb je vypnuto v produkci");
 
+        lobbyBar.setVisible(false);
+        lobbyBar.setProgress(1.0);
 
         sendMessage(ChatColor.AQUA + "===Načítání=== fáze 2/3");
 
+        // Registrace posluchačů
         registerEvent(new MoveListener(this));
-        registerEvent(new HideJoinLeave());
+        registerEvent(new JoinQuitListener());
         registerEvent(new DeathListener(this));
 
         sendMessage(ChatColor.AQUA + "===Načítání=== fáze 3/3");
+        // Registrace příkazů
 
         registerCommand("setspectate", new SetSpectate(this));
         registerCommand("undeathban", new UnDeathban(this));
@@ -60,6 +71,7 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         registerCommand("version", new Version());
         registerCommand("check", new Check(this));
         registerCommand("setsound", new SetSound(this));
+        registerCommand("lobby", new Lobby());
 
         sendMessage(ChatColor.GREEN + "===  Plugin načten   ===");
     }

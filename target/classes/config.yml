@@ -1,5 +1,7 @@
-deathbanned:
-frozen:
+deathbanned: []
+frozen: []
 
 default-spectator: "PandakYT"
 default-gamemode: "ADVENTURE" #musí být vše velký
+death-sound: "minecraft:entity.wither.spawn"
+revive-sound: "minecraft:block.beacon.activate"

@@ -26,15 +26,19 @@ public class Freeze implements CommandExecutor {
         List<String> deathbanned = plugin.getConfig().getStringList("deathbanned");
         List<String> frozen = plugin.getConfig().getStringList("frozen");
 
+        // Pokud nemá argumenty
         if (args.length == 0) {
-            int count = 0;
+
+            // Pro každého online hráče "player"
             for (Player player : Bukkit.getOnlinePlayers()) {
                 String uuid = player.getUniqueId().toString();
-                if (deathbanned.contains(uuid) && !frozen.contains(uuid)) {
+
+                // Pokud "player" má deathban a není ještě zmražen a nemá imunitu
+                if (deathbanned.contains(uuid) && !frozen.contains(uuid) && !player.hasPermission("fakedeathban.bypass.freeze")) {
                     frozen.add(uuid);
-                    count++;
                 }
             }
+
             plugin.getConfig().set("frozen", frozen);
             plugin.saveConfig();
 
@@ -42,26 +46,32 @@ public class Freeze implements CommandExecutor {
             return true;
         }
 
+        // Pro každy argument "arg"
         for (String arg : args) {
             Player target = Bukkit.getPlayer(arg);
+
+            // Pokud hráč "arg" neexistuje
             if (target == null) {
-                sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED +
-                        Messages.getMessage("p-f", arg));
+                sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("p-f", arg));
                 continue;
             }
 
+            // Pokud hráč nemá imunitu
+            if (target.hasPermission("fakedeathban.bypass.freeze")){
+                sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("p-immune", arg));
+            }
             String uuid = target.getUniqueId().toString();
 
+            // Pokud hráč nemá deathban
             if (!deathbanned.contains(uuid)) {
-                sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED +
-                        Messages.getMessage("p-db-f", target.getName()));
+                sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("p-db-f", target.getName()));
                 continue;
             }
 
+            // Pokud hráč není zmražen
             if (!frozen.contains(uuid)) {
                 frozen.add(uuid);
-                sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN +
-                        Messages.getMessage("freeze-2-s", target.getName()));
+                sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("freeze-2-s", target.getName()));
             } else {
                 sender.sendMessage(FakeDeathBan.prefix + ChatColor.YELLOW + Messages.getMessage("freeze-1-f", target.getName()));
             }
