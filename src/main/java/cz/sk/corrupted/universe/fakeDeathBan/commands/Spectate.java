@@ -27,7 +27,7 @@ public class Spectate implements CommandExecutor {
         Player target = Bukkit.getPlayer(strings[0]);
 
         if (target == null) {
-            player.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("spectate-2-f", strings[0]));
+            player.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("player-not-found", strings[0]));
             return true;
         }
 

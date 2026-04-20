@@ -19,6 +19,7 @@ public class DeathListener implements Listener {
 
     @EventHandler
     public void onDeath(PlayerDeathEvent e){
+        if (!FakeDeathBan.isEnabled) {return;}
         Player player = e.getEntity();
 
         String soundString = plugin.getConfig().getString("death-sound");

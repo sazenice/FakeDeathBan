@@ -5,4 +5,4 @@ default-spectator: "PandakYT"
 default-gamemode: "ADVENTURE" #musí být vše velký
 death-sound: "minecraft:entity.wither.spawn"
 revive-sound: "minecraft:block.beacon.activate"
-current-version: "1.7-pre5"
+config-version: "1.7-test1"

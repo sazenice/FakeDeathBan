@@ -52,6 +52,13 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         lobbyBar.setVisible(false);
         lobbyBar.setProgress(1.0);
 
+        if (!Objects.equals(getConfig().getString("config-version"), getDescription().getVersion().toString())){
+            sendMessage(ChatColor.RED +
+                    "Verze config.yml není stejná, jako verze pluginu!" +
+                    "\nJe možné, že se něco pokazí." +
+                    "\nOdstraň složku pluginu nebo plugin změň na verzi " + getConfig().getString("config-version"));
+        }
+
         sendMessage(ChatColor.AQUA + "===Načítání=== fáze 2/3");
 
         // Registrace posluchačů
@@ -72,6 +79,8 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         registerCommand("check", new Check(this));
         registerCommand("setsound", new SetSound(this));
         registerCommand("lobby", new Lobby());
+        registerCommand("setimmunity", new SetImmunity(this));
+        registerCommand("togglefdb", new ToggleFDB());
 
         sendMessage(ChatColor.GREEN + "===  Plugin načten   ===");
     }

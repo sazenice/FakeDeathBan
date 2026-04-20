@@ -14,6 +14,7 @@ import org.bukkit.potion.PotionEffectType;
 public class JoinQuitListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
+        if (!FakeDeathBan.isEnabled) {return;}
         FakeDeathBan.console.sendMessage(FakeDeathBan.prefix + ChatColor.AQUA + Messages.getMessage("join-s"));
         Player player = event.getPlayer();
 

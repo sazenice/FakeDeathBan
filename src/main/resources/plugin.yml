@@ -1,5 +1,5 @@
 name: FakeDeathBan
-version: 1.7-pre-5
+version: 1.7-test1
 load: STARTUP
 main: cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan
 api-version: 1.21
@@ -73,9 +73,22 @@ commands:
   lobby:
     description: "Nastaví režim Lobby"
     usage: /<command>
-    prmission: fakedeathban.lobby
+    permission: fakedeathban.lobby
     aliases:
       - lob
+  setimmunity:
+    description: "Nastaví hráči imunitu"
+    usage: /<command> <hráč> <imunita>
+    permission: fakedeathban.setimmunity
+    aliases:
+      - setimmune
+      - setim
+      - simmune
+      - sim
+  toggle:
+    description: "Vypne nebo zapne posluchače"
+    usage: /<command>
+    permission: fakedeathban.toggle
 permissions:
   # Příkazové oprávnění
   fakedeathban.undeathban:
@@ -93,10 +106,14 @@ permissions:
   fakedeathban.version:
     default: true
   fakedeathban.check:
-    default: true
+    default: op
   fakedeathban.setsound:
     default: op
   fakedeathban.lobby:
+    default: op
+  fakedeathban.setimmunity:
+    default: op
+  fakedeathban.toggle:
     default: op
   # Imunitní oprávnění
   fakedeathban.bypass:

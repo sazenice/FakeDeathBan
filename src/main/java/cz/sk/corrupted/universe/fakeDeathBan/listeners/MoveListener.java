@@ -22,6 +22,7 @@ public class MoveListener implements Listener {
 
     @EventHandler
     public void onMove(PlayerMoveEvent e){
+        if (!FakeDeathBan.isEnabled) {return;}
         Player player = e.getPlayer();
         List<String> deathbanned = plugin.getConfig().getStringList("deathbanned");
         List<String> frozen = plugin.getConfig().getStringList("frozen");
