@@ -50,6 +50,7 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         paths.add("revive-sound");
 
         lobbyBar.setVisible(false);
+        lobbyBar.setTitle(ChatColor.GREEN + "Režim Lobby");
         lobbyBar.setProgress(1.0);
 
         if (!Objects.equals(getConfig().getString("config-version"), getDescription().getVersion().toString())){

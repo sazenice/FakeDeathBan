@@ -6,7 +6,7 @@
 
     <groupId>cz.sk.unstable.smp</groupId>
     <artifactId>fakedeathban</artifactId>
-    <version>1.7-test1</version>
+    <version>1.7-test2</version>
     <packaging>jar</packaging>
 
     <name>fakedeathban</name>

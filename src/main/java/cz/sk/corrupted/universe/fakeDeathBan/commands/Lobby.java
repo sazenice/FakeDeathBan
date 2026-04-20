@@ -28,7 +28,6 @@ public class Lobby implements CommandExecutor {
                 player.setInvulnerable(true);
                 player.sendTitle(ChatColor.GREEN + "Režim Lobby", ChatColor.GREEN + "Režim Lobby byl zapnut!", 10, 40, 10);
                 player.playSound(player, Sound.BLOCK_BEACON_ACTIVATE, SoundCategory.MASTER,  1, 1);
-                player.spigot().sendMessage(ChatMessageType.ACTION_BAR);
                 FakeDeathBan.lobbyBar.setVisible(true);
             }
             sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + "Režim lobby byl zapnut");

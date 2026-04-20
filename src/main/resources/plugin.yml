@@ -1,5 +1,5 @@
 name: FakeDeathBan
-version: 1.7-test1
+version: 1.7-test2
 load: STARTUP
 main: cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan
 api-version: 1.21
@@ -85,10 +85,10 @@ commands:
       - setim
       - simmune
       - sim
-  toggle:
+  togglefdb:
     description: "Vypne nebo zapne posluchače"
     usage: /<command>
-    permission: fakedeathban.toggle
+    permission: fakedeathban.togglefdb
 permissions:
   # Příkazové oprávnění
   fakedeathban.undeathban:
@@ -113,7 +113,7 @@ permissions:
     default: op
   fakedeathban.setimmunity:
     default: op
-  fakedeathban.toggle:
+  fakedeathban.togglefdb:
     default: op
   # Imunitní oprávnění
   fakedeathban.bypass:

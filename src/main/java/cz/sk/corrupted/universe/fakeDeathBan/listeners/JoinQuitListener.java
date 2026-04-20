@@ -14,6 +14,7 @@ import org.bukkit.potion.PotionEffectType;
 public class JoinQuitListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
+        FakeDeathBan.lobbyBar.addPlayer(event.getPlayer());
         if (!FakeDeathBan.isEnabled) {return;}
         FakeDeathBan.console.sendMessage(FakeDeathBan.prefix + ChatColor.AQUA + Messages.getMessage("join-s"));
         Player player = event.getPlayer();
@@ -36,6 +37,8 @@ public class JoinQuitListener implements Listener {
     }
     @EventHandler
     public void onLeave(PlayerQuitEvent event){
+        FakeDeathBan.lobbyBar.removePlayer(event.getPlayer());
+        if (!FakeDeathBan.isEnabled) {return;}
         FakeDeathBan.console.sendMessage(FakeDeathBan.prefix + ChatColor.AQUA + Messages.getMessage("leave-s"));
 
         // Pokud nemá oprávnění ukazovat odpojovací zprávy
