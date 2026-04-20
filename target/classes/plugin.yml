@@ -1,5 +1,5 @@
 name: FakeDeathBan
-version: 1.7-test2
+version: 1.7
 load: STARTUP
 main: cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan
 api-version: 1.21
@@ -33,7 +33,7 @@ commands:
     aliases:
       - spec
       - s
-    permission: fakedeathban.freeze
+    permission: fakedeathban.spectate
   freeze:
     description: "Zmrazí všechny hráče, co mají deathban"
     usage: /<command> [hráč...]
