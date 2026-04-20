@@ -31,6 +31,7 @@ setsound-2-s: "Revive sound byl nastaven na %s"
 setsound-3-s: "%s sound byl odstraněn"
 p-f: "Nemůžeš tento příkaz spustit z konsole anebo příkazového bloku!"
 p-db-f: "Hráč %s nemá deathban"
+p-immune: "Hráč %s má imunitu!"
 
 ### Zprávy posluchačů
 

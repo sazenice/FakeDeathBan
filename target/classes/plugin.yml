@@ -1,6 +1,6 @@
 name: FakeDeathBan
 version: 1.7-pre-5
-load: POSTWORLD
+load: STARTUP
 main: cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan
 api-version: 1.21
 author: sazenice
@@ -77,6 +77,7 @@ commands:
     aliases:
       - lob
 permissions:
+  # Příkazové oprávnění
   fakedeathban.undeathban:
     default: op
   fakedeathban.setspectate:
@@ -96,4 +97,20 @@ permissions:
   fakedeathban.setsound:
     default: op
   fakedeathban.lobby:
+    default: op
+  # Imunitní oprávnění
+  fakedeathban.bypass:
+    description: Imunita proti všemu
+    default: op
+  fakedeathban.bypass.deathban:
+    description: Imunita proti DeathBanu
+    default: op
+  fakedeathban.bypass.freeze:
+    description: Imunita proti zmražení
+    default: op
+  fakedeathban.bypass.joinquit:
+    description: Ukazování Join/Quit zpráv
+    default: op
+  fakedeathban.bypass.move:
+    description: Možnost pohybovat se s DeathBanem
     default: op

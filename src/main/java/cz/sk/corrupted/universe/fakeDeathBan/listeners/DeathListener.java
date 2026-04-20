@@ -35,8 +35,8 @@ public class DeathListener implements Listener {
 
         List<String> deathbanned = plugin.getConfig().getStringList("deathbanned");
 
-        // Pokud hráč nemá imunitu proti deathbanu
-        if (!player.hasPermission("fakedeathban.bypass.deathban")){
+        // Pokud hráč má imunitu proti deathbanu
+        if (player.hasPermission("fakedeathban.bypass.deathban")){
             return;
         }
 
