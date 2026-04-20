@@ -20,7 +20,7 @@ public class Spectate implements CommandExecutor {
             commandSender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("p-f"));
             return true;
         }
-        if(strings.length < 0){
+        if(strings.length < 1){
             commandSender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("spectate-1-f"));
         }
 

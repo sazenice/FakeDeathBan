@@ -25,6 +25,7 @@ public class UnDeathban implements CommandExecutor {
         List<String> frozen = plugin.getConfig().getStringList("frozen");
 
         String soundString = plugin.getConfig().getString("revive-sound");
+        assert soundString != null;
         NamespacedKey key = NamespacedKey.fromString(soundString);
         Sound sound = null;
 

@@ -30,7 +30,7 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
     public static boolean isEnabled = true;
     public static BossBar lobbyBar = Bukkit.createBossBar(ChatColor.GREEN + "Režim Lobby", BarColor.GREEN, BarStyle.SOLID);
 
-    public static List<String> paths = new ArrayList<String>();
+    public static List<String> paths = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -53,7 +53,7 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         lobbyBar.setTitle(ChatColor.GREEN + "Režim Lobby");
         lobbyBar.setProgress(1.0);
 
-        if (!Objects.equals(getConfig().getString("config-version"), getDescription().getVersion().toString())){
+        if (!Objects.equals(getConfig().getString("config-version"), getDescription().getVersion())){
             sendMessage(ChatColor.RED +
                     "Verze config.yml není stejná, jako verze pluginu!" +
                     "\nJe možné, že se něco pokazí." +

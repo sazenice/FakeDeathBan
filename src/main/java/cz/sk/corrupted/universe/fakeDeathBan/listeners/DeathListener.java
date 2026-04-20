@@ -23,6 +23,7 @@ public class DeathListener implements Listener {
         Player player = e.getEntity();
 
         String soundString = plugin.getConfig().getString("death-sound");
+        assert soundString != null;
         NamespacedKey key = NamespacedKey.fromString(soundString);
 
         Sound sound;

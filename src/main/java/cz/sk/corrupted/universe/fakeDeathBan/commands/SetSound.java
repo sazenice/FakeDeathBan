@@ -8,6 +8,7 @@ import org.bukkit.Registry;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.jspecify.annotations.NonNull;
 
 public class SetSound implements CommandExecutor {
     private final FakeDeathBan plugin;
@@ -17,7 +18,7 @@ public class SetSound implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String[] args) {
         if (args.length < 1) {
             sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("setsound-1-f"));
             return true;

@@ -6,10 +6,11 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.jspecify.annotations.NonNull;
 
 public class ToggleFDB implements CommandExecutor {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
         FakeDeathBan.isEnabled = !FakeDeathBan.isEnabled;
         String toSend;
         if (FakeDeathBan.isEnabled){toSend = "vypli";}else{toSend = "zapli";}

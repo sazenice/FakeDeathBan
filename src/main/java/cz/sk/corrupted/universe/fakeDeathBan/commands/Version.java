@@ -7,12 +7,15 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.PluginDescriptionFile;
+import org.jspecify.annotations.NonNull;
+
+import java.util.Objects;
 
 
 public class Version implements CommandExecutor {
-    private final PluginDescriptionFile description = Bukkit.getPluginManager().getPlugin("FakeDeathBan").getDescription();
+    private final PluginDescriptionFile description = Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("FakeDeathBan")).getDescription();
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
 
         sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN +
                 "\nNázev: " + description.getName() +

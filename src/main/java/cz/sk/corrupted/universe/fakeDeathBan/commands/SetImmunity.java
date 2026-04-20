@@ -9,6 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachment;
+import org.jspecify.annotations.NonNull;
 
 public class SetImmunity implements CommandExecutor {
     private final FakeDeathBan plugin;
@@ -18,7 +19,7 @@ public class SetImmunity implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String[] args) {
         if (args.length < 2) {
             sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("setimmunity-1-f"));
             return true;

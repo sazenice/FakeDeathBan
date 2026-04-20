@@ -6,6 +6,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Objects;
 
@@ -17,7 +18,7 @@ public class DefaultGamemode implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String[] args) {
         if (args.length < 1){
             sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("defg-f-1"));
             return true;
