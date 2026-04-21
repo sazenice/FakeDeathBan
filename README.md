@@ -8,6 +8,8 @@ Chyby prosím hlašte [sem](https://github.com/sazenice/FakeDeathBan/issues)
 
 Pokud chcete přidat do pluginu něco svého nebo ho vylepšit, klikněte [sem](https://github.com/sazenice/FakeDeathBan/pulls)
 
+# Doporučéná verze pro stahování: [1.8-pre1](https://github.com/sazenice/FakeDeathBan/releases/tag/1.8-pre1)
+
 # Návod / Wiki je [zde](https://sazenice.gitbook.io/sazenice-docs)
 ___ 
 
