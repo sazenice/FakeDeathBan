@@ -1,7 +1,6 @@
 package cz.sk.corrupted.universe.fakeDeathBan.other;
 
 import org.bukkit.Bukkit;
-import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -23,20 +22,35 @@ public class AutoComplete implements TabCompleter {
             case "setsound":
                 if (args.length == 1) {
                     String t = args[0] == null ? "" : args[0].toLowerCase();
-                    List<String> completions = new ArrayList<>();
-                    for (Player p : Bukkit.getOnlinePlayers()) {
-                        if (p.getName().toLowerCase().startsWith(t)) completions.add(p.getName());
-                    }
-                    return completions;
+                    return Stream.of("death", "revive")
+                            .filter(s -> s.startsWith(t))
+                            .sorted()
+                            .toList();
                 } else if (args.length == 2) {
                     String token = args[1] == null ? "" : args[1].toLowerCase();
                     List<String> sounds = new ArrayList<>();
 
-                    for (Sound s : Sound.values()) {
-                        NamespacedKey key = s.getKeyOrThrow(); // Paper API
-                        String soundName = key.toString(); // fallback
-                        if (soundName.toLowerCase().startsWith(token)) sounds.add(soundName);
+                    try {
+                        Iterable<Sound> iterable = List.of(Sound.values());
+                        for (Sound s : iterable) {
+                            String soundName;
+                            try {
+                                soundName = s.getKey().toString();
+                            } catch (Throwable t) {
+                                soundName = s.name();
+                            }
+                            if (soundName.toLowerCase().startsWith(token)) sounds.add(soundName);
+                        }
+                    } catch (NoSuchMethodError | NoClassDefFoundError e) {
+                        for (Sound s : Sound.values()) {
+                            String soundName = s.name();
+                            if (name.toLowerCase().startsWith(token)) sounds.add(soundName);
+                        }
+                    } catch (Throwable t) {
+                        t.printStackTrace();
                     }
+
+                    Collections.sort(sounds);
                     return sounds;
                 }
                 break;

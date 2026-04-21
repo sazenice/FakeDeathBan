@@ -4,6 +4,7 @@ import cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan;
 import cz.sk.corrupted.universe.fakeDeathBan.other.Messages;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -22,6 +23,7 @@ public class Spectate implements CommandExecutor {
         }
         if(strings.length < 1){
             commandSender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("spectate-1-f"));
+            return true;
         }
 
         Player target = Bukkit.getPlayer(strings[0]);
@@ -31,8 +33,12 @@ public class Spectate implements CommandExecutor {
             return true;
         }
 
-        player.setSpectatorTarget(target);
-        player.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("spectate-s", target.getName()));
+        if (player.getGameMode() == GameMode.SPECTATOR){
+            player.setSpectatorTarget(target);
+            player.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("spectate-s", target.getName()));
+        }else{
+            player.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("spectate-2-f"));
+        }
 
         return true;
     }
