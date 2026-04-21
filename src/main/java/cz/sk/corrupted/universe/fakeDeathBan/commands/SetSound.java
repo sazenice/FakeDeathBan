@@ -1,7 +1,7 @@
 package cz.sk.corrupted.universe.fakeDeathBan.commands;
 
 import cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan;
-import cz.sk.corrupted.universe.fakeDeathBan.files.Messages;
+import cz.sk.corrupted.universe.fakeDeathBan.other.Messages;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Registry;

@@ -1,10 +1,11 @@
 name: FakeDeathBan
-version: 1.7
+version: 1.7-pre2
 load: STARTUP
 main: cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan
 api-version: 1.21
 author: sazenice
 website: https://github.com/sazenice/FakeDeathBan
+
 commands:
   undeathban:
     description: "Teleportuje všechny hráče s death banem k tobě a odstraní jim deathban"
@@ -40,15 +41,15 @@ commands:
     aliases:
       - fr
     permission: fakedeathban.freeze
-  defg:
+  defaultgamemode:
     description: "Nastaví výchozí gamemode pro hráče, kterým se odstraní deathban"
     usage: /<command> <gamemode>
     aliases:
-      - defaultgamemode
+      - defg
       - dgamemode
       - defaultg
       - dg
-    permission: fakedeathban.defg
+    permission: fakedeathban.defaultgamemode
   unfreeze:
     description: "Rozmrazí všechny hráče, co jsou zmraženi"
     usage: /<command> [hráč...]
@@ -99,7 +100,7 @@ permissions:
     default: true
   fakedeathban.freeze:
     default: op
-  fakedeathban.defg:
+  fakedeathban.defaultgamemode:
     default: op
   fakedeathban.unfreeze:
     default: op
@@ -116,18 +117,15 @@ permissions:
   fakedeathban.togglefdb:
     default: op
   # Imunitní oprávnění
-  fakedeathban.bypass:
-    description: Imunita proti všemu
-    default: op
   fakedeathban.bypass.deathban:
     description: Imunita proti DeathBanu
-    default: op
+    default: false
   fakedeathban.bypass.freeze:
     description: Imunita proti zmražení
-    default: op
+    default: false
   fakedeathban.bypass.joinquit:
     description: Ukazování Join/Quit zpráv
-    default: op
+    default: false
   fakedeathban.bypass.move:
     description: Možnost pohybovat se s DeathBanem
-    default: op
+    default: false

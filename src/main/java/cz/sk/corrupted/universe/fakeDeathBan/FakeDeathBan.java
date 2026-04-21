@@ -1,7 +1,8 @@
 package cz.sk.corrupted.universe.fakeDeathBan;
 
 import cz.sk.corrupted.universe.fakeDeathBan.commands.*;
-import cz.sk.corrupted.universe.fakeDeathBan.files.Messages;
+import cz.sk.corrupted.universe.fakeDeathBan.other.AutoComplete;
+import cz.sk.corrupted.universe.fakeDeathBan.other.Messages;
 import cz.sk.corrupted.universe.fakeDeathBan.listeners.DeathListener;
 import cz.sk.corrupted.universe.fakeDeathBan.listeners.JoinQuitListener;
 import cz.sk.corrupted.universe.fakeDeathBan.listeners.MoveListener;
@@ -29,6 +30,8 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
     public static boolean isLobby = false;
     public static boolean isEnabled = true;
     public static BossBar lobbyBar = Bukkit.createBossBar(ChatColor.GREEN + "Režim Lobby", BarColor.GREEN, BarStyle.SOLID);
+
+    private final AutoComplete autoComplete = new AutoComplete();
 
     public static List<String> paths = new ArrayList<>();
 
@@ -96,6 +99,7 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
     }
     private void registerCommand(String name, @NonNull CommandExecutor command){
         sendMessage(ChatColor.GREEN + Messages.getMessage("r-command", command.toString()) + ChatColor.YELLOW + name);
+        Objects.requireNonNull(getCommand(name)).setTabCompleter(autoComplete);
         Objects.requireNonNull(getCommand(name)).setExecutor(command);
     }
 }

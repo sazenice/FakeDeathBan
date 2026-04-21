@@ -1,4 +1,4 @@
-package cz.sk.corrupted.universe.fakeDeathBan.files;
+package cz.sk.corrupted.universe.fakeDeathBan.other;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
