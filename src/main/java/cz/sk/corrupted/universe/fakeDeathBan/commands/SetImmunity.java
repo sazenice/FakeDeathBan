@@ -39,9 +39,15 @@ public class SetImmunity implements CommandExecutor {
         if (player.hasPermission(node)){
             attachment.setPermission(node, false);
             sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("setimmunity-2-s", player.getName(), node));
+            if (nodePart.equals("pre-start")){
+                FakeDeathBan.preStartBar.removePlayer(player);
+            }
         }else{
             attachment.setPermission(node, true);
             sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("setimmunity-1-s", player.getName(), node));
+            if (nodePart.equals("pre-start")){
+                FakeDeathBan.preStartBar.addPlayer(player);
+            }
         }
 
         return true;

@@ -27,9 +27,9 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
     public static final String prefix = "[" + ChatColor.BOLD + ChatColor.LIGHT_PURPLE + "FakeDeathBan" + ChatColor.RESET + "] ";
     public static void sendMessage(String message){console.sendMessage(prefix + message);}
 
-    public static boolean isLobby = false;
+    public static boolean isPreStart = false;
     public static boolean isEnabled = true;
-    public static BossBar lobbyBar = Bukkit.createBossBar(ChatColor.GREEN + "Režim Lobby", BarColor.GREEN, BarStyle.SOLID);
+    public static BossBar preStartBar = Bukkit.createBossBar(ChatColor.GREEN + "Režim PreStart", BarColor.GREEN, BarStyle.SOLID);
 
     private final AutoComplete autoComplete = new AutoComplete();
 
@@ -52,9 +52,9 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         paths.add("death-sound");
         paths.add("revive-sound");
 
-        lobbyBar.setVisible(false);
-        lobbyBar.setTitle(ChatColor.GREEN + "Režim Lobby");
-        lobbyBar.setProgress(1.0);
+        preStartBar.setVisible(false);
+        preStartBar.setTitle(ChatColor.GREEN + "Režim PreStart");
+        preStartBar.setProgress(1.0);
 
         if (!Objects.equals(getConfig().getString("config-version"), getDescription().getVersion())){
             sendMessage(ChatColor.RED +
@@ -82,7 +82,7 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         registerCommand("version", new Version());
         registerCommand("check", new Check(this));
         registerCommand("setsound", new SetSound(this));
-        registerCommand("lobby", new Lobby());
+        registerCommand("pre-start", new PreStart());
         registerCommand("setimmunity", new SetImmunity(this));
         registerCommand("togglefdb", new ToggleFDB());
 

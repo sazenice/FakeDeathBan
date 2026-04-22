@@ -14,7 +14,7 @@ import org.bukkit.potion.PotionEffectType;
 public class JoinQuitListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
-        FakeDeathBan.lobbyBar.addPlayer(event.getPlayer());
+        FakeDeathBan.preStartBar.addPlayer(event.getPlayer());
         if (!FakeDeathBan.isEnabled) {return;}
         FakeDeathBan.console.sendMessage(FakeDeathBan.prefix + ChatColor.AQUA + Messages.getMessage("join-s"));
         Player player = event.getPlayer();
@@ -24,20 +24,21 @@ public class JoinQuitListener implements Listener {
             event.setJoinMessage(null);
         }
 
-        // Pokud je zapnutý režim lobby
-        if (FakeDeathBan.isLobby){
+        // Pokud je zapnutý režim pre-start
+        if (FakeDeathBan.isPreStart){
+            if (player.hasPermission("fakedeathban.bypass.pre-start")){return;}
             player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, PotionEffect.INFINITE_DURATION, 255));
             player.setInvulnerable(true);
 
-        // Pokud není zapnutý režim lobby a hráč je v režimu lobby
-        } else if (player.isInvulnerable() && !FakeDeathBan.isLobby){
+        // Pokud není zapnutý režim pre-start a hráč je v režimu pre-start
+        } else if (player.isInvulnerable() && !FakeDeathBan.isPreStart){
             player.removePotionEffect(PotionEffectType.SATURATION);
             player.setInvulnerable(false);
         }
     }
     @EventHandler
     public void onLeave(PlayerQuitEvent event){
-        FakeDeathBan.lobbyBar.removePlayer(event.getPlayer());
+        FakeDeathBan.preStartBar.removePlayer(event.getPlayer());
         if (!FakeDeathBan.isEnabled) {return;}
         FakeDeathBan.console.sendMessage(FakeDeathBan.prefix + ChatColor.AQUA + Messages.getMessage("leave-s"));
 

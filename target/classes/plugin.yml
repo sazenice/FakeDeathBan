@@ -1,5 +1,5 @@
 name: FakeDeathBan
-version: 1.8-pre2
+version: 1.8-pre3
 load: STARTUP
 main: cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan
 api-version: 1.21
@@ -71,12 +71,12 @@ commands:
     description: "Nastaví zvuk když někdo umře nebo se oživí"
     usage: /<command> <death|revive> <sound>
     permission: fakedeathban.setsound
-  lobby:
-    description: "Nastaví režim Lobby"
+  pre-start:
+    description: "Nastaví režim pre-start"
     usage: /<command>
-    permission: fakedeathban.lobby
+    permission: fakedeathban.pre-start
     aliases:
-      - lob
+      - ps
   setimmunity:
     description: "Nastaví hráči imunitu"
     usage: /<command> <hráč> <imunita>
@@ -110,7 +110,7 @@ permissions:
     default: op
   fakedeathban.setsound:
     default: op
-  fakedeathban.lobby:
+  fakedeathban.pre-start:
     default: op
   fakedeathban.setimmunity:
     default: op
@@ -129,3 +129,6 @@ permissions:
   fakedeathban.bypass.move:
     description: Možnost pohybovat se s DeathBanem
     default: false
+  fakedeathban.bypass.pre-start:
+    description: Automatické odstranění režimu pre-start
+    default: op

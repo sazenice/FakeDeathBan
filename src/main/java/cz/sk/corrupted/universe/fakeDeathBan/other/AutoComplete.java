@@ -23,7 +23,7 @@ public class AutoComplete implements TabCompleter {
                 if (args.length == 1) {
                     String t = args[0] == null ? "" : args[0].toLowerCase();
                     return Stream.of("death", "revive")
-                            .filter(s -> s.startsWith(t))
+                            .filter(s -> s.contains(t))
                             .sorted()
                             .toList();
                 } else if (args.length == 2) {
@@ -39,12 +39,12 @@ public class AutoComplete implements TabCompleter {
                             } catch (Throwable t) {
                                 soundName = s.name();
                             }
-                            if (soundName.toLowerCase().startsWith(token)) sounds.add(soundName);
+                            if (soundName.toLowerCase().contains(token)) sounds.add(soundName);
                         }
                     } catch (NoSuchMethodError | NoClassDefFoundError e) {
                         for (Sound s : Sound.values()) {
                             String soundName = s.name();
-                            if (name.toLowerCase().startsWith(token)) sounds.add(soundName);
+                            if (name.toLowerCase().contains(token)) sounds.add(soundName);
                         }
                     } catch (Throwable t) {
                         t.printStackTrace();
@@ -64,7 +64,7 @@ public class AutoComplete implements TabCompleter {
                     String t = args[0] == null ? "" : args[0].toLowerCase();
                     List<String> completions = new ArrayList<>();
                     for (Player p : Bukkit.getOnlinePlayers()) {
-                        if (p.getName().toLowerCase().startsWith(t)) completions.add(p.getName());
+                        if (p.getName().toLowerCase().contains(t)) completions.add(p.getName());
                     }
                     return completions;
                 }
@@ -74,7 +74,7 @@ public class AutoComplete implements TabCompleter {
                 if (args.length == 1) {
                     String t = args[0] == null ? "" : args[0].toLowerCase();
                     return Stream.of("survival", "adventure", "creative", "spectator")
-                            .filter(s -> s.startsWith(t))
+                            .filter(s -> s.contains(t))
                             .sorted()
                             .toList();
                 }
@@ -90,8 +90,8 @@ public class AutoComplete implements TabCompleter {
                     return completions;
                 } else if (args.length == 2) {
                     String t = args[1] == null ? "" : args[1].toLowerCase();
-                    return Stream.of("deathban", "joinquit", "move", "freeze")
-                            .filter(s -> s.startsWith(t))
+                    return Stream.of("deathban", "joinquit", "move", "freeze", "pre-start")
+                            .filter(s -> s.contains(t))
                             .sorted()
                             .toList();
                 }
