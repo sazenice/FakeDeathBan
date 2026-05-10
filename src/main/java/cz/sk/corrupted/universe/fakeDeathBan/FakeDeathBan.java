@@ -1,11 +1,12 @@
 package cz.sk.corrupted.universe.fakeDeathBan;
 
 import cz.sk.corrupted.universe.fakeDeathBan.commands.*;
-import cz.sk.corrupted.universe.fakeDeathBan.other.AutoComplete;
-import cz.sk.corrupted.universe.fakeDeathBan.other.Messages;
 import cz.sk.corrupted.universe.fakeDeathBan.listeners.DeathListener;
+import cz.sk.corrupted.universe.fakeDeathBan.listeners.InventoryListener;
 import cz.sk.corrupted.universe.fakeDeathBan.listeners.JoinQuitListener;
 import cz.sk.corrupted.universe.fakeDeathBan.listeners.MoveListener;
+import cz.sk.corrupted.universe.fakeDeathBan.other.AutoComplete;
+import cz.sk.corrupted.universe.fakeDeathBan.other.Messages;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.boss.BarColor;
@@ -39,10 +40,8 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
     public void onEnable() {
         saveDefaultConfig();
         Messages.setup(this);
-        Messages.get().options().copyDefaults(true);
-        Messages.save();
 
-        sendMessage(ChatColor.AQUA + "===Načítání=== fáze 1/3");
+        sendMessage(ChatColor.AQUA + "===Loading=== 1/3");
 
         // Inicalizace proměných + setup
         paths.add("deathbanned");
@@ -51,26 +50,29 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         paths.add("default-gamemode");
         paths.add("death-sound");
         paths.add("revive-sound");
+        paths.add("config-version");
+        paths.add("language");
 
         preStartBar.setVisible(false);
-        preStartBar.setTitle(ChatColor.GREEN + "Režim PreStart");
+        preStartBar.setTitle(ChatColor.GREEN + Messages.getMessage("pre-start"));
         preStartBar.setProgress(1.0);
 
         if (!Objects.equals(getConfig().getString("config-version"), getDescription().getVersion())){
             sendMessage(ChatColor.RED +
-                    "Verze config.yml není stejná, jako verze pluginu!" +
-                    "\nJe možné, že se něco pokazí." +
-                    "\nOdstraň složku pluginu nebo plugin změň na verzi " + getConfig().getString("config-version"));
+                    "config.yml version is not the same as the plugin version!" +
+                    "\nSomething might be able to break." +
+                    "\nDelete the plugin folder or change the plugin version to " + getConfig().getString("config-version"));
         }
 
-        sendMessage(ChatColor.AQUA + "===Načítání=== fáze 2/3");
+        sendMessage(ChatColor.AQUA + "===Loading=== 2/3");
 
         // Registrace posluchačů
         registerEvent(new MoveListener(this));
         registerEvent(new JoinQuitListener());
         registerEvent(new DeathListener(this));
+        registerEvent(new InventoryListener());
 
-        sendMessage(ChatColor.AQUA + "===Načítání=== fáze 3/3");
+        sendMessage(ChatColor.AQUA + "===Loading=== 3/3");
         // Registrace příkazů
 
         registerCommand("setspectate", new SetSpectate(this));
@@ -85,8 +87,11 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         registerCommand("pre-start", new PreStart());
         registerCommand("setimmunity", new SetImmunity(this));
         registerCommand("togglefdb", new ToggleFDB());
+        registerCommand("gui", new Gui());
+        registerCommand("banlist", new BanList(this));
+        registerCommand("language", new Language(this));
 
-        sendMessage(ChatColor.GREEN + "===  Plugin načten   ===");
+        sendMessage(ChatColor.GREEN + "===  Plugin loaded   ===");
     }
 
     @Override

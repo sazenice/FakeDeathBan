@@ -46,6 +46,9 @@ public class UnDeathban implements CommandExecutor {
                             executor.getWorld().playSound(executor, sound, 1, 1);
                         }
                         player.teleport(executor.getLocation());
+                        for (Player onlinePlayer : Bukkit.getOnlinePlayers()){
+                            onlinePlayer.showPlayer(plugin, player);
+                        }
                     }
                 }
             }
@@ -78,6 +81,9 @@ public class UnDeathban implements CommandExecutor {
                         executor.getWorld().playSound(executor, sound, 1, 1);
                     }
                     target.teleport(executor.getLocation());
+                    for (Player onlinePlayer : Bukkit.getOnlinePlayers()){
+                        onlinePlayer.hidePlayer(plugin, target);
+                    }
                 }
                 sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("udb-2-s", target.getName()));
             } else {

@@ -27,33 +27,27 @@ public class MoveListener implements Listener {
         List<String> deathbanned = plugin.getConfig().getStringList("deathbanned");
         List<String> frozen = plugin.getConfig().getStringList("frozen");
 
-        // Pokud má deathban a nemá imunitu
-        if (deathbanned.contains(player.getUniqueId().toString()) && !player.hasPermission("fakedeathban.bypass.move")) {
-            player.setGameMode(GameMode.SPECTATOR);
-            String defaultPlayer = plugin.getConfig().getString("default-spectator");
+        boolean isDeathbanned = deathbanned.contains(player.getUniqueId().toString());
+        boolean canBypassMove = player.hasPermission("fakedeathban.bypass.move");
 
-            // Pokud je zmražen a nemá imunitu
-            if (frozen.contains(player.getUniqueId().toString()) && !player.hasPermission("fakedeathban.bypass.freeze")){
+        if (isDeathbanned && !canBypassMove) {
+            if (frozen.contains(player.getUniqueId().toString())
+                    && !player.hasPermission("fakedeathban.bypass.freeze")) {
                 player.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("freeze-2-f"));
                 e.setCancelled(true);
                 return;
             }
 
-            // Pokud *Proměná* výchozího spectatovanýho hráče existuje
-            if (defaultPlayer != null) {
-                Player target = Bukkit.getPlayer(defaultPlayer);
+            String defaultPlayer = plugin.getConfig().getString("default-spectator");
+            Player target = defaultPlayer != null ? Bukkit.getPlayer(defaultPlayer) : null;
 
-                // Pokud spectatovaný hráč je ten samý hráč
-                if (target == e.getPlayer()){ return; }
-
-                // Pokud výchozí spectatovaný hráč existuje
-                if (target != null) {
-                    player.setSpectatorTarget(target);
-                    return;
-                }
+            if (target != null && target != player) {
+                player.setGameMode(GameMode.SPECTATOR);
+                player.setSpectatorTarget(target);
+            } else {
+                player.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("move-f"));
+                e.setCancelled(true);
             }
-            player.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("move-f"));
-            e.setCancelled(true);
         }
     }
 }

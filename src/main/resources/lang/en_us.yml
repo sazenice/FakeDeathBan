@@ -1,0 +1,49 @@
+### Plugin Messages
+
+enabling: "Enabling FakeDeathban"
+disabling: "Disabling FakeDeathban"
+r-command: "Registering command "
+r-listener: "Registering listener "
+
+### Command Messages
+
+defg-s: "Default game mode after respawn: %s"
+defg-f-1: "Insufficient arguments! /defg <gamemode>"
+defg-f-2: "Gamemode must be 'adventure', 'creative', 'survival', or 'spectator'!"
+sets-s: "Default spectated player: %s"
+spectate-s: "You are now spectating: %s"
+spectate-1-f: "Insufficient arguments! /spectate <player>!"
+spectate-2-f: "You do not have spectator mode!"
+udb-1-s: "All players have been revived and are teleporting to you"
+udb-2-s: "Player %s has been revived"
+freeze-1-s: "All dead players have been frozen"
+freeze-2-s: "Player %s has been frozen"
+freeze-1-f: "Player %s is already frozen"
+freeze-2-f: "You are frozen"
+unfreeze-1-s: "All players have been unfrozen"
+unfreeze-2-s: "Player %s has been unfrozen"
+unfreeze-1-f: "Player %s is not frozen"
+setsound-1-f: "The first argument must be 'death' or 'revive'"
+setsound-2-f: "Insufficient arguments! /setsound <death|revive> <sound>"
+setsound-3-f: "Sound %s does not exist"
+setsound-1-s: "Death sound has been set to %s"
+setsound-2-s: "Revive sound has been set to %s"
+setsound-3-s: "%s sound has been removed"
+setimmunity-1-f: "Command must be in the format /setimmunity <player> <immunity...>"
+setimmunity-1-s: "Player %s has been granted permission %s"
+setimmunity-2-s: "Player %s has had permission %s removed"
+toggle: "Listener %s"
+p-f: "You cannot run this command from the console or a command block!"
+p-db-f: "Player %s does not have a deathban"
+p-immune: "Player %s has immunity!"
+player-not-found: "Player %s does not exist or is offline."
+
+### Listener messages
+
+join-s: "The join message was muted"
+leave-s: "The leave message was muted"
+move-f: "You have a deathban and the player you are spectating has left the game. /spectate <another player>"
+
+### Other messages
+
+pre-start: "PreStart mode"

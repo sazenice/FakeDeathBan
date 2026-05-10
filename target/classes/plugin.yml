@@ -1,5 +1,5 @@
 name: FakeDeathBan
-version: 1.8-pre3
+version: 1.8-pre5
 load: STARTUP
 main: cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan
 api-version: 1.21
@@ -8,8 +8,8 @@ website: https://github.com/sazenice/FakeDeathBan
 
 commands:
   undeathban:
-    description: "Teleportuje všechny hráče s death banem k tobě a odstraní jim deathban"
-    usage: /<command> [hráč...]
+    description: "Revives and teleports all players to you"
+    usage: /<command> [player...]
     aliases:
       - udb
       - undb
@@ -20,8 +20,8 @@ commands:
       - udeathban
     permission: fakedeathban.undeathban
   setspectate:
-    description: "Nastaví hráče, který se bude spectatovat když někdo má deathban"
-    usage: /<command> <hráč>
+    description: "Sets the default spectator"
+    usage: /<command> <player>
     aliases:
       - sets
       - setspec
@@ -29,20 +29,20 @@ commands:
       - ss
     permission: fakedeathban.setspectate
   spectate:
-    description: "Nastaví hráče, který se bude spectatovat když ty máš deathban"
-    usage: /<command> <hráč>
+    description: "Spectates a player"
+    usage: /<command> <player>
     aliases:
       - spec
       - s
     permission: fakedeathban.spectate
   freeze:
-    description: "Zmrazí všechny hráče, co mají deathban"
-    usage: /<command> [hráč...]
+    description: "Freezes a player"
+    usage: /<command> [player...]
     aliases:
       - fr
     permission: fakedeathban.freeze
   defaultgamemode:
-    description: "Nastaví výchozí gamemode pro hráče, kterým se odstraní deathban"
+    description: "Sets the default gamemode after a revive"
     usage: /<command> <gamemode>
     aliases:
       - defg
@@ -51,35 +51,35 @@ commands:
       - dg
     permission: fakedeathban.defaultgamemode
   unfreeze:
-    description: "Rozmrazí všechny hráče, co jsou zmraženi"
-    usage: /<command> [hráč...]
+    description: "Unfreezes a player"
+    usage: /<command> [player...]
     aliases:
       - unfr
     permission: fakedeathban.unfreeze
   version:
-    description: "Ukáže informace o pluginu"
+    description: "Shows the plugin information"
     usage: /<command>
     permission: fakedeathban.version
   check:
-    description: "Zjistí, zda všechny proměné, co mají být v config.yml existují"
+    description: "Checks if all variables exist in config.yml"
     usage: /<command>
     aliases:
       - health
       - chk
     permission: fakedeathban.check
   setsound:
-    description: "Nastaví zvuk když někdo umře nebo se oživí"
+    description: "Sets the sound after a death/revive"
     usage: /<command> <death|revive> <sound>
     permission: fakedeathban.setsound
   pre-start:
-    description: "Nastaví režim pre-start"
+    description: "Sets the pre-start mode"
     usage: /<command>
     permission: fakedeathban.pre-start
     aliases:
       - ps
   setimmunity:
-    description: "Nastaví hráči imunitu"
-    usage: /<command> <hráč> <imunita>
+    description: "Adds immunity to a player"
+    usage: /<command> <player> <immunity>
     permission: fakedeathban.setimmunity
     aliases:
       - setimmune
@@ -87,9 +87,24 @@ commands:
       - simmune
       - sim
   togglefdb:
-    description: "Vypne nebo zapne posluchače"
+    description: "Turns listeners on or off"
     usage: /<command>
     permission: fakedeathban.togglefdb
+  gui:
+    description: "Shows a GUI for FakeDeathBan"
+    usage: /<command>
+    permission: fakedeathban.gui
+    aliases:
+      - menu
+      - open
+  language:
+    description: "Changes the language"
+    usage: /<command> <language>
+    permission: fakedeathban.language
+    aliases:
+      - lang
+      - lng
+      - lg
 permissions:
   # Příkazové oprávnění
   fakedeathban.undeathban:
@@ -116,19 +131,23 @@ permissions:
     default: op
   fakedeathban.togglefdb:
     default: op
+  fakedeathban.gui:
+    default: op
+  fakedeathban.language:
+    default: op
   # Imunitní oprávnění
   fakedeathban.bypass.deathban:
-    description: Imunita proti DeathBanu
+    description: Immunity against DeathBanu
     default: false
   fakedeathban.bypass.freeze:
-    description: Imunita proti zmražení
+    description: Immunity against freezes
     default: false
   fakedeathban.bypass.joinquit:
-    description: Ukazování Join/Quit zpráv
+    description: Immunity for Join/Quit messages
     default: false
   fakedeathban.bypass.move:
-    description: Možnost pohybovat se s DeathBanem
+    description: Immunity for movement
     default: false
   fakedeathban.bypass.pre-start:
-    description: Automatické odstranění režimu pre-start
+    description: Immunity against pre-start mode
     default: op
