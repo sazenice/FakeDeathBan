@@ -1,0 +1,49 @@
+### Správy pluginu
+
+enabling: "Zapína sa FakeDeathban"
+disabling: "Vypína sa FakeDeathban"
+r-command: "Registrujem príkaz "
+r-listener: "Registrujem poslucháča "
+
+### Správy príkazov
+
+defg-s: "Predvolený herný režim po oživení: %s"
+defg-f-1: "Chýbajú argumenty! /defg <gamemode>"
+defg-f-2: "Herný režim musí byť 'adventure‘, 'creative‘, 'survival‘ alebo 'spectator‘!"
+sets-s: "Východiskový sledovaný hráč: %s"
+spectate-s: "Teraz sleduješ: %s"
+spectate-1-f: "Chýbajú argumenty! /spectate <hráč>!"
+spectate-2-f: "Nemáš režim diváka!"
+udb-1-s: "Všetci hráči boli oživení a teleportovaní k tebe"
+udb-2-s: "Hráč %s bol oživený"
+freeze-1-s: "Všetci mŕtvi hráči boli zmrazení"
+freeze-2-s: "Hráč %s bol zmrazený"
+freeze-1-f: "Hráč %s je už zmrazený"
+freeze-2-f: "Si zmrazený"
+unfreeze-1-s: "Všetci hráči boli rozmrazení"
+unfreeze-2-s: "Hráč %s bol rozmrazený"
+unfreeze-1-f: "Hráč %s nie je zmrazený"
+setsound-1-f: "Prvý argument musí byť 'death‘ alebo 'revive‘"
+setsound-2-f: "Chýbajúce argumenty! /setsound <death|revive> <zvuk>"
+setsound-3-f: "Zvuk %s neexistuje"
+setsound-1-s: "Zvuk smrti bol nastavený na %s"
+setsound-2-s: "Zvuk oživenia bol nastavený na %s"
+setsound-3-s: "Zvuk %s bol odstránený"
+setimmunity-1-f: "Príkaz musí mať formát /setimmunity <hráč> <imunita...>"
+setimmunity-1-s: "Hráčovi %s bolo pridelené oprávnenie %s"
+setimmunity-2-s: "Hráčovi %s bolo odobraté oprávnenie %s"
+toggle: "Poslucháči %s"
+p-f: "Tento príkaz nemôžeš spustiť z konzoly ani z príkazového bloku!"
+p-db-f: "Hráč %s nemá deathban"
+p-immune: "Hráč %s má imunitu!"
+player-not-found: "Hráč %s neexistuje alebo je offline."
+
+### Správy poslucháčov
+
+join-s: "Správa o pripojení bola stlmená"
+leave-s: "Správa o odpojení bola stlmená"
+move-f: "Máš deathban a hráč, ktorého sleduješ, opustil hru. /spectate <iný hráč>"
+
+### Ostatné správy
+
+pre-start: "Režim Immortality"

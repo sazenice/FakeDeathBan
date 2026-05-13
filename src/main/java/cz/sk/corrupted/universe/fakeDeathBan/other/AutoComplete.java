@@ -90,7 +90,16 @@ public class AutoComplete implements TabCompleter {
                     return completions;
                 } else if (args.length == 2) {
                     String t = args[1] == null ? "" : args[1].toLowerCase();
-                    return Stream.of("deathban", "joinquit", "move", "freeze", "pre-start")
+                    return Stream.of("deathban", "joinquit", "move", "freeze", "immortality")
+                            .filter(s -> s.contains(t))
+                            .sorted()
+                            .toList();
+                }
+                break;
+            case "language":
+                if(args.length == 1) {
+                    String t = args[0] == null ? "" : args[0].toLowerCase();
+                    return Stream.of("cs_cz", "en_us", "sk_sk")
                             .filter(s -> s.contains(t))
                             .sorted()
                             .toList();

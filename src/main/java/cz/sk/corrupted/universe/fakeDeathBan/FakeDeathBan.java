@@ -30,7 +30,7 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
 
     public static boolean isPreStart = false;
     public static boolean isEnabled = true;
-    public static BossBar preStartBar = Bukkit.createBossBar(ChatColor.GREEN + "Režim PreStart", BarColor.GREEN, BarStyle.SOLID);
+    public static BossBar preStartBar = Bukkit.createBossBar(ChatColor.GREEN + "Režim Immortality", BarColor.GREEN, BarStyle.SOLID);
 
     private final AutoComplete autoComplete = new AutoComplete();
 
@@ -39,6 +39,8 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         saveDefaultConfig();
+        saveResource("lang/en_us.yml", false);
+        saveResource("lang/cs_cz.yml", false);
         Messages.setup(this);
 
         sendMessage(ChatColor.AQUA + "===Loading=== 1/3");
@@ -80,11 +82,11 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         registerCommand("spectate", new Spectate());
         registerCommand("freeze", new Freeze(this));
         registerCommand("unfreeze", new Unfreeze(this));
-        registerCommand("defg", new DefaultGamemode(this));
+        registerCommand("defaultgamemode", new DefaultGamemode(this));
         registerCommand("version", new Version());
         registerCommand("check", new Check(this));
         registerCommand("setsound", new SetSound(this));
-        registerCommand("pre-start", new PreStart());
+        registerCommand("immortality", new Immortality());
         registerCommand("setimmunity", new SetImmunity(this));
         registerCommand("togglefdb", new ToggleFDB());
         registerCommand("gui", new Gui());
@@ -99,7 +101,7 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         sendMessage(ChatColor.RED + Messages.getMessage("disabling"));
     }
     private void registerEvent(Listener listener){
-        sendMessage(ChatColor.GREEN + Messages.getMessage("r-listener", listener.toString()) + ChatColor.YELLOW + listener);
+        sendMessage(ChatColor.GREEN + Messages.getMessage("r-listener", listener.getClass().getSimpleName()) + ChatColor.YELLOW + listener);
         Bukkit.getPluginManager().registerEvents(listener, this);
     }
     private void registerCommand(String name, @NonNull CommandExecutor command){

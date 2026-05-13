@@ -46,4 +46,4 @@ move-f: "You have a deathban and the player you are spectating has left the game
 
 ### Other messages
 
-pre-start: "PreStart mode"
+pre-start: "Immortality mode"

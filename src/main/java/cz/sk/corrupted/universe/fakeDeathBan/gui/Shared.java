@@ -17,7 +17,7 @@ public class Shared {
         }
         switch (itemType.getType()){
             case OAK_DOOR:
-                meta.setItemName("JoinQuit");
+                meta.setDisplayName("JoinQuit");
                 List<String> doorLore = new ArrayList<>();
                 doorLore.add(ChatColor.GREEN + "Click to allow Join/Quit messages");
                 meta.setLore(doorLore);
@@ -25,7 +25,7 @@ public class Shared {
                 meta.setRarity(ItemRarity.RARE);
                 break;
             case SNOW_BLOCK:
-                meta.setItemName("Freeze");
+                meta.setDisplayName("Freeze");
                 List<String> snowLore = new ArrayList<>();
                 snowLore.add(ChatColor.GREEN + "Click to allow freeze immunity");
                 meta.setLore(snowLore);
@@ -33,46 +33,46 @@ public class Shared {
                 meta.setRarity(ItemRarity.RARE);
                 break;
             case PISTON:
-                meta.setItemName("Move");
+                meta.setDisplayName("Move");
                 List<String> pistonLore = new ArrayList<>();
                 pistonLore.add(ChatColor.GREEN + "Click to allow movement");
                 meta.setLore(pistonLore);
                 meta.setEnchantmentGlintOverride(true);
                 meta.setRarity(ItemRarity.RARE);
             case HAY_BLOCK:
-                meta.setItemName("PreStart");
+                meta.setDisplayName("Immortality");
                 List<String> hayLore = new ArrayList<>();
-                hayLore.add(ChatColor.GREEN + "Click to allow PreStart immunity");
+                hayLore.add(ChatColor.GREEN + "Click to allow Immortality immunity");
                 meta.setLore(hayLore);
                 meta.setEnchantmentGlintOverride(true);
                 meta.setRarity(ItemRarity.RARE);
             case TOTEM_OF_UNDYING:
-                meta.setItemName("Deathban");
+                meta.setDisplayName("Deathban");
                 List<String> totemLore = new ArrayList<>();
                 totemLore.add(ChatColor.GREEN + "Click to allow deathban immunity");
                 meta.setLore(totemLore);
                 meta.setEnchantmentGlintOverride(true);
                 meta.setRarity(ItemRarity.RARE);
             case SNOWBALL:
-                meta.setItemName("Freeze");
+                meta.setDisplayName("Freeze");
                 List<String> snowballLore = new ArrayList<>();
                 snowballLore.add(ChatColor.GREEN + "Click to freeze a player");
                 meta.setLore(snowballLore);
                 meta.setRarity(ItemRarity.UNCOMMON);
             case ENDER_EYE:
-                meta.setItemName("Default spectator");
+                meta.setDisplayName("Default spectator");
                 List<String> eyeLore = new ArrayList<>();
                 eyeLore.add(ChatColor.GREEN + "Click to set the default spector");
                 meta.setLore(eyeLore);
                 meta.setRarity(ItemRarity.UNCOMMON);
             case DIAMOND_SWORD:
-                meta.setItemName("Kill");
+                meta.setDisplayName("Kill");
                 List<String> swordLore = new ArrayList<>();
                 swordLore.add(ChatColor.GREEN + "Click to kill the player");
                 meta.setLore(swordLore);
                 meta.setRarity(ItemRarity.UNCOMMON);
             case BEACON:
-                meta.setItemName("Revive");
+                meta.setDisplayName("Revive");
                 List<String> beaconLore = new ArrayList<>();
                 beaconLore.add(ChatColor.GREEN + "Click to revive the player");
                 beaconLore.add(ChatColor.YELLOW + "Works only if the target is dead");

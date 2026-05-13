@@ -71,12 +71,10 @@ commands:
     description: "Sets the sound after a death/revive"
     usage: /<command> <death|revive> <sound>
     permission: fakedeathban.setsound
-  pre-start:
-    description: "Sets the pre-start mode"
+  immortality:
+    description: "Sets the immortality mode"
     usage: /<command>
-    permission: fakedeathban.pre-start
-    aliases:
-      - ps
+    permission: fakedeathban.immortality
   setimmunity:
     description: "Adds immunity to a player"
     usage: /<command> <player> <immunity>
@@ -105,6 +103,10 @@ commands:
       - lang
       - lng
       - lg
+  banlist:
+    description: Shows deathbanned players
+    usage: /<command>
+    permission: fakedeathban.banlist
 permissions:
   # Příkazové oprávnění
   fakedeathban.undeathban:
@@ -125,7 +127,7 @@ permissions:
     default: op
   fakedeathban.setsound:
     default: op
-  fakedeathban.pre-start:
+  fakedeathban.immortality:
     default: op
   fakedeathban.setimmunity:
     default: op
@@ -134,6 +136,8 @@ permissions:
   fakedeathban.gui:
     default: op
   fakedeathban.language:
+    default: op
+  fakedeathban.banlist:
     default: op
   # Imunitní oprávnění
   fakedeathban.bypass.deathban:
@@ -148,6 +152,6 @@ permissions:
   fakedeathban.bypass.move:
     description: Immunity for movement
     default: false
-  fakedeathban.bypass.pre-start:
-    description: Immunity against pre-start mode
+  fakedeathban.bypass.immortality:
+    description: Immunity against immortality mode
     default: op

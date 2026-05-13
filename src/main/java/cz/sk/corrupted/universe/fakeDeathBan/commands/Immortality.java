@@ -13,7 +13,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.jspecify.annotations.NonNull;
 
-public class PreStart implements CommandExecutor {
+public class Immortality implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
@@ -21,24 +21,24 @@ public class PreStart implements CommandExecutor {
         if (!FakeDeathBan.isPreStart){
             Bukkit.dispatchCommand(sender, "undeathban");
             for (Player player : Bukkit.getOnlinePlayers()) {
-                if (player.hasPermission("fakedeathban.bypass.pre-start")){return true;}
+                if (player.hasPermission("fakedeathban.bypass.immortality")){return true;}
                 player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, PotionEffect.INFINITE_DURATION, 255));
                 player.setInvulnerable(true);
-                player.sendTitle(ChatColor.GREEN + "Režim pre-start", ChatColor.GREEN + "Režim pre-start byl zapnut!", 10, 40, 10);
+                player.sendTitle(ChatColor.GREEN + "Immortality", ChatColor.GREEN + "Immortality ON!", 10, 40, 10);
                 player.playSound(player, Sound.BLOCK_BEACON_ACTIVATE, SoundCategory.MASTER,  1, 1);
                 FakeDeathBan.preStartBar.setVisible(true);
             }
-            sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + "Režim pre-start byl zapnut");
+            sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + "Immortality ON");
         }else{
             for (Player player : Bukkit.getOnlinePlayers()) {
                 if (player.hasPermission("fakedeathban.bypass.pre-start")){return true;}
                 player.removePotionEffect(PotionEffectType.SATURATION);
                 player.setInvulnerable(false);
-                player.sendTitle(ChatColor.YELLOW + "Režim pre-start", ChatColor.YELLOW + "Režim pre-start byl vypnut!", 10, 30, 10);
+                player.sendTitle(ChatColor.YELLOW + "Immortality", ChatColor.YELLOW + "Immortality OFF!", 10, 30, 10);
                 player.playSound(player, Sound.BLOCK_BEACON_DEACTIVATE, SoundCategory.MASTER,  1, 1);
                 FakeDeathBan.preStartBar.setVisible(false);
             }
-            sender.sendMessage(FakeDeathBan.prefix + ChatColor.YELLOW + "Režim pre-start byl vypnut");
+            sender.sendMessage(FakeDeathBan.prefix + ChatColor.YELLOW + "Immortality OFF");
         }
 
         FakeDeathBan.isPreStart = !FakeDeathBan.isPreStart;

@@ -39,7 +39,7 @@ public class InventoryListener implements Listener {
                             lore.add(ChatColor.RED + "Nastala chyba!");
                             lore.add(ChatColor.YELLOW + "\nHráč " + ChatColor.AQUA + skullPlayer.getName() + ChatColor.YELLOW + " není online!");
                             fMeta.setLore(lore);
-                            fMeta.setItemName(ChatColor.BOLD + "" + ChatColor.RED + "X");
+                            fMeta.setDisplayName(ChatColor.BOLD + "" + ChatColor.RED + "X");
                             player.playSound(player, Sound.ENTITY_VILLAGER_NO, 1, 1);
                         }else{
                             Inventory inventory = Bukkit.createInventory(null, 27, Shared.title + " - " + ChatColor.AQUA + Objects.requireNonNull(skullPlayer).getName());
