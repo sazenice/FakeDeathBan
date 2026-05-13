@@ -1,20 +1,12 @@
 # Fake Death Ban
-## Plugin od sazenice, pro corrupted universe ❤️
 ___
 ## INFO
-Oficiální github je pouze [**ZDE**](https://github.com/sazenice/FakeDeathBan)
+Official github is only [**HERE**](https://github.com/sazenice/FakeDeathBan)
 
-Chyby prosím hlašte [sem](https://github.com/sazenice/FakeDeathBan/issues)
+Report bugs [her](https://github.com/sazenice/FakeDeathBan/issues)
 
-Pokud chcete přidat do pluginu něco svého nebo ho vylepšit, klikněte [sem](https://github.com/sazenice/FakeDeathBan/pulls)
+If you want to add something to the plugin, click [here](https://github.com/sazenice/FakeDeathBan/pulls)
 
-# Doporučéná verze pro stahování: [1.8-pre1](https://github.com/sazenice/FakeDeathBan/releases/tag/1.8-pre1)
+# Recommended version: [1.8-pre5](https://github.com/sazenice/FakeDeathBan/releases/tag/1.8-pre5)
 
-# Návod / Wiki je [zde](https://sazenice.gitbook.io/sazenice-docs)
-___ 
-
-Death ban pluginy jsou určeny pro SMP servery.
-
-#### Co ale FakeDeathBan je?
-Fake Death Ban (od teď jako **FDB**) je něco jako obvyklý deathban plugin,  
-jen je určen pro skriptované servery (*jako třeba __Corrupted Universe__ :)*)
+# Wiki is [here](https://sazenice.gitbook.io/sazenice-docs) !!!! ONLY IN CZECH
