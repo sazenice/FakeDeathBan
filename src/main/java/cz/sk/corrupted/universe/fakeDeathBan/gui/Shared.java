@@ -39,6 +39,7 @@ public class Shared {
                 meta.setLore(pistonLore);
                 meta.setEnchantmentGlintOverride(true);
                 meta.setRarity(ItemRarity.RARE);
+                break;
             case HAY_BLOCK:
                 meta.setDisplayName("Immortality");
                 List<String> hayLore = new ArrayList<>();
@@ -46,6 +47,7 @@ public class Shared {
                 meta.setLore(hayLore);
                 meta.setEnchantmentGlintOverride(true);
                 meta.setRarity(ItemRarity.RARE);
+                break;
             case TOTEM_OF_UNDYING:
                 meta.setDisplayName("Deathban");
                 List<String> totemLore = new ArrayList<>();
@@ -53,24 +55,28 @@ public class Shared {
                 meta.setLore(totemLore);
                 meta.setEnchantmentGlintOverride(true);
                 meta.setRarity(ItemRarity.RARE);
+                break;
             case SNOWBALL:
                 meta.setDisplayName("Freeze");
                 List<String> snowballLore = new ArrayList<>();
                 snowballLore.add(ChatColor.GREEN + "Click to freeze a player");
                 meta.setLore(snowballLore);
                 meta.setRarity(ItemRarity.UNCOMMON);
+                break;
             case ENDER_EYE:
                 meta.setDisplayName("Default spectator");
                 List<String> eyeLore = new ArrayList<>();
                 eyeLore.add(ChatColor.GREEN + "Click to set the default spector");
                 meta.setLore(eyeLore);
                 meta.setRarity(ItemRarity.UNCOMMON);
+                break;
             case DIAMOND_SWORD:
                 meta.setDisplayName("Kill");
                 List<String> swordLore = new ArrayList<>();
                 swordLore.add(ChatColor.GREEN + "Click to kill the player");
                 meta.setLore(swordLore);
                 meta.setRarity(ItemRarity.UNCOMMON);
+                break;
             case BEACON:
                 meta.setDisplayName("Revive");
                 List<String> beaconLore = new ArrayList<>();
@@ -78,8 +84,9 @@ public class Shared {
                 beaconLore.add(ChatColor.YELLOW + "Works only if the target is dead");
                 meta.setLore(beaconLore);
                 meta.setRarity(ItemRarity.UNCOMMON);
+                break;
             default:
-                meta = itemType.getItemMeta();
+                break;
         }
         return meta;
     }
