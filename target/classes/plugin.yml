@@ -1,5 +1,5 @@
 name: FakeDeathBan
-version: 1.8-pre5
+version: 1.8
 load: STARTUP
 main: cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan
 api-version: 1.21

@@ -15,7 +15,7 @@ public class Messages {
 
     public static void setup(Plugin pl) {
 
-        File file = new File(pl.getDataFolder(), "lang/" + pl.getConfig().get("language") + ".yml");
+        File file = new File(pl.getDataFolder(), "lang/" + pl.getConfig().getString("language") + ".yml");
 
         if (!file.exists()) {
             throw new RuntimeException("Language file " + pl.getConfig().get("language") + " doesn't exist. Please remove the FakeDeathBan folder!");

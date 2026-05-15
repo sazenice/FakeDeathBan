@@ -23,11 +23,13 @@ public class Language implements CommandExecutor {
         switch (args[0]){
             case "cs_cz":
                 plugin.getConfig().set("language", "cs_cz");
+                plugin.saveConfig();
                 sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + "Jazyk nastaven na: Čeština" +
                         ChatColor.YELLOW + "\nBude potřeba restartovat server aby se projevila změna!");
                 return true;
             case "en_us":
                 plugin.getConfig().set("language", "en_us");
+                plugin.saveConfig();
                 sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + "Language set to: English" +
                         ChatColor.YELLOW + "\nA server restart is needed for the changes to appear!");
                 return true;
