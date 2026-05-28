@@ -21,7 +21,7 @@ public class Immortality implements CommandExecutor {
         if (!FakeDeathBan.isPreStart){
             Bukkit.dispatchCommand(sender, "undeathban");
             for (Player player : Bukkit.getOnlinePlayers()) {
-                if (player.hasPermission("fakedeathban.bypass.immortality")){return true;}
+                if (player.hasPermission("fakedeathban.bypass.immortality")){continue;}
                 player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, PotionEffect.INFINITE_DURATION, 255));
                 player.setInvulnerable(true);
                 player.sendTitle(ChatColor.GREEN + "Immortality", ChatColor.GREEN + "Immortality ON!", 10, 40, 10);
@@ -31,7 +31,7 @@ public class Immortality implements CommandExecutor {
             sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + "Immortality ON");
         }else{
             for (Player player : Bukkit.getOnlinePlayers()) {
-                if (player.hasPermission("fakedeathban.bypass.pre-start")){return true;}
+                if (player.hasPermission("fakedeathban.bypass.pre-start")){continue;}
                 player.removePotionEffect(PotionEffectType.SATURATION);
                 player.setInvulnerable(false);
                 player.sendTitle(ChatColor.YELLOW + "Immortality", ChatColor.YELLOW + "Immortality OFF!", 10, 30, 10);

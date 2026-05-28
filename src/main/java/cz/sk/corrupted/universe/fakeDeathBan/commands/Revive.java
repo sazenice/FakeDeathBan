@@ -11,16 +11,19 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 
-public class UnDeathban implements CommandExecutor {
+public class Revive implements CommandExecutor {
 
     private final FakeDeathBan plugin;
 
-    public UnDeathban(FakeDeathBan plugin) {
+    public Revive(FakeDeathBan plugin) {
         this.plugin = plugin;
     }
 
     @Override
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
+        if (label.equals("udb") || label.equals("undeathban")){
+            sender.sendMessage(FakeDeathBan.prefix + ChatColor.YELLOW + "Command has been renamed to 'revive'");
+        }
         List<String> deathbanned = plugin.getConfig().getStringList("deathbanned");
         List<String> frozen = plugin.getConfig().getStringList("frozen");
 
@@ -57,7 +60,7 @@ public class UnDeathban implements CommandExecutor {
             plugin.getConfig().set("frozen", deathbanned);
             plugin.saveConfig();
 
-            sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("udb-1-s"));
+            sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("revive-1-s"));
 
             return true;
         }
@@ -67,7 +70,7 @@ public class UnDeathban implements CommandExecutor {
 
             if (target == null) {
                 sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED +
-                        Messages.getMessage("p-f", arg));
+                        Messages.getMessage("player-not-found", arg));
                 continue;
             }
 
@@ -85,7 +88,7 @@ public class UnDeathban implements CommandExecutor {
                         onlinePlayer.hidePlayer(plugin, target);
                     }
                 }
-                sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("udb-2-s", target.getName()));
+                sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("revive-2-s", target.getName()));
             } else {
                 sender.sendMessage(FakeDeathBan.prefix + ChatColor.YELLOW + Messages.getMessage("p-db-f", target.getName()));
             }

@@ -78,7 +78,7 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         // Registrace příkazů
 
         registerCommand("setspectate", new SetSpectate(this));
-        registerCommand("undeathban", new UnDeathban(this));
+        registerCommand("revive", new Revive(this));
         registerCommand("spectate", new Spectate());
         registerCommand("freeze", new Freeze(this));
         registerCommand("unfreeze", new Unfreeze(this));

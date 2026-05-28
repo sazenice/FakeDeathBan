@@ -33,6 +33,11 @@ public class Language implements CommandExecutor {
                 sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + "Language set to: English" +
                         ChatColor.YELLOW + "\nA server restart is needed for the changes to appear!");
                 return true;
+            case "sk_sk":
+                plugin.getConfig().set("language", "sk_sk");
+                plugin.saveConfig();
+                sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + "Jazyk nastavený na: Slovenčina" +
+                        ChatColor.YELLOW + "\nBude potrebné reštartovať server, aby sa zmena prejavila!");
             default:
                 sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + "Language not found");
         }

@@ -109,7 +109,7 @@ public class InventoryListener implements Listener {
                     String skullPlayerName = skullPlayer.getName();
                     switch (clicked){
                         case BEACON:
-                            sendCommand(player, "undeathban", skullPlayerName, "");
+                            sendCommand(player, "revive", skullPlayerName, "");
                             break;
                         case DIAMOND_SWORD:
                             sendCommand(player, "kill", skullPlayerName, "");

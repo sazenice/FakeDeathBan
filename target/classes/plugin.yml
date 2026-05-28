@@ -1,5 +1,5 @@
 name: FakeDeathBan
-version: 1.8
+version: 1.9-pre1
 load: STARTUP
 main: cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan
 api-version: 1.21
@@ -7,18 +7,15 @@ author: sazenice
 website: https://github.com/sazenice/FakeDeathBan
 
 commands:
-  undeathban:
+  revive:
     description: "Revives and teleports all players to you"
     usage: /<command> [player...]
     aliases:
       - udb
-      - undb
-      - udban
-      - udeathb
-      - undeathb
-      - undban
-      - udeathban
-    permission: fakedeathban.undeathban
+      - undeathban
+      - res
+      - rev
+    permission: fakedeathban.revive
   setspectate:
     description: "Sets the default spectator"
     usage: /<command> <player>
@@ -109,7 +106,7 @@ commands:
     permission: fakedeathban.banlist
 permissions:
   # Příkazové oprávnění
-  fakedeathban.undeathban:
+  fakedeathban.revive:
     default: op
   fakedeathban.setspectate:
     default: op

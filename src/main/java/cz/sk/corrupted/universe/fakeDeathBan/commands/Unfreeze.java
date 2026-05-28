@@ -41,7 +41,7 @@ public class Unfreeze implements CommandExecutor {
 
                 // Pokud hráč "arg" neexistuje
                 if (target == null) {
-                    sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("p-f", arg));
+                    sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("player-not-found", arg));
                     continue;
                 }
                 String uuid = target.getUniqueId().toString();

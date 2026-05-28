@@ -55,7 +55,7 @@ public class AutoComplete implements TabCompleter {
                 }
                 break;
 
-            case "undeathban":
+            case "revive":
             case "setspectate":
             case "spectate":
             case "unfreeze":
