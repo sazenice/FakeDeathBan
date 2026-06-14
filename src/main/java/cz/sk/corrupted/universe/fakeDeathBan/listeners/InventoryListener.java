@@ -81,6 +81,10 @@ public class InventoryListener implements Listener {
                             ItemStack door = new ItemStack(Material.OAK_DOOR);
                             ItemMeta doorMeta = Shared.getMetaData(door);
                             door.setItemMeta(doorMeta);
+                            // Netherite axe
+                            ItemStack netherite_axe = new ItemStack(Material.NETHERITE_AXE);
+                            ItemMeta netheriteMeta = Shared.getMetaData(netherite_axe);
+                            netherite_axe.setItemMeta(netheriteMeta);
 
                             inventory.setItem(index, beacon); index++;
                             inventory.setItem(index, diamond_sword); index++;
@@ -91,7 +95,8 @@ public class InventoryListener implements Listener {
                             inventory.setItem(index, hay_block); index++;
                             inventory.setItem(index, piston); index++;
                             inventory.setItem(index, snow_block); index++;
-                            inventory.setItem(index, door);
+                            inventory.setItem(index, door); index++;
+                            inventory.setItem(index, netherite_axe);
 
                             player.openInventory(inventory);
                         }

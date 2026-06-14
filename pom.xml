@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cz.sk.unstable.smp</groupId>
-    <artifactId>fakedeathban-1.21.11</artifactId>
-    <version>1.9-pre1</version>
+    <artifactId>fakedeathban-26.1</artifactId>
+    <version>1.9-pre2</version>
     <packaging>jar</packaging>
 
     <name>fakedeathban</name>
@@ -61,7 +61,7 @@
         <dependency>
         <groupId>org.spigotmc</groupId>
         <artifactId>spigot-api</artifactId>
-        <version>1.21.11-R0.1-SNAPSHOT</version>
+        <version>26.1.1-R0.1-SNAPSHOT</version>
         <scope>provided</scope>
     </dependency>
     </dependencies>

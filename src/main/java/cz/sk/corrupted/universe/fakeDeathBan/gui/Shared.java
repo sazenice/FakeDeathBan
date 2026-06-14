@@ -16,6 +16,14 @@ public class Shared {
             throw new IllegalStateException("ItemMeta cannot be null");
         }
         switch (itemType.getType()){
+            case NETHERITE_AXE:
+                meta.setDisplayName("Actual ban");
+                List<String> netheriteLore = new ArrayList<>();
+                netheriteLore.add(ChatColor.GREEN + "Click to give protection agains actual bans");
+                meta.setLore(netheriteLore);
+                meta.setEnchantmentGlintOverride(true);
+                meta.setRarity(ItemRarity.RARE);
+                break;
             case OAK_DOOR:
                 meta.setDisplayName("JoinQuit");
                 List<String> doorLore = new ArrayList<>();
