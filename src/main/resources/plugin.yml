@@ -1,8 +1,8 @@
 name: FakeDeathBan
-version: 1.9-pre1
+version: 1.9-pre2
 load: STARTUP
 main: cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan
-api-version: 1.21
+api-version: 26.1
 author: sazenice
 website: https://github.com/sazenice/FakeDeathBan
 
@@ -152,3 +152,6 @@ permissions:
   fakedeathban.bypass.immortality:
     description: Immunity against immortality mode
     default: op
+  fakedeathban.bypass.actualban:
+    description: Immunity agains actual bans
+    default: false
