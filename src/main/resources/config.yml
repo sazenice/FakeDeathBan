@@ -6,5 +6,4 @@ default-gamemode: "ADVENTURE"
 death-sound: "minecraft:entity.wither.spawn"
 revive-sound: "minecraft:block.beacon.activate"
 config-version: "1.9-pre2"
-
 language: "en_us"
