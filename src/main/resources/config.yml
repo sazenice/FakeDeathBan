@@ -6,5 +6,6 @@ default-gamemode: "ADVENTURE"
 death-sound: "minecraft:entity.wither.spawn"
 revive-sound: "minecraft:block.beacon.activate"
 config-version: "1.9-pre1"
+mc-version: "1.21.11" # used for jar file distinction - you can remove this
 
 language: "en_us"

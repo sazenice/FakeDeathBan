@@ -7,6 +7,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class DeathListener implements Listener {
@@ -41,12 +43,17 @@ public class DeathListener implements Listener {
         if (player.hasPermission("fakedeathban.bypass.deathban")){
             return;
         }
-
-        // Pokud hráč ještě nemá deathban
-        if (!deathbanned.contains(player.getUniqueId().toString())) {
-            deathbanned.add(player.getUniqueId().toString());
-            plugin.getConfig().set("deathbanned", deathbanned);
-            plugin.saveConfig();
+        if (plugin.getConfig().getBoolean("actual-ban") && !(player.hasPermission("fakedeathban.bypass.actualban"))){
+            var expires = Instant.now().plus(1, ChronoUnit.DAYS);
+            player.ban(ChatColor.RED + "Whoa! " + ChatColor.RESET + "Máš Deathban do " + ChatColor.GREEN + expires + ChatColor.RESET + " Zkus se připojit později", expires, null);
+            FakeDeathBan.sendMessage(ChatColor.YELLOW + "Hráč " + player.getName() + " byl zabanován");
+        }else {
+            // Pokud hráč ještě nemá deathban
+            if (!deathbanned.contains(player.getUniqueId().toString())) {
+                deathbanned.add(player.getUniqueId().toString());
+                plugin.getConfig().set("deathbanned", deathbanned);
+                plugin.saveConfig();
+            }
         }
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
             Bukkit.broadcastMessage("§e" + player.getName() + " left the game");
