@@ -38,13 +38,12 @@ public class Check implements CommandExecutor {
 
         sender.sendMessage(FakeDeathBan.prefix + ChatColor.AQUA +
                 "config.yml contents:" +
-                "\ndeathbaned: " + config.getMapList("deathbanned") +
-                "\nfrozen: " + config.getMapList("frozen") +
+                "\ndeathbaned: " + config.getStringList("deathbanned") +
+                "\nfrozen: " + config.getStringList("frozen") +
                 "\ndefault-spectator: " + config.getString("default-spectator") +
                 "\ndefault-gamemode: " + config.getString("default-gamemode") +
                 "\ndeath-sound: " + config.getString("death-sound") +
                 "\nrevive-sound: " + config.getString("revive-sound") +
-                "\nconfig-version: " + config.getString("config-version") +
                 "\nlanguage: " + config.getString("language"));
         return true;
     }

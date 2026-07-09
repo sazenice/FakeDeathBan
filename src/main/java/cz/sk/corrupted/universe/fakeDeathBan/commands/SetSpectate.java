@@ -29,7 +29,7 @@ public class SetSpectate implements CommandExecutor {
         Player target = Bukkit.getPlayer(args[0]);
 
         if (target == null) {
-            sender.sendMessage(String.format(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("player-not-found", args[0])));
+            sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("player-not-found", args[0]));
             return true;
         }
 

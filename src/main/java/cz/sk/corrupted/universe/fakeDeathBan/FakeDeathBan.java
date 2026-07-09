@@ -7,6 +7,7 @@ import cz.sk.corrupted.universe.fakeDeathBan.listeners.JoinQuitListener;
 import cz.sk.corrupted.universe.fakeDeathBan.listeners.MoveListener;
 import cz.sk.corrupted.universe.fakeDeathBan.other.AutoComplete;
 import cz.sk.corrupted.universe.fakeDeathBan.other.Messages;
+import cz.sk.corrupted.universe.fakeDeathBan.other.UpdateChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.boss.BarColor;
@@ -27,6 +28,11 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
     public static final ConsoleCommandSender console = Bukkit.getConsoleSender();
     public static final String prefix = "[" + ChatColor.BOLD + ChatColor.LIGHT_PURPLE + "FakeDeathBan" + ChatColor.RESET + "] ";
     public static void sendMessage(String message){console.sendMessage(prefix + message);}
+    private void sendDebug(String message){
+        if(this.getConfig().getBoolean("debug")){
+            console.sendMessage(prefix + ChatColor.YELLOW + " DEBUG " + ChatColor.RESET + message);
+        }
+    }
 
     public static boolean isPreStart = false;
     public static boolean isEnabled = true;
@@ -40,43 +46,39 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
     public void onEnable() {
         saveDefaultConfig();
         saveResource("lang/en_us.yml", false);
+        saveResource("lang/sk_sk.yml", false);
         saveResource("lang/cs_cz.yml", false);
         Messages.setup(this);
 
-        sendMessage(ChatColor.AQUA + "===Loading=== 1/3");
-
-        // Inicalizace proměných + setup
+        sendDebug(ChatColor.AQUA + "===Loading=== 1/4");
+        // Register paths
         paths.add("deathbanned");
         paths.add("frozen");
         paths.add("default-spectator");
         paths.add("default-gamemode");
         paths.add("death-sound");
         paths.add("revive-sound");
-        paths.add("config-version");
         paths.add("language");
 
+        sendDebug(ChatColor.GREEN + "Paths registered");
+        // Initalize bossbar
         preStartBar.setVisible(false);
         preStartBar.setTitle(ChatColor.GREEN + Messages.getMessage("pre-start"));
         preStartBar.setProgress(1.0);
 
-        if (!Objects.equals(getConfig().getString("config-version"), getDescription().getVersion())){
-            sendMessage(ChatColor.RED +
-                    "config.yml version is not the same as the plugin version!" +
-                    "\nSomething might be able to break." +
-                    "\nDelete the plugin folder or change the plugin version to " + getConfig().getString("config-version"));
-        }
+        sendDebug(ChatColor.GREEN + "Bossbar initalized");
 
-        sendMessage(ChatColor.AQUA + "===Loading=== 2/3");
-
-        // Registrace posluchačů
+        sendDebug(ChatColor.AQUA + "===Loading=== 2/4");
+        // Register event listeners
         registerEvent(new MoveListener(this));
         registerEvent(new JoinQuitListener());
         registerEvent(new DeathListener(this));
         registerEvent(new InventoryListener());
 
-        sendMessage(ChatColor.AQUA + "===Loading=== 3/3");
-        // Registrace příkazů
-
+        sendDebug(ChatColor.GREEN + "Event listeners registered");
+        // LOAD STAGE 3
+        sendDebug(ChatColor.AQUA + "===Loading=== 3/4");
+        // Register commands
         registerCommand("setspectate", new SetSpectate(this));
         registerCommand("revive", new Revive(this));
         registerCommand("spectate", new Spectate());
@@ -93,6 +95,12 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         registerCommand("banlist", new BanList(this));
         registerCommand("language", new Language(this));
 
+        sendDebug(ChatColor.GREEN + "Commands registered");
+        sendDebug(ChatColor.AQUA + "===Loading=== 4/4");
+        // Register update notification
+        new UpdateChecker(this).check();
+
+        sendDebug(ChatColor.AQUA + "Update notification registered");
         sendMessage(ChatColor.GREEN + "===  Plugin loaded   ===");
     }
 
@@ -101,11 +109,11 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         sendMessage(ChatColor.RED + Messages.getMessage("disabling"));
     }
     private void registerEvent(Listener listener){
-        sendMessage(ChatColor.GREEN + Messages.getMessage("r-listener", listener.getClass().getSimpleName()) + ChatColor.YELLOW + listener);
+        sendDebug(ChatColor.GREEN + Messages.getMessage("r-listener", listener.getClass().getSimpleName()) + ChatColor.YELLOW + listener);
         Bukkit.getPluginManager().registerEvents(listener, this);
     }
     private void registerCommand(String name, @NonNull CommandExecutor command){
-        sendMessage(ChatColor.GREEN + Messages.getMessage("r-command", command.toString()) + ChatColor.YELLOW + name);
+        sendDebug(ChatColor.GREEN + Messages.getMessage("r-command", command.toString()) + ChatColor.YELLOW + name);
         Objects.requireNonNull(getCommand(name)).setTabCompleter(autoComplete);
         Objects.requireNonNull(getCommand(name)).setExecutor(command);
     }
