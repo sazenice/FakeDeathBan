@@ -7,4 +7,4 @@ death-sound: "minecraft:entity.wither.spawn"
 revive-sound: "minecraft:block.beacon.activate"
 language: "en_us"
 
-debug: true
+debug: false
