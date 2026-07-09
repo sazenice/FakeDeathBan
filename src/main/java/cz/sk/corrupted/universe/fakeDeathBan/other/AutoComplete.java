@@ -44,7 +44,7 @@ public class AutoComplete implements TabCompleter {
                     } catch (NoSuchMethodError | NoClassDefFoundError e) {
                         for (Sound s : Sound.values()) {
                             String soundName = s.name();
-                            if (name.toLowerCase().contains(token)) sounds.add(soundName);
+                            if (soundName.toLowerCase().contains(token)) sounds.add(soundName);
                         }
                     } catch (Throwable t) {
                         t.printStackTrace();

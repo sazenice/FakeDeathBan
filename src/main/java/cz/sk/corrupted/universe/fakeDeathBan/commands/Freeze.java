@@ -59,6 +59,7 @@ public class Freeze implements CommandExecutor {
             // Pokud hráč nemá imunitu
             if (target.hasPermission("fakedeathban.bypass.freeze")){
                 sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("p-immune", arg));
+                continue;
             }
             String uuid = target.getUniqueId().toString();
 

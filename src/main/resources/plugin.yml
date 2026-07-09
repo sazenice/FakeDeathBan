@@ -1,5 +1,5 @@
 name: FakeDeathBan
-version: 1.9-pre2
+version: 1.9
 load: STARTUP
 main: cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan
 api-version: 1.21
@@ -105,7 +105,7 @@ commands:
     usage: /<command>
     permission: fakedeathban.banlist
 permissions:
-  # Příkazové oprávnění
+  # Command permissions
   fakedeathban.revive:
     default: op
   fakedeathban.setspectate:
@@ -136,7 +136,7 @@ permissions:
     default: op
   fakedeathban.banlist:
     default: op
-  # Imunitní oprávnění
+  # Immunity permissions
   fakedeathban.bypass.deathban:
     description: Immunity against DeathBanu
     default: false

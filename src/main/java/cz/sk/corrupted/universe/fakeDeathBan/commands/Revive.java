@@ -57,7 +57,7 @@ public class Revive implements CommandExecutor {
             }
 
             plugin.getConfig().set("deathbanned", deathbanned);
-            plugin.getConfig().set("frozen", deathbanned);
+            plugin.getConfig().set("frozen", frozen);
             plugin.saveConfig();
 
             sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("revive-1-s"));
@@ -85,7 +85,7 @@ public class Revive implements CommandExecutor {
                     }
                     target.teleport(executor.getLocation());
                     for (Player onlinePlayer : Bukkit.getOnlinePlayers()){
-                        onlinePlayer.hidePlayer(plugin, target);
+                        onlinePlayer.showPlayer(plugin, target);
                     }
                 }
                 sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("revive-2-s", target.getName()));
