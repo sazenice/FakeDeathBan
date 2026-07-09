@@ -41,6 +41,12 @@ Autocomplete can be used for some commands so you don’t have to type the entir
 
 **Usage**: When you don’t know all the commands and their arguments
 
+## Debug mode
 
+If you want to report issues, you need to have this option ON
+
+**Enable**: In config.yml, `debug` boolean
+
+**Usage**: For reporting issues
 
 [^1]: Players without the fakedeathban.bypass.immortality permission
