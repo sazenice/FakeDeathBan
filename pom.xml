@@ -6,7 +6,7 @@
 
     <groupId>cz.sk.unstable.universe</groupId>
     <artifactId>fakedeathban-26.1</artifactId>
-    <version>1.9-pre2</version>
+    <version>1.9</version>
     <packaging>jar</packaging>
 
     <name>fakedeathban-26.1</name>
