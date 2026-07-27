@@ -9,7 +9,7 @@ Normal DeathBan plugins ban the player upon death
 
 FakeDeathBan is different though.
 
-FakeDeathBan doesn't ban the player. It puts them into spectator mode and they are forced to spectate one [selected player](#user-content-fn-1)[^1]<br>
+FakeDeathBan doesn't ban the player. It puts them into spectator mode and they are forced to spectate one [selected player](#user-content-fn-1)[^1]
 
 ***
 
