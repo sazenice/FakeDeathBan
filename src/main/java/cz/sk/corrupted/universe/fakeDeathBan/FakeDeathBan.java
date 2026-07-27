@@ -8,6 +8,8 @@ import cz.sk.corrupted.universe.fakeDeathBan.listeners.MoveListener;
 import cz.sk.corrupted.universe.fakeDeathBan.other.AutoComplete;
 import cz.sk.corrupted.universe.fakeDeathBan.other.Messages;
 import cz.sk.corrupted.universe.fakeDeathBan.other.UpdateChecker;
+import org.bstats.bukkit.Metrics;
+import org.bstats.charts.SimplePie;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.boss.BarColor;
@@ -19,9 +21,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jspecify.annotations.NonNull;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public final class FakeDeathBan extends JavaPlugin implements Listener {
 
@@ -50,7 +50,7 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         saveResource("lang/cs_cz.yml", false);
         Messages.setup(this);
 
-        sendDebug(ChatColor.AQUA + "===Loading=== 1/4");
+        sendDebug(ChatColor.AQUA + "===Loading=== 1/5");
         // Register paths
         paths.add("deathbanned");
         paths.add("frozen");
@@ -68,7 +68,7 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
 
         sendDebug(ChatColor.GREEN + "Bossbar initalized");
 
-        sendDebug(ChatColor.AQUA + "===Loading=== 2/4");
+        sendDebug(ChatColor.AQUA + "===Loading=== 2/5");
         // Register event listeners
         registerEvent(new MoveListener(this));
         registerEvent(new JoinQuitListener());
@@ -77,7 +77,7 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
 
         sendDebug(ChatColor.GREEN + "Event listeners registered");
         // LOAD STAGE 3
-        sendDebug(ChatColor.AQUA + "===Loading=== 3/4");
+        sendDebug(ChatColor.AQUA + "===Loading=== 3/5");
         // Register commands
         registerCommand("setspectate", new SetSpectate(this));
         registerCommand("revive", new Revive(this));
@@ -96,11 +96,33 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         registerCommand("language", new Language(this));
 
         sendDebug(ChatColor.GREEN + "Commands registered");
-        sendDebug(ChatColor.AQUA + "===Loading=== 4/4");
+        sendDebug(ChatColor.AQUA + "===Loading=== 4/5");
         // Register update notification
         new UpdateChecker(this).check();
 
         sendDebug(ChatColor.AQUA + "Update notification registered");
+        sendDebug(ChatColor.AQUA + "===Loading=== 5/5");
+        // Register bStats
+        int pluginId = 32939;
+        Metrics metrics = new Metrics(this, pluginId);
+
+        metrics.addCustomChart(new SimplePie("language", () -> switch (getConfig().getString("language")) {
+            case "en_us" -> "English (US)";
+            case "cs_cz" -> "Czech";
+            case "sk_sk" -> "Slovak";
+            case null, default -> "Unknown";
+        }));
+        metrics.addCustomChart(new SimplePie("debug_enabled", () -> {
+            if(getConfig().getBoolean("debug")){
+                return "Debug enabled";
+            } else if (!getConfig().getBoolean("debug")) {
+                return "Debug disabled";
+            }else{
+                return "Unknown";
+            }
+        }));
+        metrics.addCustomChart(new SimplePie("plugin_version", () -> getDescription().getVersion()));
+        sendDebug(ChatColor.AQUA + "bStats registered");
         sendMessage(ChatColor.GREEN + "===  Plugin loaded   ===");
     }
 
