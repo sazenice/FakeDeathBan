@@ -4,7 +4,7 @@
   <groupId>cz.sk.unstable.universe</groupId>
   <artifactId>fakedeathban-1.21.11</artifactId>
   <name>fakedeathban-1.21.11</name>
-  <version>1.10-pre3</version>
+  <version>1.10</version>
   <build>
     <defaultGoal>clean package</defaultGoal>
     <resources>
