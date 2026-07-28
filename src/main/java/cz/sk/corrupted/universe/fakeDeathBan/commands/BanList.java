@@ -8,22 +8,21 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.jspecify.annotations.NonNull;
 
-import java.util.Objects;
 import java.util.UUID;
 
 public class BanList implements CommandExecutor {
-    private final FakeDeathBan plugin;
-
-    public BanList(FakeDeathBan plugin) {
-        this.plugin = plugin;
-    }
 
     @Override
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
         StringBuilder sb = new StringBuilder();
         sb.append(FakeDeathBan.prefix).append(ChatColor.GREEN).append("Banlist:\n").append(ChatColor.YELLOW);
 
-        for (Object o : Objects.requireNonNull(plugin.getConfig().getList("deathbanned"))) {
+        if (FakeDeathBan.deathbanned.isEmpty()) {
+            sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + "Banlist:\n" + ChatColor.YELLOW + "(empty)");
+            return true;
+        }
+
+        for (Object o : FakeDeathBan.deathbanned) {
             if (!(o instanceof String uuidStr)) continue;
             try {
                 UUID uuid = UUID.fromString(uuidStr);

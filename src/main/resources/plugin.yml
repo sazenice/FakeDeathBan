@@ -1,5 +1,5 @@
 name: FakeDeathBan
-version: 1.10-pre2
+version: 1.10
 load: STARTUP
 main: cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan
 api-version: 1.21
@@ -53,10 +53,6 @@ commands:
     aliases:
       - unfr
     permission: fakedeathban.unfreeze
-  version:
-    description: "Shows the plugin information"
-    usage: /<command>
-    permission: fakedeathban.version
   check:
     description: "Checks if all variables exist in config.yml"
     usage: /<command>

@@ -10,8 +10,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jspecify.annotations.NonNull;
 
-import java.util.List;
-
 public class Freeze implements CommandExecutor {
 
     private final FakeDeathBan plugin;
@@ -23,63 +21,50 @@ public class Freeze implements CommandExecutor {
     @Override
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
 
-        List<String> deathbanned = plugin.getConfig().getStringList("deathbanned");
-        List<String> frozen = plugin.getConfig().getStringList("frozen");
-
-        // Pokud nemá argumenty
         if (args.length == 0) {
 
-            // Pro každého online hráče "player"
             for (Player player : Bukkit.getOnlinePlayers()) {
                 String uuid = player.getUniqueId().toString();
 
-                // Pokud "player" má deathban a není ještě zmražen a nemá imunitu
-                if (deathbanned.contains(uuid) && !frozen.contains(uuid) && !player.hasPermission("fakedeathban.bypass.freeze")) {
-                    frozen.add(uuid);
+                if (FakeDeathBan.deathbanned.contains(uuid) && !FakeDeathBan.frozen.contains(uuid) && !player.hasPermission("fakedeathban.bypass.freeze")) {
+                    FakeDeathBan.frozen.add(uuid);
                 }
             }
 
-            plugin.getConfig().set("frozen", frozen);
-            plugin.saveConfig();
+            plugin.saveFrozen();
 
             sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("freeze-1-s"));
             return true;
         }
 
-        // Pro každy argument "arg"
         for (String arg : args) {
             Player target = Bukkit.getPlayer(arg);
 
-            // Pokud hráč "arg" neexistuje
             if (target == null) {
                 sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("player-not-found", arg));
                 continue;
             }
 
-            // Pokud hráč nemá imunitu
             if (target.hasPermission("fakedeathban.bypass.freeze")){
                 sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("p-immune", arg));
                 continue;
             }
             String uuid = target.getUniqueId().toString();
 
-            // Pokud hráč nemá deathban
-            if (!deathbanned.contains(uuid)) {
+            if (!FakeDeathBan.deathbanned.contains(uuid)) {
                 sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("p-db-f", target.getName()));
                 continue;
             }
 
-            // Pokud hráč není zmražen
-            if (!frozen.contains(uuid)) {
-                frozen.add(uuid);
+            if (!FakeDeathBan.frozen.contains(uuid)) {
+                FakeDeathBan.frozen.add(uuid);
                 sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("freeze-2-s", target.getName()));
             } else {
                 sender.sendMessage(FakeDeathBan.prefix + ChatColor.YELLOW + Messages.getMessage("freeze-1-f", target.getName()));
             }
         }
 
-        plugin.getConfig().set("frozen", frozen);
-        plugin.saveConfig();
+        plugin.saveFrozen();
         return true;
     }
 }

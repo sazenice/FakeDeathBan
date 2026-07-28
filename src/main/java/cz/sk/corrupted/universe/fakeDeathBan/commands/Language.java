@@ -1,6 +1,7 @@
 package cz.sk.corrupted.universe.fakeDeathBan.commands;
 
 import cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan;
+import cz.sk.corrupted.universe.fakeDeathBan.other.Messages;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -24,20 +25,20 @@ public class Language implements CommandExecutor {
             case "cs_cz":
                 plugin.getConfig().set("language", "cs_cz");
                 plugin.saveConfig();
-                sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + "Jazyk nastaven na: Čeština" +
-                        ChatColor.YELLOW + "\nBude potřeba restartovat server aby se projevila změna!");
+                Messages.setup(plugin);
+                sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + "Jazyk nastaven na: Čeština");
                 return true;
             case "en_us":
                 plugin.getConfig().set("language", "en_us");
                 plugin.saveConfig();
-                sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + "Language set to: English" +
-                        ChatColor.YELLOW + "\nA server restart is needed for the changes to appear!");
+                Messages.setup(plugin);
+                sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + "Language set to: English");
                 return true;
             case "sk_sk":
                 plugin.getConfig().set("language", "sk_sk");
                 plugin.saveConfig();
-                sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + "Jazyk nastavený na: Slovenčina" +
-                        ChatColor.YELLOW + "\nBude potrebné reštartovať server, aby sa zmena prejavila!");
+                Messages.setup(plugin);
+                sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + "Jazyk nastavený na: Slovenčina");
                 return true;
             default:
                 sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + "Language not found");

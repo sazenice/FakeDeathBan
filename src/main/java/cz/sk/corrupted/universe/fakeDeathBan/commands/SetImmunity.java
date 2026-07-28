@@ -32,21 +32,24 @@ public class SetImmunity implements CommandExecutor {
         }
 
         String nodePart = args[1].toLowerCase();
-
+        String uuid = player.getUniqueId().toString();
         String node = "fakedeathban.bypass." + nodePart;
-        PermissionAttachment attachment = player.addAttachment(plugin);
 
-        if (player.hasPermission(node)){
+        if (plugin.hasImmunity(uuid, nodePart)) {
+            plugin.setImmunity(uuid, nodePart, false);
+            PermissionAttachment attachment = player.addAttachment(plugin);
             attachment.setPermission(node, false);
             sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("setimmunity-2-s", player.getName(), node));
-            if (nodePart.equals("pre-start")){
-                FakeDeathBan.preStartBar.removePlayer(player);
+            if (nodePart.equals("immortality")){
+                FakeDeathBan.immortalityBar.removePlayer(player);
             }
-        }else{
+        } else {
+            plugin.setImmunity(uuid, nodePart, true);
+            PermissionAttachment attachment = player.addAttachment(plugin);
             attachment.setPermission(node, true);
             sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("setimmunity-1-s", player.getName(), node));
-            if (nodePart.equals("pre-start")){
-                FakeDeathBan.preStartBar.addPlayer(player);
+            if (nodePart.equals("immortality")){
+                FakeDeathBan.immortalityBar.addPlayer(player);
             }
         }
 
