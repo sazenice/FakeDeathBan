@@ -43,8 +43,5 @@ player-not-found: "Hráč %s neexistuje alebo je offline."
 
 join-s: "Správa o pripojení bola stlmená"
 leave-s: "Správa o odpojení bola stlmená"
+death-leave: "%s opustil hru"
 move-f: "Máš deathban a hráč, ktorého sleduješ, opustil hru. /spectate <iný hráč>"
-
-### Ostatné správy
-
-pre-start: "Režim Immortality"

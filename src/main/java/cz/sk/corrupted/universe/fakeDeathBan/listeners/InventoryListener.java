@@ -31,15 +31,28 @@ public class InventoryListener implements Listener {
                 if (item != null && item.getType() == Material.PLAYER_HEAD) {
                     SkullMeta meta = (SkullMeta) item.getItemMeta();
                     if (meta != null) {
-                        Player skullPlayer = Objects.requireNonNull(meta.getOwningPlayer()).getPlayer();
-                        if (skullPlayer != null && !Bukkit.getOnlinePlayers().contains(skullPlayer)) {
+                        if (meta.getOwningPlayer() == null) {
                             item.setType(Material.BARRIER);
                             ItemMeta fMeta = item.getItemMeta();
                             List<String> lore = new ArrayList<>();
                             lore.add(ChatColor.RED + "Nastala chyba!");
-                            lore.add(ChatColor.YELLOW + "\nHráč " + ChatColor.AQUA + skullPlayer.getName() + ChatColor.YELLOW + " není online!");
+                            lore.add(ChatColor.YELLOW + "\nHráč není online!");
                             fMeta.setLore(lore);
                             fMeta.setDisplayName(ChatColor.BOLD + "" + ChatColor.RED + "X");
+                            item.setItemMeta(fMeta);
+                            player.playSound(player, Sound.ENTITY_VILLAGER_NO, 1, 1);
+                            return;
+                        }
+                        Player skullPlayer = meta.getOwningPlayer().getPlayer();
+                        if (skullPlayer == null || !Bukkit.getOnlinePlayers().contains(skullPlayer)) {
+                            item.setType(Material.BARRIER);
+                            ItemMeta fMeta = item.getItemMeta();
+                            List<String> lore = new ArrayList<>();
+                            lore.add(ChatColor.RED + "Nastala chyba!");
+                            lore.add(ChatColor.YELLOW + "\nHráč " + ChatColor.AQUA + meta.getOwningPlayer().getName() + ChatColor.YELLOW + " není online!");
+                            fMeta.setLore(lore);
+                            fMeta.setDisplayName(ChatColor.BOLD + "" + ChatColor.RED + "X");
+                            item.setItemMeta(fMeta);
                             player.playSound(player, Sound.ENTITY_VILLAGER_NO, 1, 1);
                         }else{
                             Inventory inventory = Bukkit.createInventory(null, 27, Shared.title + " - " + ChatColor.AQUA + Objects.requireNonNull(skullPlayer).getName());
@@ -110,7 +123,9 @@ public class InventoryListener implements Listener {
                 String playerName = ChatColor.stripColor(titleNP);
                 Player skullPlayer = Bukkit.getPlayer(playerName);
                 if (skullPlayer != null){
-                    Material clicked = Objects.requireNonNull(event.getCurrentItem()).getType();
+                    ItemStack currentItem = event.getCurrentItem();
+                    if (currentItem == null) return;
+                    Material clicked = currentItem.getType();
                     String skullPlayerName = skullPlayer.getName();
                     switch (clicked){
                         case BEACON:
@@ -129,7 +144,7 @@ public class InventoryListener implements Listener {
                             sendCommand(player, "setimmunity", skullPlayerName, " deathban");
                             break;
                         case HAY_BLOCK:
-                            sendCommand(player, "setimmunity", skullPlayerName, " prestart");
+                            sendCommand(player, "setimmunity", skullPlayerName, " immortality");
                             break;
                         case PISTON:
                             sendCommand(player, "setimmunity", skullPlayerName, " move");

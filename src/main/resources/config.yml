@@ -1,7 +1,7 @@
 deathbanned: []
 frozen: []
 
-default-spectator: "PandakYT"
+default-spectator: "sazenice"
 default-gamemode: "ADVENTURE"
 death-sound: "minecraft:entity.wither.spawn"
 revive-sound: "minecraft:block.beacon.activate"

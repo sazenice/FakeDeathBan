@@ -2,6 +2,7 @@ package cz.sk.corrupted.universe.fakeDeathBan.listeners;
 
 import cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan;
 import cz.sk.corrupted.universe.fakeDeathBan.other.Messages;
+import cz.sk.corrupted.universe.fakeDeathBan.other.UpdateChecker;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -12,37 +13,42 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class JoinQuitListener implements Listener {
+
+    private final FakeDeathBan plugin;
+
+    public JoinQuitListener(FakeDeathBan plugin) {
+        this.plugin = plugin;
+    }
+
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
-        FakeDeathBan.preStartBar.addPlayer(event.getPlayer());
+        FakeDeathBan.immortalityBar.addPlayer(event.getPlayer());
         if (!FakeDeathBan.isEnabled) {return;}
         FakeDeathBan.console.sendMessage(FakeDeathBan.prefix + ChatColor.AQUA + Messages.getMessage("join-s"));
         Player player = event.getPlayer();
 
-        // Pokud nemá oprávnění ukazovat připojovací zprávy
         if (!player.hasPermission("fakedeathban.bypass.joinquit")){
             event.setJoinMessage(null);
         }
 
-        // Pokud je zapnutý režim pre-start
-        if (FakeDeathBan.isPreStart){
-            if (player.hasPermission("fakedeathban.bypass.pre-start")){return;}
+        if(UpdateChecker.UPDATE_AVAILABLE && player.isOp()){
+            player.sendMessage(UpdateChecker.UPDATE_MESSAGE);
+        }
+
+        plugin.applyImmunities(player);
+
+        if (FakeDeathBan.isImmortality){
+            if (player.hasPermission("fakedeathban.bypass.immortality")){return;}
             player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, PotionEffect.INFINITE_DURATION, 255));
             player.setInvulnerable(true);
-
-        // Pokud není zapnutý režim pre-start a hráč je v režimu pre-start
-        } else if (player.isInvulnerable() && !FakeDeathBan.isPreStart){
-            player.removePotionEffect(PotionEffectType.SATURATION);
-            player.setInvulnerable(false);
         }
     }
     @EventHandler
     public void onLeave(PlayerQuitEvent event){
-        FakeDeathBan.preStartBar.removePlayer(event.getPlayer());
+        FakeDeathBan.immortalityBar.removePlayer(event.getPlayer());
         if (!FakeDeathBan.isEnabled) {return;}
         FakeDeathBan.console.sendMessage(FakeDeathBan.prefix + ChatColor.AQUA + Messages.getMessage("leave-s"));
 
-        // Pokud nemá oprávnění ukazovat odpojovací zprávy
         if (!event.getPlayer().hasPermission("fakedeathban.bypass.joinquit")){
             event.setQuitMessage(null);
         }

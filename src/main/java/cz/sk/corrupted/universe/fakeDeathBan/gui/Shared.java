@@ -74,7 +74,7 @@ public class Shared {
             case ENDER_EYE:
                 meta.setDisplayName("Default spectator");
                 List<String> eyeLore = new ArrayList<>();
-                eyeLore.add(ChatColor.GREEN + "Click to set the default spector");
+                eyeLore.add(ChatColor.GREEN + "Click to set the default spectator");
                 meta.setLore(eyeLore);
                 meta.setRarity(ItemRarity.UNCOMMON);
                 break;

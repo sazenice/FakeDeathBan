@@ -1,6 +1,8 @@
 package cz.sk.corrupted.universe.fakeDeathBan.commands;
 
 import cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
@@ -18,30 +20,32 @@ public class Immortality implements CommandExecutor {
     @Override
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
 
-        if (!FakeDeathBan.isPreStart){
-            Bukkit.dispatchCommand(sender, "undeathban");
+        if (!FakeDeathBan.isImmortality){
+            Bukkit.dispatchCommand(sender, "revive");
             for (Player player : Bukkit.getOnlinePlayers()) {
                 if (player.hasPermission("fakedeathban.bypass.immortality")){continue;}
                 player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, PotionEffect.INFINITE_DURATION, 255));
                 player.setInvulnerable(true);
                 player.sendTitle(ChatColor.GREEN + "Immortality", ChatColor.GREEN + "Immortality ON!", 10, 40, 10);
                 player.playSound(player, Sound.BLOCK_BEACON_ACTIVATE, SoundCategory.MASTER,  1, 1);
-                FakeDeathBan.preStartBar.setVisible(true);
+                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.GREEN + "Immortality ON!"));
+                FakeDeathBan.immortalityBar.setVisible(true);
             }
             sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + "Immortality ON");
         }else{
             for (Player player : Bukkit.getOnlinePlayers()) {
-                if (player.hasPermission("fakedeathban.bypass.pre-start")){continue;}
+                if (player.hasPermission("fakedeathban.bypass.immortality")){continue;}
                 player.removePotionEffect(PotionEffectType.SATURATION);
                 player.setInvulnerable(false);
                 player.sendTitle(ChatColor.YELLOW + "Immortality", ChatColor.YELLOW + "Immortality OFF!", 10, 30, 10);
                 player.playSound(player, Sound.BLOCK_BEACON_DEACTIVATE, SoundCategory.MASTER,  1, 1);
-                FakeDeathBan.preStartBar.setVisible(false);
+                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.RED + "Immortality OFF!"));
+                FakeDeathBan.immortalityBar.setVisible(false);
             }
             sender.sendMessage(FakeDeathBan.prefix + ChatColor.YELLOW + "Immortality OFF");
         }
 
-        FakeDeathBan.isPreStart = !FakeDeathBan.isPreStart;
+        FakeDeathBan.isImmortality = !FakeDeathBan.isImmortality;
         return true;
     }
 }

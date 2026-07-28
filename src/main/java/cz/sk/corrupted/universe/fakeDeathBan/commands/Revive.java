@@ -9,8 +9,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jspecify.annotations.NonNull;
 
-import java.util.List;
-
 public class Revive implements CommandExecutor {
 
     private final FakeDeathBan plugin;
@@ -19,31 +17,43 @@ public class Revive implements CommandExecutor {
         this.plugin = plugin;
     }
 
+    private GameMode getDefaultGameMode() {
+        String gamemodeString = plugin.getConfig().getString("default-gamemode");
+        if (gamemodeString == null) {
+            return GameMode.ADVENTURE;
+        }
+        try {
+            return GameMode.valueOf(gamemodeString);
+        } catch (IllegalArgumentException e) {
+            return GameMode.ADVENTURE;
+        }
+    }
+
     @Override
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
         if (label.equals("udb") || label.equals("undeathban")){
             sender.sendMessage(FakeDeathBan.prefix + ChatColor.YELLOW + "Command has been renamed to 'revive'");
         }
-        List<String> deathbanned = plugin.getConfig().getStringList("deathbanned");
-        List<String> frozen = plugin.getConfig().getStringList("frozen");
 
-        String soundString = plugin.getConfig().getString("revive-sound");
-        assert soundString != null;
-        NamespacedKey key = NamespacedKey.fromString(soundString);
         Sound sound = null;
-
-        if (key != null) {
-            sound = Registry.SOUNDS.get(key);
+        String soundString = plugin.getConfig().getString("revive-sound");
+        if (soundString != null) {
+            NamespacedKey key = NamespacedKey.fromString(soundString);
+            if (key != null) {
+                sound = Registry.SOUNDS.get(key);
+            }
         }
+
+        GameMode defaultGamemode = getDefaultGameMode();
 
         if (args.length == 0) {
 
             for (Player player : Bukkit.getOnlinePlayers()) {
                 String uuidString = player.getUniqueId().toString();
 
-                if (deathbanned.remove(uuidString)) {
-                    frozen.remove(uuidString);
-                    player.setGameMode(GameMode.valueOf(plugin.getConfig().getString("default-gamemode")));
+                if (FakeDeathBan.deathbanned.remove(uuidString)) {
+                    FakeDeathBan.frozen.remove(uuidString);
+                    player.setGameMode(defaultGamemode);
                     if (sender instanceof Player executor) {
                         if (sound != null){
                             executor.getWorld().playSound(executor, sound, 1, 1);
@@ -56,9 +66,8 @@ public class Revive implements CommandExecutor {
                 }
             }
 
-            plugin.getConfig().set("deathbanned", deathbanned);
-            plugin.getConfig().set("frozen", frozen);
-            plugin.saveConfig();
+            plugin.saveDeathbanned();
+            plugin.saveFrozen();
 
             sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("revive-1-s"));
 
@@ -76,9 +85,9 @@ public class Revive implements CommandExecutor {
 
             String uuidString = target.getUniqueId().toString();
 
-            if (deathbanned.remove(uuidString)) {
-                frozen.remove(uuidString);
-                target.setGameMode(GameMode.valueOf(plugin.getConfig().getString("default-gamemode")));
+            if (FakeDeathBan.deathbanned.remove(uuidString)) {
+                FakeDeathBan.frozen.remove(uuidString);
+                target.setGameMode(defaultGamemode);
                 if (sender instanceof Player executor) {
                     if (sound != null){
                         executor.getWorld().playSound(executor, sound, 1, 1);
@@ -94,9 +103,8 @@ public class Revive implements CommandExecutor {
             }
         }
 
-        plugin.getConfig().set("deathbanned", deathbanned);
-        plugin.getConfig().set("frozen", frozen);
-        plugin.saveConfig();
+        plugin.saveDeathbanned();
+        plugin.saveFrozen();
 
         return true;
     }

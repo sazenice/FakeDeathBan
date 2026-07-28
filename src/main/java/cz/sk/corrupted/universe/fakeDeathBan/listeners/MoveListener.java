@@ -10,8 +10,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import java.util.List;
-
 public class MoveListener implements Listener {
 
     private final FakeDeathBan plugin;
@@ -24,14 +22,12 @@ public class MoveListener implements Listener {
     public void onMove(PlayerMoveEvent e){
         if (!FakeDeathBan.isEnabled) {return;}
         Player player = e.getPlayer();
-        List<String> deathbanned = plugin.getConfig().getStringList("deathbanned");
-        List<String> frozen = plugin.getConfig().getStringList("frozen");
 
-        boolean isDeathbanned = deathbanned.contains(player.getUniqueId().toString());
+        boolean isDeathbanned = FakeDeathBan.deathbanned.contains(player.getUniqueId().toString());
         boolean canBypassMove = player.hasPermission("fakedeathban.bypass.move");
 
         if (isDeathbanned && !canBypassMove) {
-            if (frozen.contains(player.getUniqueId().toString())
+            if (FakeDeathBan.frozen.contains(player.getUniqueId().toString())
                     && !player.hasPermission("fakedeathban.bypass.freeze")) {
                 player.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("freeze-2-f"));
                 e.setCancelled(true);

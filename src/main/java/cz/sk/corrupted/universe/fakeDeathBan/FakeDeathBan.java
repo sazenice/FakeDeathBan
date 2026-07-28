@@ -17,7 +17,9 @@ import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jspecify.annotations.NonNull;
 
@@ -34,13 +36,55 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         }
     }
 
-    public static boolean isPreStart = false;
+    public static boolean isImmortality = false;
     public static boolean isEnabled = true;
-    public static BossBar preStartBar = Bukkit.createBossBar(ChatColor.GREEN + "Režim Immortality", BarColor.GREEN, BarStyle.SOLID);
+    public static BossBar immortalityBar = Bukkit.createBossBar(ChatColor.GREEN + "Immortality mode", BarColor.GREEN, BarStyle.SOLID);
 
     private final AutoComplete autoComplete = new AutoComplete();
 
     public static List<String> paths = new ArrayList<>();
+
+    public static List<String> deathbanned = new ArrayList<>();
+    public static List<String> frozen = new ArrayList<>();
+
+    public void saveDeathbanned() {
+        getConfig().set("deathbanned", deathbanned);
+        saveConfig();
+    }
+
+    public void saveFrozen() {
+        getConfig().set("frozen", frozen);
+        saveConfig();
+    }
+
+    private static final String[] IMMUNITY_TYPES = {"deathban", "freeze", "move", "joinquit", "immortality", "pre-start"};
+
+    public boolean hasImmunity(String uuid, String type) {
+        List<String> list = getConfig().getStringList("immunity." + type);
+        return list.contains(uuid);
+    }
+
+    public void setImmunity(String uuid, String type, boolean value) {
+        List<String> list = new ArrayList<>(getConfig().getStringList("immunity." + type));
+        if (value) {
+            if (!list.contains(uuid)) list.add(uuid);
+        } else {
+            list.remove(uuid);
+        }
+        getConfig().set("immunity." + type, list);
+        saveConfig();
+    }
+
+    public void applyImmunities(Player player) {
+        String uuid = player.getUniqueId().toString();
+        for (String type : IMMUNITY_TYPES) {
+            if (hasImmunity(uuid, type) && !player.hasPermission("fakedeathban.bypass." + type)) {
+                String node = "fakedeathban.bypass." + type;
+                PermissionAttachment attachment = player.addAttachment(this);
+                attachment.setPermission(node, true);
+            }
+        }
+    }
 
     @Override
     public void onEnable() {
@@ -49,6 +93,9 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         saveResource("lang/sk_sk.yml", false);
         saveResource("lang/cs_cz.yml", false);
         Messages.setup(this);
+
+        deathbanned = new ArrayList<>(getConfig().getStringList("deathbanned"));
+        frozen = new ArrayList<>(getConfig().getStringList("frozen"));
 
         sendDebug(ChatColor.AQUA + "===Loading=== 1/5");
         // Register paths
@@ -62,16 +109,16 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
 
         sendDebug(ChatColor.GREEN + "Paths registered");
         // Initalize bossbar
-        preStartBar.setVisible(false);
-        preStartBar.setTitle(ChatColor.GREEN + Messages.getMessage("pre-start"));
-        preStartBar.setProgress(1.0);
+        immortalityBar.setVisible(false);
+        immortalityBar.setTitle(ChatColor.GREEN + Messages.getMessage("pre-start"));
+        immortalityBar.setProgress(1.0);
 
         sendDebug(ChatColor.GREEN + "Bossbar initalized");
 
         sendDebug(ChatColor.AQUA + "===Loading=== 2/5");
         // Register event listeners
         registerEvent(new MoveListener(this));
-        registerEvent(new JoinQuitListener());
+        registerEvent(new JoinQuitListener(this));
         registerEvent(new DeathListener(this));
         registerEvent(new InventoryListener());
 
@@ -85,14 +132,13 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         registerCommand("freeze", new Freeze(this));
         registerCommand("unfreeze", new Unfreeze(this));
         registerCommand("defaultgamemode", new DefaultGamemode(this));
-        registerCommand("version", new Version());
         registerCommand("check", new Check(this));
         registerCommand("setsound", new SetSound(this));
         registerCommand("immortality", new Immortality());
         registerCommand("setimmunity", new SetImmunity(this));
         registerCommand("togglefdb", new ToggleFDB());
         registerCommand("gui", new Gui());
-        registerCommand("banlist", new BanList(this));
+        registerCommand("banlist", new BanList());
         registerCommand("language", new Language(this));
 
         sendDebug(ChatColor.GREEN + "Commands registered");
@@ -112,18 +158,11 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
             case "sk_sk" -> "Slovak";
             case null, default -> "Unknown";
         }));
-        metrics.addCustomChart(new SimplePie("debug_enabled", () -> {
-            if(getConfig().getBoolean("debug")){
-                return "Debug enabled";
-            } else if (!getConfig().getBoolean("debug")) {
-                return "Debug disabled";
-            }else{
-                return "Unknown";
-            }
-        }));
-        metrics.addCustomChart(new SimplePie("plugin_version", () -> getDescription().getVersion()));
+        metrics.addCustomChart(new SimplePie("debug_enabled", () -> getConfig().getBoolean("debug") ? "Debug enabled" : "Debug disabled"));
         sendDebug(ChatColor.AQUA + "bStats registered");
         sendMessage(ChatColor.GREEN + "===  Plugin loaded   ===");
+
+        sendMessage(ChatColor.GOLD + "Support the developer <3 https://github.com/sponsors/sazenice");
     }
 
     @Override
