@@ -5,11 +5,11 @@ icon: book-open
 
 # Introduction
 
-Current release is [1.9](https://github.com/sazenice/FakeDeathBan/releases/tag/1.9athBan/releases/tag/1.9)
+Current release is [1.10](https://github.com/sazenice/FakeDeathBan/releases/tag/1.10)
 
 ~~Pre-Release version is~~ :x:
 
-Plugin is for versions **1.21.11** and **26.1.x**, [paper and its major forks](#user-content-fn-1)[^1]
+Plugin is for versions **1.21.11** and **26.x**, [paper and its major forks](#user-content-fn-1)[^1]
 
 Plugin is under the [**MIT**](https://mit-license.org/) **license**
 
@@ -22,6 +22,8 @@ Plugin is under the [**MIT**](https://mit-license.org/) **license**
 > [Improvements](https://github.com/sazenice/FakeDeathBan/pulls)
 >
 > [Modrinth](https://modrinth.com/plugin/fakedeathban)
+>
+> #### [Support me <3](https://github.com/sponsors/sazenice)
 
 
 
