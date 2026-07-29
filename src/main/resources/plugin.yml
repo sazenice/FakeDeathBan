@@ -1,5 +1,5 @@
 name: FakeDeathBan
-version: 1.10
+version: 1.11-pre1
 load: STARTUP
 main: cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan
 api-version: 1.21
@@ -97,9 +97,18 @@ commands:
       - lng
       - lg
   banlist:
-    description: Shows deathbanned players
+    description: "Shows deathbanned players"
     usage: /<command>
     permission: fakedeathban.banlist
+  simulateban:
+    description: "Fakes a player ban"
+    usage: /<command> <player> <message>
+    permission: fakedeathban.simulateban
+    aliases:
+      - simb
+      - simban
+      - fakeb
+      - fakeban
 permissions:
   # Command permissions
   fakedeathban.revive:
@@ -114,8 +123,6 @@ permissions:
     default: op
   fakedeathban.unfreeze:
     default: op
-  fakedeathban.version:
-    default: true
   fakedeathban.check:
     default: op
   fakedeathban.setsound:
@@ -131,6 +138,8 @@ permissions:
   fakedeathban.language:
     default: op
   fakedeathban.banlist:
+    default: op
+  fakedeathban.simulateban:
     default: op
   # Immunity permissions
   fakedeathban.bypass.deathban:

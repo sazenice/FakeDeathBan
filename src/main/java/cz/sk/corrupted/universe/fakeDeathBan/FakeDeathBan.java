@@ -6,6 +6,7 @@ import cz.sk.corrupted.universe.fakeDeathBan.listeners.InventoryListener;
 import cz.sk.corrupted.universe.fakeDeathBan.listeners.JoinQuitListener;
 import cz.sk.corrupted.universe.fakeDeathBan.listeners.MoveListener;
 import cz.sk.corrupted.universe.fakeDeathBan.other.AutoComplete;
+import cz.sk.corrupted.universe.fakeDeathBan.other.ImmunityManager;
 import cz.sk.corrupted.universe.fakeDeathBan.other.Messages;
 import cz.sk.corrupted.universe.fakeDeathBan.other.UpdateChecker;
 import org.bstats.bukkit.Metrics;
@@ -17,9 +18,7 @@ import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jspecify.annotations.NonNull;
 
@@ -47,6 +46,8 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
     public static List<String> deathbanned = new ArrayList<>();
     public static List<String> frozen = new ArrayList<>();
 
+    public ImmunityManager immunityManager;
+
     public void saveDeathbanned() {
         getConfig().set("deathbanned", deathbanned);
         saveConfig();
@@ -55,35 +56,6 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
     public void saveFrozen() {
         getConfig().set("frozen", frozen);
         saveConfig();
-    }
-
-    private static final String[] IMMUNITY_TYPES = {"deathban", "freeze", "move", "joinquit", "immortality", "pre-start"};
-
-    public boolean hasImmunity(String uuid, String type) {
-        List<String> list = getConfig().getStringList("immunity." + type);
-        return list.contains(uuid);
-    }
-
-    public void setImmunity(String uuid, String type, boolean value) {
-        List<String> list = new ArrayList<>(getConfig().getStringList("immunity." + type));
-        if (value) {
-            if (!list.contains(uuid)) list.add(uuid);
-        } else {
-            list.remove(uuid);
-        }
-        getConfig().set("immunity." + type, list);
-        saveConfig();
-    }
-
-    public void applyImmunities(Player player) {
-        String uuid = player.getUniqueId().toString();
-        for (String type : IMMUNITY_TYPES) {
-            if (hasImmunity(uuid, type) && !player.hasPermission("fakedeathban.bypass." + type)) {
-                String node = "fakedeathban.bypass." + type;
-                PermissionAttachment attachment = player.addAttachment(this);
-                attachment.setPermission(node, true);
-            }
-        }
     }
 
     @Override
@@ -125,6 +97,8 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         sendDebug(ChatColor.GREEN + "Event listeners registered");
         // LOAD STAGE 3
         sendDebug(ChatColor.AQUA + "===Loading=== 3/5");
+        // Register immunity manager
+        immunityManager = new ImmunityManager(this);
         // Register commands
         registerCommand("setspectate", new SetSpectate(this));
         registerCommand("revive", new Revive(this));
@@ -140,6 +114,7 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         registerCommand("gui", new Gui());
         registerCommand("banlist", new BanList());
         registerCommand("language", new Language(this));
+        registerCommand("simulateban", new SimulateBan(this));
 
         sendDebug(ChatColor.GREEN + "Commands registered");
         sendDebug(ChatColor.AQUA + "===Loading=== 4/5");
