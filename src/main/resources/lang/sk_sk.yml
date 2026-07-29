@@ -38,6 +38,7 @@ p-f: "Tento príkaz nemôžeš spustiť z konzoly ani z príkazového bloku!"
 p-db-f: "Hráč %s nemá deathban"
 p-immune: "Hráč %s má imunitu!"
 player-not-found: "Hráč %s neexistuje alebo je offline."
+simulateban-1-f: "Chýbajú argumenty! /simulateban <hráč> <správa>"
 
 ### Správy poslucháčov
 

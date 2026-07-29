@@ -114,6 +114,7 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         registerCommand("gui", new Gui());
         registerCommand("banlist", new BanList());
         registerCommand("language", new Language(this));
+        registerCommand("simulateban", new SimulateBan(this));
 
         sendDebug(ChatColor.GREEN + "Commands registered");
         sendDebug(ChatColor.AQUA + "===Loading=== 4/5");

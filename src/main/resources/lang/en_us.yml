@@ -38,6 +38,7 @@ p-f: "You cannot run this command from the console or a command block!"
 p-db-f: "Player %s does not have a deathban"
 p-immune: "Player %s has immunity!"
 player-not-found: "Player %s does not exist or is offline."
+simulateban-1-f: "Insufficient arguments! /simulateban <player> <message>"
 
 ### Listener messages
 
