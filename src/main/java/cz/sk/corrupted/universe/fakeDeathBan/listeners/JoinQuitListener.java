@@ -35,7 +35,7 @@ public class JoinQuitListener implements Listener {
             player.sendMessage(UpdateChecker.UPDATE_MESSAGE);
         }
 
-        plugin.applyImmunities(player);
+        plugin.immunityManager.applyImmunities(player);
 
         if (FakeDeathBan.isImmortality){
             if (player.hasPermission("fakedeathban.bypass.immortality")){return;}

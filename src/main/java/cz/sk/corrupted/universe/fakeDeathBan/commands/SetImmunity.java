@@ -1,6 +1,7 @@
 package cz.sk.corrupted.universe.fakeDeathBan.commands;
 
 import cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan;
+import cz.sk.corrupted.universe.fakeDeathBan.other.ImmunityManager;
 import cz.sk.corrupted.universe.fakeDeathBan.other.Messages;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -32,11 +33,24 @@ public class SetImmunity implements CommandExecutor {
         }
 
         String nodePart = args[1].toLowerCase();
+
+        boolean valid = false;
+        for (String type : ImmunityManager.IMMUNITY_TYPES) {
+            if (type.equals(nodePart)) {
+                valid = true;
+                break;
+            }
+        }
+        if (!valid) {
+            sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + "Invalid immunity type.");
+            return true;
+        }
+
         String uuid = player.getUniqueId().toString();
         String node = "fakedeathban.bypass." + nodePart;
 
-        if (plugin.hasImmunity(uuid, nodePart)) {
-            plugin.setImmunity(uuid, nodePart, false);
+        if (plugin.immunityManager.hasImmunity(uuid, nodePart)) {
+            plugin.immunityManager.setImmunity(uuid, nodePart, false);
             PermissionAttachment attachment = player.addAttachment(plugin);
             attachment.setPermission(node, false);
             sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("setimmunity-2-s", player.getName(), node));
@@ -44,7 +58,7 @@ public class SetImmunity implements CommandExecutor {
                 FakeDeathBan.immortalityBar.removePlayer(player);
             }
         } else {
-            plugin.setImmunity(uuid, nodePart, true);
+            plugin.immunityManager.setImmunity(uuid, nodePart, true);
             PermissionAttachment attachment = player.addAttachment(plugin);
             attachment.setPermission(node, true);
             sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("setimmunity-1-s", player.getName(), node));
