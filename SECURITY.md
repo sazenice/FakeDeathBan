@@ -2,11 +2,11 @@
 
 ## Supported Versions
 
-| Version | Supported          |
-| ------- | ------------------ |
-| X       | :white_check_mark: |
-| X       | :x:                |
+| Version  | Supported          |
+| -------- | ------------------ |
+| All     | :white_check_mark: |
+| None   | :x:                |
 
 ## Reporting a Vulnerability
 
-Shoot me a DM (username is sazenice)
+Shoot me a DM (sazenice)
