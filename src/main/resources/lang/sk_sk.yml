@@ -44,5 +44,4 @@ simulateban-1-f: "Chýbajú argumenty! /simulateban <hráč> <správa>"
 
 join-s: "Správa o pripojení bola stlmená"
 leave-s: "Správa o odpojení bola stlmená"
-death-leave: "%s opustil hru"
 move-f: "Máš deathban a hráč, ktorého sleduješ, opustil hru. /spectate <iný hráč>"

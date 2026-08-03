@@ -156,4 +156,4 @@ permissions:
     default: false
   fakedeathban.bypass.immortality:
     description: Immunity against immortality mode
-    default: op
+    default: false

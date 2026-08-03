@@ -44,5 +44,4 @@ simulateban-1-f: "Insufficient arguments! /simulateban <player> <message>"
 
 join-s: "The join message was muted"
 leave-s: "The leave message was muted"
-death-leave: "%s left the game"
 move-f: "You have a deathban and the player you are spectating has left the game. /spectate <another player>"

@@ -1,7 +1,6 @@
 package cz.sk.corrupted.universe.fakeDeathBan.listeners;
 
 import cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan;
-import cz.sk.corrupted.universe.fakeDeathBan.other.Messages;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -39,7 +38,7 @@ public class DeathListener implements Listener {
             plugin.saveDeathbanned();
         }
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
-            Bukkit.broadcastMessage(ChatColor.YELLOW + Messages.getMessage("death-leave", player.getName()));
+            Bukkit.broadcastMessage(ChatColor.YELLOW + player.getName() + " left the game");
             player.setGameMode(GameMode.SPECTATOR);
             if (deathSound != null){
                 player.getWorld().playSound(e.getEntity().getLastDeathLocation(), deathSound, 5f, 1);

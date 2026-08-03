@@ -22,10 +22,14 @@ public class JoinQuitListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
-        FakeDeathBan.immortalityBar.addPlayer(event.getPlayer());
         if (!FakeDeathBan.isEnabled) {return;}
         FakeDeathBan.console.sendMessage(FakeDeathBan.prefix + ChatColor.AQUA + Messages.getMessage("join-s"));
         Player player = event.getPlayer();
+
+
+        if (!(FakeDeathBan.immortalityBar.getPlayers().contains(player))){
+            FakeDeathBan.immortalityBar.addPlayer(player);
+        }
 
         if (!player.hasPermission("fakedeathban.bypass.joinquit")){
             event.setJoinMessage(null);
@@ -39,12 +43,13 @@ public class JoinQuitListener implements Listener {
 
         if (FakeDeathBan.isImmortality){
             if (player.hasPermission("fakedeathban.bypass.immortality")){return;}
-            player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, PotionEffect.INFINITE_DURATION, 255));
-            player.setInvulnerable(true);
+            player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, PotionEffect.INFINITE_DURATION, 0));
+            player.setInvulnerable(!plugin.getConfig().getBoolean("damage-immortal"));
         }
     }
     @EventHandler
     public void onLeave(PlayerQuitEvent event){
+        plugin.immunityManager.removeAttachments(event.getPlayer().getUniqueId());
         FakeDeathBan.immortalityBar.removePlayer(event.getPlayer());
         if (!FakeDeathBan.isEnabled) {return;}
         FakeDeathBan.console.sendMessage(FakeDeathBan.prefix + ChatColor.AQUA + Messages.getMessage("leave-s"));

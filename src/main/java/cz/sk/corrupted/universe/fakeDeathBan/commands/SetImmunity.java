@@ -9,8 +9,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.permissions.PermissionAttachment;
 import org.jspecify.annotations.NonNull;
+
+import java.util.UUID;
 
 public class SetImmunity implements CommandExecutor {
     private final FakeDeathBan plugin;
@@ -46,21 +47,19 @@ public class SetImmunity implements CommandExecutor {
             return true;
         }
 
-        String uuid = player.getUniqueId().toString();
+        UUID uuid = player.getUniqueId();
         String node = "fakedeathban.bypass." + nodePart;
 
         if (plugin.immunityManager.hasImmunity(uuid, nodePart)) {
             plugin.immunityManager.setImmunity(uuid, nodePart, false);
-            PermissionAttachment attachment = player.addAttachment(plugin);
-            attachment.setPermission(node, false);
+            plugin.immunityManager.revokeImmunity(player, nodePart);
             sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("setimmunity-2-s", player.getName(), node));
             if (nodePart.equals("immortality")){
                 FakeDeathBan.immortalityBar.removePlayer(player);
             }
         } else {
             plugin.immunityManager.setImmunity(uuid, nodePart, true);
-            PermissionAttachment attachment = player.addAttachment(plugin);
-            attachment.setPermission(node, true);
+            plugin.immunityManager.grantImmunity(player, nodePart);
             sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("setimmunity-1-s", player.getName(), node));
             if (nodePart.equals("immortality")){
                 FakeDeathBan.immortalityBar.addPlayer(player);

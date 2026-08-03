@@ -1,10 +1,7 @@
 package cz.sk.corrupted.universe.fakeDeathBan;
 
 import cz.sk.corrupted.universe.fakeDeathBan.commands.*;
-import cz.sk.corrupted.universe.fakeDeathBan.listeners.DeathListener;
-import cz.sk.corrupted.universe.fakeDeathBan.listeners.InventoryListener;
-import cz.sk.corrupted.universe.fakeDeathBan.listeners.JoinQuitListener;
-import cz.sk.corrupted.universe.fakeDeathBan.listeners.MoveListener;
+import cz.sk.corrupted.universe.fakeDeathBan.listeners.*;
 import cz.sk.corrupted.universe.fakeDeathBan.other.AutoComplete;
 import cz.sk.corrupted.universe.fakeDeathBan.other.ImmunityManager;
 import cz.sk.corrupted.universe.fakeDeathBan.other.Messages;
@@ -82,7 +79,7 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         sendDebug(ChatColor.GREEN + "Paths registered");
         // Initalize bossbar
         immortalityBar.setVisible(false);
-        immortalityBar.setTitle(ChatColor.GREEN + Messages.getMessage("pre-start"));
+        immortalityBar.setTitle(ChatColor.GREEN + Messages.getMessage("Imortality"));
         immortalityBar.setProgress(1.0);
 
         sendDebug(ChatColor.GREEN + "Bossbar initalized");
@@ -93,6 +90,7 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         registerEvent(new JoinQuitListener(this));
         registerEvent(new DeathListener(this));
         registerEvent(new InventoryListener());
+        registerEvent(new DamageListener(this));
 
         sendDebug(ChatColor.GREEN + "Event listeners registered");
         // LOAD STAGE 3
@@ -108,7 +106,7 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         registerCommand("defaultgamemode", new DefaultGamemode(this));
         registerCommand("check", new Check(this));
         registerCommand("setsound", new SetSound(this));
-        registerCommand("immortality", new Immortality());
+        registerCommand("immortality", new Immortality(this));
         registerCommand("setimmunity", new SetImmunity(this));
         registerCommand("togglefdb", new ToggleFDB());
         registerCommand("gui", new Gui());
@@ -116,7 +114,7 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         registerCommand("language", new Language(this));
         registerCommand("simulateban", new SimulateBan(this));
 
-        sendDebug(ChatColor.GREEN + "Commands registered");
+        sendDebug(ChatColor.GREEN + "Commands and Immunity manager registered");
         sendDebug(ChatColor.AQUA + "===Loading=== 4/5");
         // Register update notification
         new UpdateChecker(this).check();
@@ -142,6 +140,9 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
 
     @Override
     public void onDisable() {
+        if (immunityManager != null) {
+            immunityManager.removeAllAttachments();
+        }
         sendMessage(ChatColor.RED + Messages.getMessage("disabling"));
     }
     private void registerEvent(Listener listener){
