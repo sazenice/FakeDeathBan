@@ -16,6 +16,5 @@
       * [Revive sound](tutorial/setting-up/configuration/revive-sound.md)
   * [Resetting](tutorial/resetting.md)
 * [Additional functions](additional-functions.md)
-* [LP integration](lp-integration.md)
 * [Plans](plans.md)
 * [Conclusion](conclusion.md)

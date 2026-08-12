@@ -237,8 +237,3 @@ Shows the list of banned players and their UUIDs.
 **Usage:** /banlist
 
 </details>
-
-{% hint style="danger" %}
-**OUTDATED** / **UNTRANSLATED CONTENT BEYOND THIS POINT**
-{% endhint %}
-

@@ -1,5 +1,5 @@
 ---
-description: Návod 4/4
+description: Tutorial 4/4
 icon: rotate
 ---
 
