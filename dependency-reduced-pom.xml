@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>cz.sk.unstable.universe</groupId>
-  <artifactId>fakedeathban-26.1</artifactId>
-  <name>fakedeathban-26.1</name>
+  <artifactId>fakedeathban-1.21.11</artifactId>
+  <name>fakedeathban-1.21.11</name>
   <version>1.11-pre2</version>
   <build>
     <defaultGoal>clean package</defaultGoal>
@@ -54,7 +54,7 @@
     <dependency>
       <groupId>org.spigotmc</groupId>
       <artifactId>spigot-api</artifactId>
-      <version>26.1.1-R0.1-SNAPSHOT</version>
+      <version>1.21.11-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
