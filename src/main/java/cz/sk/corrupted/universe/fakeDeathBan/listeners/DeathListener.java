@@ -6,8 +6,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.potion.PotionEffectType;
 
 public class DeathListener implements Listener {
+    public static String name = "DeathListener";
 
     private final FakeDeathBan plugin;
 
@@ -32,6 +34,12 @@ public class DeathListener implements Listener {
 
         if (player.hasPermission("fakedeathban.bypass.deathban")){
             return;
+        }
+
+        if (player.getKiller() != null && plugin.getConfig().getBoolean("hide-invis")){
+            if (player.getKiller().hasPotionEffect(PotionEffectType.INVISIBILITY)){
+                e.setDeathMessage(player.getName() + " was killed by " + ChatColor.MAGIC + player.getKiller().getName());
+            }
         }
         if (!FakeDeathBan.deathbanned.contains(player.getUniqueId().toString())) {
             FakeDeathBan.deathbanned.add(player.getUniqueId().toString());

@@ -1,5 +1,5 @@
 name: FakeDeathBan
-version: 1.11-pre1
+version: 1.11-pre2
 load: STARTUP
 main: cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan
 api-version: 1.21
@@ -53,13 +53,6 @@ commands:
     aliases:
       - unfr
     permission: fakedeathban.unfreeze
-  check:
-    description: "Checks if all variables exist in config.yml"
-    usage: /<command>
-    aliases:
-      - health
-      - chk
-    permission: fakedeathban.check
   setsound:
     description: "Sets the sound after a death/revive"
     usage: /<command> <death|revive> <sound>
@@ -122,8 +115,6 @@ permissions:
   fakedeathban.defaultgamemode:
     default: op
   fakedeathban.unfreeze:
-    default: op
-  fakedeathban.check:
     default: op
   fakedeathban.setsound:
     default: op

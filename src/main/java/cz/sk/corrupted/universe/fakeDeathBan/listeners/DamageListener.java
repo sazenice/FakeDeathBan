@@ -9,6 +9,8 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class DamageListener implements Listener {
+    public static String name = "DamageListener";
+
     private final FakeDeathBan plugin;
 
     public DamageListener(FakeDeathBan plugin) {
@@ -30,4 +32,5 @@ public class DamageListener implements Listener {
             }
         }
     }
+
 }
