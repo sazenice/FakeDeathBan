@@ -3,7 +3,7 @@
 enabling: "Zapína sa FakeDeathban"
 disabling: "Vypína sa FakeDeathban"
 r-command: "Registrujem príkaz "
-r-listener: "Registrujem poslucháča "
+r-listener: "Registrujem poslucháča %s"
 
 ### Správy príkazov
 

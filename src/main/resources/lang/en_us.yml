@@ -3,7 +3,7 @@
 enabling: "Enabling FakeDeathban"
 disabling: "Disabling FakeDeathban"
 r-command: "Registering command "
-r-listener: "Registering listener "
+r-listener: "Registering listener %s"
 
 ### Command Messages
 

@@ -19,30 +19,37 @@ public class ImmunityManager {
     public static final String[] IMMUNITY_TYPES = {"deathban", "freeze", "move", "joinquit", "immortality"};
 
     private final FakeDeathBan plugin;
-    private final File file;
-    private final YamlConfiguration data;
+    private final File folder;
+    private final Map<String, YamlConfiguration> files = new HashMap<>();
     private final Map<UUID, Map<String, PermissionAttachment>> attachments = new HashMap<>();
 
     public ImmunityManager(FakeDeathBan plugin) {
         this.plugin = plugin;
-        this.file = new File(plugin.getDataFolder(), "immunities.yml");
-        this.data = YamlConfiguration.loadConfiguration(this.file);
+        this.folder = new File(plugin.getDataFolder(), "immunity");
+        if (!folder.exists()) //noinspection ResultOfMethodCallIgnored
+            folder.mkdirs();
+        for (String type : IMMUNITY_TYPES) {
+            files.put(type, YamlConfiguration.loadConfiguration(new File(folder, type + ".yml")));
+        }
     }
 
     public boolean hasImmunity(UUID uuid, String type) {
-        List<String> list = data.getStringList("immunity." + type);
-        return list.contains(uuid.toString());
+        YamlConfiguration data = files.get(type);
+        if (data == null) return false;
+        return data.getStringList("immune").contains(uuid.toString());
     }
 
     public void setImmunity(UUID uuid, String type, boolean value) {
-        List<String> list = new ArrayList<>(data.getStringList("immunity." + type));
+        YamlConfiguration data = files.get(type);
+        if (data == null) return;
+        List<String> list = new ArrayList<>(data.getStringList("immune"));
         if (value) {
             if (!list.contains(uuid.toString())) list.add(uuid.toString());
         } else {
             list.remove(uuid.toString());
         }
-        data.set("immunity." + type, list);
-        save();
+        data.set("immune", list);
+        save(type);
     }
 
     public void applyImmunities(Player player) {
@@ -98,9 +105,11 @@ public class ImmunityManager {
         }
     }
 
-    private void save() {
+    private void save(String type) {
+        YamlConfiguration data = files.get(type);
+        if (data == null) return;
         try {
-            data.save(file);
+            data.save(new File(folder, type + ".yml"));
         } catch (IOException e) {
             e.printStackTrace();
         }

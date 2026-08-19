@@ -1,11 +1,31 @@
+# List of deathbanned players **DO NOT MODIFY**
 deathbanned: []
+# List of frozen players **DO NOT MODIFY**
 frozen: []
 
+# Player that is spectated when dead
 default-spectator: "sazenice"
+# Gamemode after revival
 default-gamemode: "ADVENTURE"
+# Sound when someone dies
 death-sound: "minecraft:entity.wither.spawn"
+# Sound when someone is revived
 revive-sound: "minecraft:block.beacon.activate"
+# Language
 language: "en_us"
+# Immortality mode
 damage-immortal: true
+# Hide killer name when killer has invisibility
+hide-invis: true
 
+# Sends anonymous analytics to bStats
+analytics: true
+# Automatically checks for updates
+updates: true
+# Disable language replace on startup
+# true: will disable updates of language files -- may cause issues
+# false: updates language files to be synchronized with what the plugin uses -- language can be changed only temporarily after startup
+custom-language: false
+
+# Debug mode
 debug: false

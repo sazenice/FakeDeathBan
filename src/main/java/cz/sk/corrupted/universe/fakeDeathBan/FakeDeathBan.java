@@ -38,8 +38,6 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
 
     private final AutoComplete autoComplete = new AutoComplete();
 
-    public static List<String> paths = new ArrayList<>();
-
     public static List<String> deathbanned = new ArrayList<>();
     public static List<String> frozen = new ArrayList<>();
 
@@ -58,28 +56,21 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         saveDefaultConfig();
-        saveResource("lang/en_us.yml", false);
-        saveResource("lang/sk_sk.yml", false);
-        saveResource("lang/cs_cz.yml", false);
+        if (!getConfig().getBoolean("custom_language")){
+            saveResource("lang/cs_cz.yml", true);
+            saveResource("lang/sk_sk.yml", true);
+            saveResource("lang/en_us.yml", true);
+        }
         Messages.setup(this);
 
         deathbanned = new ArrayList<>(getConfig().getStringList("deathbanned"));
         frozen = new ArrayList<>(getConfig().getStringList("frozen"));
 
         sendDebug(ChatColor.AQUA + "===Loading=== 1/5");
-        // Register paths
-        paths.add("deathbanned");
-        paths.add("frozen");
-        paths.add("default-spectator");
-        paths.add("default-gamemode");
-        paths.add("death-sound");
-        paths.add("revive-sound");
-        paths.add("language");
 
-        sendDebug(ChatColor.GREEN + "Paths registered");
         // Initalize bossbar
         immortalityBar.setVisible(false);
-        immortalityBar.setTitle(ChatColor.GREEN + Messages.getMessage("Imortality"));
+        immortalityBar.setTitle(ChatColor.GREEN + "Immortality");
         immortalityBar.setProgress(1.0);
 
         sendDebug(ChatColor.GREEN + "Bossbar initalized");
@@ -104,7 +95,6 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         registerCommand("freeze", new Freeze(this));
         registerCommand("unfreeze", new Unfreeze(this));
         registerCommand("defaultgamemode", new DefaultGamemode(this));
-        registerCommand("check", new Check(this));
         registerCommand("setsound", new SetSound(this));
         registerCommand("immortality", new Immortality(this));
         registerCommand("setimmunity", new SetImmunity(this));
@@ -115,24 +105,32 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         registerCommand("simulateban", new SimulateBan(this));
 
         sendDebug(ChatColor.GREEN + "Commands and Immunity manager registered");
-        sendDebug(ChatColor.AQUA + "===Loading=== 4/5");
-        // Register update notification
-        new UpdateChecker(this).check();
+        if (getConfig().getBoolean("updates")){
+            sendDebug(ChatColor.AQUA + "===Loading=== 4/5");
+            // Register update notification
+            new UpdateChecker(this).check();
+        }else{
+            sendDebug(ChatColor.AQUA + "Skipped loading step 4/5");
+        }
 
         sendDebug(ChatColor.AQUA + "Update notification registered");
-        sendDebug(ChatColor.AQUA + "===Loading=== 5/5");
-        // Register bStats
-        int pluginId = 32939;
-        Metrics metrics = new Metrics(this, pluginId);
+        if (getConfig().getBoolean("analytics")){
+            sendDebug(ChatColor.AQUA + "===Loading=== 5/5");
+            // Register bStats
+            int pluginId = 32939;
+            Metrics metrics = new Metrics(this, pluginId);
 
-        metrics.addCustomChart(new SimplePie("language", () -> switch (getConfig().getString("language")) {
-            case "en_us" -> "English (US)";
-            case "cs_cz" -> "Czech";
-            case "sk_sk" -> "Slovak";
-            case null, default -> "Unknown";
-        }));
-        metrics.addCustomChart(new SimplePie("debug_enabled", () -> getConfig().getBoolean("debug") ? "Debug enabled" : "Debug disabled"));
-        sendDebug(ChatColor.AQUA + "bStats registered");
+            metrics.addCustomChart(new SimplePie("language", () -> switch (getConfig().getString("language")) {
+                case "en_us" -> "English (US)";
+                case "cs_cz" -> "Czech";
+                case "sk_sk" -> "Slovak";
+                case null, default -> "Unknown";
+            }));
+            metrics.addCustomChart(new SimplePie("debug_enabled", () -> getConfig().getBoolean("debug") ? "Debug enabled" : "Debug disabled"));
+            sendDebug(ChatColor.AQUA + "bStats registered");
+        }else{
+            sendDebug(ChatColor.AQUA + "Skipped loading step 5/5");
+        }
         sendMessage(ChatColor.GREEN + "===  Plugin loaded   ===");
 
         sendMessage(ChatColor.GOLD + "Support the developer <3 https://github.com/sponsors/sazenice");
@@ -146,7 +144,7 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         sendMessage(ChatColor.RED + Messages.getMessage("disabling"));
     }
     private void registerEvent(Listener listener){
-        sendDebug(ChatColor.GREEN + Messages.getMessage("r-listener", listener.getClass().getSimpleName()) + ChatColor.YELLOW + listener);
+        sendDebug(ChatColor.GREEN + Messages.getMessage("r-listener", listener.getClass().getSimpleName()));
         Bukkit.getPluginManager().registerEvents(listener, this);
     }
     private void registerCommand(String name, @NonNull CommandExecutor command){
