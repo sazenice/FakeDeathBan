@@ -17,7 +17,6 @@ I highly recommend using this plugin instead of the normal ones, because this pl
 And don't worry, players **cannot** move around freely when deathbanned without a specific permission.
 
 
-![GitHub License](https://img.shields.io/github/license/sazenice/FakeDeathBan)
 ![Github](https://img.shields.io/badge/Github-FakeDeathBan-blue?logo=github)
 ![GitHub Release](https://img.shields.io/github/v/release/sazenice/FakeDeathBan?logo=github)
 
