@@ -1,7 +1,7 @@
 name: FakeDeathBan
 version: 1.11-pre2
 load: STARTUP
-main: cz.sk.corrupted.universe.fakeDeathBan.FakeDeathBan
+main: org.dpdns.sazenice.fakeDeathBan.FakeDeathBan
 api-version: 1.21
 author: sazenice
 website: https://github.com/sazenice/FakeDeathBan

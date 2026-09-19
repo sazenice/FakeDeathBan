@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>cz.sk.unstable.universe</groupId>
+  <groupId>org.dpdns.sazenice</groupId>
   <artifactId>fakedeathban-1.21.11</artifactId>
   <name>fakedeathban-1.21.11</name>
   <version>1.11-pre2</version>
@@ -37,7 +37,7 @@
           <relocations>
             <relocation>
               <pattern>org.bstats</pattern>
-              <shadedPattern>cz.sk.corrupted.universe</shadedPattern>
+              <shadedPattern>org.dpdns.sazenice</shadedPattern>
             </relocation>
           </relocations>
         </configuration>
