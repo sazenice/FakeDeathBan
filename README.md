@@ -1,5 +1,5 @@
 # FakeDeathBan 
-A plugin for ***Scripted*** SMP minecraft servers, like *Unstable SMP* or *Corrupted Universe*.
+A plugin for ***Scripted*** SMP minecraft servers, like *Unstable SMP*.
 
 # Chance of plugin getting discontinued due to lack of interest.
 If you want to keep the plugin alive, make a feature request or support me. I will know if at least someone would be interested
