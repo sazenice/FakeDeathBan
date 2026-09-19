@@ -1,6 +1,10 @@
-MIT License
-
+FakeDeathBan License (Modified MIT with Use Restrictions)
 Copyright (c) 2026 sazenice
+
+Applies to all versions released from 19.09.2026 (dd/mm/yyyy) onward.
+Earlier versions remain available under the original MIT License and are unaffected by this change.
+
+---
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -9,13 +13,61 @@ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+1. NAMED EXCLUSIONS
+
+Notwithstanding the above, permission to use, install, operate, distribute,
+or deploy the Software, in whole or in part, and in original or modified
+form, is expressly withheld from the following entities, and from any server,
+network, or service owned, operated, controlled by, or affiliated with them,
+under any current or future name:
+
+  - "MineHub" (CZ), operating at https://minehub.cz/, including any successor,
+    rebrand, affiliated project, or any server or service otherwise
+    affiliated with this domain or its operators
+  - "CorruptedUniverse", including any successor, rebrand, or affiliated project
+  - "UniverseSpigot" server software, including any fork, rebrand, or
+    affiliated distribution of it
+  - The individual known by the player name or handle "Vetryxx" (Minecraft
+    UUID a92beda2-a2b6-48a9-aeaa-aa7ba71236fc), including any alternate
+    accounts or renamed handles used by the same individual
+
+This exclusion also extends to any individual acting as an owner, operator, or
+administrator of the above at the time of this license's adoption, in that
+capacity, and to any new entity substantially formed from the same operators
+or infrastructure for the purpose of continuing to use the Software after
+being excluded.
+
+2. GENERAL REVOCATION FOR BAD-FAITH CONDUCT
+
+Permission granted under this license is automatically revoked for any
+individual, server, organization, or entity that:
+
+  a) bans, blocks, or removes the author from a service or project without
+     legitimate cause related to the author's own conduct on that service;
+  b) misappropriates, redistributes, or rebrands the Software or derivative
+     works without complying with the terms of this license;
+  c) uses the Software in a manner intended to harm, defraud, or deceive its
+     own users or the author.
+
+The author reserves the right to publicly identify entities whose permission
+has been revoked under this section.
+
+3. NO WARRANTY
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+4. SEVERABILITY
+
+If any provision of this license is found unenforceable, the remaining
+provisions remain in full force and effect, and the unenforceable provision
+shall be read as narrowly as needed to make it enforceable, or shall be
+severed entirely if no such reading is possible.
