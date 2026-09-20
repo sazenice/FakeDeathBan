@@ -23,7 +23,6 @@ public class JoinQuitListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
         if (!FakeDeathBan.isEnabled) {return;}
-        FakeDeathBan.console.sendMessage(FakeDeathBan.prefix + ChatColor.AQUA + Messages.getMessage("join-s"));
         Player player = event.getPlayer();
 
 
@@ -31,6 +30,7 @@ public class JoinQuitListener implements Listener {
             FakeDeathBan.immortalityBar.addPlayer(player);
         }
 
+        FakeDeathBan.console.sendMessage(FakeDeathBan.prefix + ChatColor.AQUA + Messages.getMessage("join-s"));
         if (!player.hasPermission("fakedeathban.bypass.joinquit")){
             event.setJoinMessage(null);
         }

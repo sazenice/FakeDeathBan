@@ -57,11 +57,6 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-        if (licenseAgreementBroken()){
-            getLogger().severe("This server does not comply with the plugin's license terms.");
-            Bukkit.getPluginManager().disablePlugin(this);
-            return;
-        }
         saveDefaultConfig();
         if (!getConfig().getBoolean("custom_language")){
             saveResource("lang/cs_cz.yml", true);
@@ -159,15 +154,5 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         sendDebug(ChatColor.GREEN + Messages.getMessage("r-command", command.toString()) + ChatColor.YELLOW + name);
         Objects.requireNonNull(getCommand(name)).setTabCompleter(autoComplete);
         Objects.requireNonNull(getCommand(name)).setExecutor(command);
-    }
-
-    private boolean licenseAgreementBroken(){
-        if (Bukkit.getVersion().toLowerCase().contains("universespigot") || Bukkit.getName().toLowerCase().contains("universespigot")){
-            return true;
-        }
-        if (Bukkit.getServer().getOperators().contains(Bukkit.getOfflinePlayer(UUID.fromString("a92beda2-a2b6-48a9-aeaa-aa7ba71236fc")))){
-            return true;
-        }
-        return Bukkit.getMotd().toLowerCase().contains("minehub") || Bukkit.getMotd().toLowerCase().contains("corrupted network") || Bukkit.getMotd().toLowerCase().contains("corrupted smp");
     }
 }

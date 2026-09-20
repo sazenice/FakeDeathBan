@@ -1,5 +1,5 @@
 name: FakeDeathBan
-version: 1.11-pre2
+version: 1.11-pre3
 load: STARTUP
 main: org.dpdns.sazenice.fakeDeathBan.FakeDeathBan
 api-version: 1.21
