@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>cz.sk.unstable.universe</groupId>
+    <groupId>org.dpdns.sazenice</groupId>
     <artifactId>fakedeathban-26.1</artifactId>
-    <version>1.11-pre2</version>
+    <version>1.11-pre3</version>
     <packaging>jar</packaging>
 
     <name>fakedeathban-26.1</name>
@@ -36,7 +36,7 @@
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
-                            <shadedPattern>cz.sk.corrupted.universe</shadedPattern>
+                            <shadedPattern>org.dpdns.sazenice</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>

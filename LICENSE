@@ -1,7 +1,7 @@
 FakeDeathBan License (Modified MIT with Use Restrictions)
 Copyright (c) 2026 sazenice
 
-Applies to all versions released from 19.09.2026 (dd/mm/yyyy) onward.
+Applies to all versions released from 20.09.2026 (dd/mm/yyyy) onward.
 Earlier versions remain available under the original MIT License and are unaffected by this change.
 
 ---
@@ -16,31 +16,7 @@ furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in
 all copies or substantial portions of the Software.
 
-1. NAMED EXCLUSIONS
-
-Notwithstanding the above, permission to use, install, operate, distribute,
-or deploy the Software, in whole or in part, and in original or modified
-form, is expressly withheld from the following entities, and from any server,
-network, or service owned, operated, controlled by, or affiliated with them,
-under any current or future name:
-
-  - "MineHub" (CZ), operating at https://minehub.cz/, including any successor,
-    rebrand, affiliated project, or any server or service otherwise
-    affiliated with this domain or its operators
-  - "CorruptedUniverse", including any successor, rebrand, or affiliated project
-  - "UniverseSpigot" server software, including any fork, rebrand, or
-    affiliated distribution of it
-  - The individual known by the player name or handle "Vetryxx" (Minecraft
-    UUID a92beda2-a2b6-48a9-aeaa-aa7ba71236fc), including any alternate
-    accounts or renamed handles used by the same individual
-
-This exclusion also extends to any individual acting as an owner, operator, or
-administrator of the above at the time of this license's adoption, in that
-capacity, and to any new entity substantially formed from the same operators
-or infrastructure for the purpose of continuing to use the Software after
-being excluded.
-
-2. GENERAL REVOCATION FOR BAD-FAITH CONDUCT
+1. GENERAL REVOCATION FOR BAD-FAITH CONDUCT
 
 Permission granted under this license is automatically revoked for any
 individual, server, organization, or entity that:
@@ -55,7 +31,7 @@ individual, server, organization, or entity that:
 The author reserves the right to publicly identify entities whose permission
 has been revoked under this section.
 
-3. NO WARRANTY
+2. NO WARRANTY
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -65,7 +41,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-4. SEVERABILITY
+3. SEVERABILITY
 
 If any provision of this license is found unenforceable, the remaining
 provisions remain in full force and effect, and the unenforceable provision

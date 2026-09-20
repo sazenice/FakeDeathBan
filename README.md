@@ -1,5 +1,5 @@
 # FakeDeathBan 
-A plugin for ***Scripted*** SMP minecraft servers, like *Unstable SMP* or *Corrupted Universe*.
+A plugin for ***Scripted*** SMP minecraft servers, like *Unstable SMP*.
 ___
 ~~Ban players when they die~~
 **Let players spectate the whole battle**
