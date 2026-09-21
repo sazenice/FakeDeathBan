@@ -7,10 +7,6 @@ icon: terminal
 
 There are a total of **14** commands
 
-{% hint style="info" %}
-Applies to version 1.8
-{% endhint %}
-
 <details>
 
 <summary><strong>UnDeathBan</strong></summary>
