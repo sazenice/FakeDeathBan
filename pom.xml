@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.dpdns.sazenice</groupId>
-    <artifactId>fakedeathban-1.21.11</artifactId>
+    <artifactId>fakedeathban</artifactId>
     <version>1.11-pre4</version>
     <packaging>jar</packaging>
 
-    <name>fakedeathban-1.21.11</name>
+    <name>fakedeathban</name>
 
     <properties>
         <java.version>21</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Default Minecraft version -->
+        <spigot.version>26.3-R0.1-SNAPSHOT</spigot.version>
+        <minecraft.version>26.3</minecraft.version>
     </properties>
 
     <build>
         <defaultGoal>clean package</defaultGoal>
+
+        <finalName>${project.artifactId}-${project.version}-mc${minecraft.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -28,11 +35,14 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.5.3</version>
                 <configuration>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
@@ -50,6 +60,7 @@
                 </executions>
             </plugin>
         </plugins>
+
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -57,6 +68,49 @@
             </resource>
         </resources>
     </build>
+
+    <profiles>
+        <profile>
+            <id>mc-1.21.11</id>
+
+            <properties>
+                <minecraft.version>1.21.11</minecraft.version>
+                <spigot.version>1.21.11-R0.2-SNAPSHOT</spigot.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>mc-26.1.1</id>
+
+            <properties>
+                <minecraft.version>26.1.1</minecraft.version>
+                <spigot.version>26.1.1-R0.1-SNAPSHOT</spigot.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>mc-26.1.2</id>
+
+            <properties>
+                <minecraft.version>26.1.2</minecraft.version>
+                <spigot.version>26.1.2-R0.1-SNAPSHOT</spigot.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>mc-26.2</id>
+
+            <properties>
+                <minecraft.version>26.2</minecraft.version>
+                <spigot.version>26.2-R0.1-SNAPSHOT</spigot.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>mc-26.3</id>
+
+            <properties>
+                <minecraft.version>26.3</minecraft.version>
+                <spigot.version>26.3-R0.1-SNAPSHOT</spigot.version>
+            </properties>
+        </profile>
+    </profiles>
 
     <repositories>
         <repository>
@@ -67,11 +121,12 @@
 
     <dependencies>
         <dependency>
-        <groupId>org.spigotmc</groupId>
-        <artifactId>spigot-api</artifactId>
-        <version>1.21.11-R0.1-SNAPSHOT</version>
-        <scope>provided</scope>
-    </dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>${spigot.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
