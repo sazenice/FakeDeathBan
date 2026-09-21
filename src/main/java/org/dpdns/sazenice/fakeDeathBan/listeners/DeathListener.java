@@ -36,6 +36,10 @@ public class DeathListener implements Listener {
             return;
         }
 
+        if(plugin.getConfig().getBoolean("deathlightning")){
+            player.getWorld().strikeLightningEffect(player.getLastDeathLocation());
+        }
+
         if (player.getKiller() != null && plugin.getConfig().getBoolean("hide-invis")){
             if (player.getKiller().hasPotionEffect(PotionEffectType.INVISIBILITY)){
                 e.setDeathMessage(player.getName() + " was killed by " + ChatColor.MAGIC + player.getKiller().getName());

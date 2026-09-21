@@ -17,6 +17,8 @@ language: "en_us"
 damage-immortal: true
 # Hide killer name when killer has invisibility
 hide-invis: true
+# Summon a lightning strike that deals no damage to the death location
+deathlightning: true
 
 # Sends anonymous analytics to bStats
 analytics: true

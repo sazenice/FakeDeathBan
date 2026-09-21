@@ -6,7 +6,7 @@
 
     <groupId>org.dpdns.sazenice</groupId>
     <artifactId>fakedeathban-1.21.11</artifactId>
-    <version>1.11-pre2</version>
+    <version>1.11-pre4</version>
     <packaging>jar</packaging>
 
     <name>fakedeathban-1.21.11</name>

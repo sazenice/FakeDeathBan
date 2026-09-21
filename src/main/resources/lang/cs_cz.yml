@@ -39,6 +39,7 @@ p-db-f: "Hráč %s nemá deathban"
 p-immune: "Hráč %s má imunitu!"
 player-not-found: "Hráč %s neexistuje nebo je offline."
 simulateban-1-f: "Nedostatek argumentů! /simulateban <hráč> <zpráva>"
+deathlightning-toggle: "Blesk na smrti %s"
 
 ### Zprávy posluchačů
 

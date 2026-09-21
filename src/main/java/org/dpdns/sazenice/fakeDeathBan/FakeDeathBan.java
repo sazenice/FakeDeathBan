@@ -106,6 +106,7 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         registerCommand("banlist", new BanList());
         registerCommand("language", new Language(this));
         registerCommand("simulateban", new SimulateBan(this));
+        registerCommand("deathlightning", new DeathLightning(this));
 
         sendDebug(ChatColor.GREEN + "Commands and Immunity manager registered");
         if (getConfig().getBoolean("updates")){

@@ -1,5 +1,5 @@
 name: FakeDeathBan
-version: 1.11-pre3
+version: 1.11-pre4
 load: STARTUP
 main: org.dpdns.sazenice.fakeDeathBan.FakeDeathBan
 api-version: 1.21
@@ -102,6 +102,12 @@ commands:
       - simban
       - fakeb
       - fakeban
+  deathlightning:
+    description: "Toggles if lightning bolt will be summoned on death"
+    usage: /<command>
+    permission: fakedeathban.deathlighting
+    aliases:
+      - dl
 permissions:
   # Command permissions
   fakedeathban.revive:
@@ -131,6 +137,8 @@ permissions:
   fakedeathban.banlist:
     default: op
   fakedeathban.simulateban:
+    default: op
+  fakedeathban.deathlighting:
     default: op
   # Immunity permissions
   fakedeathban.bypass.deathban:
