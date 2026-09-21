@@ -233,3 +233,38 @@ Shows the list of banned players and their UUIDs.
 **Usage:** /banlist
 
 </details>
+
+<details>
+
+<summary><strong>SimulateBan</strong></summary>
+
+Simulates a ban message
+
+**Permission:** OP
+
+**Usage:** /simulateban \<player> \<message>
+
+**Aliases**
+
+* simb
+* simban
+* fakeb
+* fakeban
+
+</details>
+
+<details>
+
+<summary><strong>DeathLightning</strong></summary>
+
+Toggles if lightning is summoned on death
+
+**Permission:** OP
+
+**Usage:** /deathlightning
+
+**Aliases:**
+
+* dl
+
+</details>

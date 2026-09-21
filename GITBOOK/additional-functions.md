@@ -5,10 +5,14 @@ icon: function
 
 # Additional functions
 
-## Pre-Start Mode
+## Immortality Mode
 
 \
-In Pre-Start Mode, players[^1] will be **invulnerable** and will have the **saturation** **effect**.
+In Immortality Mode, players[^1] will be **invulnerable** and will have the **saturation** **effect**.
+
+{% hint style="info" %}
+Depends on the configuration of the server
+{% endhint %}
 
 All players will be notified of this change.
 
@@ -18,7 +22,7 @@ A boss bar will appear
 
 **Command**: /immortality
 
-**Usage**: When an event is about to begin
+**Usage**: When an event is being prepared
 
 ## Immunity
 
