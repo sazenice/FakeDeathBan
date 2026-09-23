@@ -9,8 +9,6 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.potion.PotionEffectType;
 
 public class DeathListener implements Listener {
-    public static String name = "DeathListener";
-
     private final FakeDeathBan plugin;
 
     public DeathListener(FakeDeathBan plugin){
@@ -21,6 +19,8 @@ public class DeathListener implements Listener {
     public void onDeath(PlayerDeathEvent e){
         if (!FakeDeathBan.isEnabled) {return;}
         Player player = e.getEntity();
+        if (player.hasPermission("fakedeathban.bypass.deathban")) {return;}
+        Location playerLocation = player.getLocation();
 
         Sound sound = null;
         String soundString = plugin.getConfig().getString("death-sound");
@@ -32,28 +32,27 @@ public class DeathListener implements Listener {
         }
         final Sound deathSound = sound;
 
-        if (player.hasPermission("fakedeathban.bypass.deathban")){
-            return;
-        }
-
-        if(plugin.getConfig().getBoolean("deathlightning")){
-            player.getWorld().strikeLightningEffect(player.getLastDeathLocation());
-        }
 
         if (player.getKiller() != null && plugin.getConfig().getBoolean("hide-invis")){
             if (player.getKiller().hasPotionEffect(PotionEffectType.INVISIBILITY)){
                 e.setDeathMessage(player.getName() + " was killed by " + ChatColor.MAGIC + player.getKiller().getName());
             }
         }
+
         if (!FakeDeathBan.deathbanned.contains(player.getUniqueId().toString())) {
             FakeDeathBan.deathbanned.add(player.getUniqueId().toString());
             plugin.saveDeathbanned();
         }
+
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
             Bukkit.broadcastMessage(ChatColor.YELLOW + player.getName() + " left the game");
             player.setGameMode(GameMode.SPECTATOR);
             if (deathSound != null){
-                player.getWorld().playSound(e.getEntity().getLastDeathLocation(), deathSound, 5f, 1);
+                player.getWorld().playSound(playerLocation, deathSound, 5f, 1);
+
+                if(plugin.getConfig().getBoolean("deathlightning")){
+                    player.getWorld().strikeLightningEffect(playerLocation);
+                }
             }
         }, 2L);
     }

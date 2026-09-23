@@ -130,7 +130,7 @@ public class InventoryListener implements Listener {
                             sendCommand(player, "kill", skullPlayerName, "");
                             break;
                         case ENDER_EYE:
-                            sendCommand(player, "setspectate", skullPlayerName, "");
+                            sendCommand(player, "defaultspectate", skullPlayerName, "");
                             break;
                         case SNOWBALL:
                             sendCommand(player, "freeze", skullPlayerName, "");

@@ -10,7 +10,7 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.UUID;
 
-public class BanList implements CommandExecutor {
+public class FDBlist implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {

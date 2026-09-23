@@ -25,7 +25,7 @@ public class Shared {
                 meta.setRarity(ItemRarity.RARE);
                 break;
             case SNOW_BLOCK:
-                meta.setDisplayName("Freeze");
+                meta.setDisplayName("FreezeBanned");
                 List<String> snowLore = new ArrayList<>();
                 snowLore.add(ChatColor.GREEN + "Click to allow freeze immunity");
                 meta.setLore(snowLore);
@@ -57,7 +57,7 @@ public class Shared {
                 meta.setRarity(ItemRarity.RARE);
                 break;
             case SNOWBALL:
-                meta.setDisplayName("Freeze");
+                meta.setDisplayName("FreezeBanned");
                 List<String> snowballLore = new ArrayList<>();
                 snowballLore.add(ChatColor.GREEN + "Click to freeze a player");
                 meta.setLore(snowballLore);

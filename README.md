@@ -43,19 +43,18 @@ Sounds -- Change death and revive sound or disable them
 
 # Commands
 
-|Name|Permission|Description|
-|--|--|--|
-|BanList|fakedeathban.banlist|Shows the list of dead players, including UUIDs|
-|Check|fakedeathban.check|Checks if the plugin and its config file is healthy|
-|DefaultGamemode|fakedeathban.defaultgamemode|Sets the gamemode after a revival (to use minecraft default, type `minecraft:defaultgamemode`|
-|Freeze|fakedeathban.freeze|Freeze a dead player|
-|Gui|fakedeathban.gui|Shows the player management GUI|
-|Language|fakedeathban.language|Change the plugin language|
-|Immortality|fakedeathban.immortality|Toggles immortality ON/OFF|
-|SetImmunity|fakedeathban.setimmunity|Toggles a immunity for a player|
-|SetSound|fakedeathban.setsound|Sets the sound after a death or a revive|
-|SetSpectate|fakedeathban.setspectate|Sets the player which is spectated after death|
-|ToggleFDB|fakedeathban.togglefdb|Toggle the plugin's event listeners|
-|UnDeathBan|fakedeathban.undeathban|Revive a player|
-|UnFreeze|fakedeathban.freeze|Unreeze a player|
-|Version|fakedeathban.version|Check the plugin version|
+| Name            | Permission                   | Description                                                                                    |
+|-----------------|------------------------------|------------------------------------------------------------------------------------------------|
+| FDBlist         | fakedeathban.fdblist         | Shows the list of dead players, including UUIDs                                                |
+| Check           | fakedeathban.check           | Checks if the plugin and its config file is healthy                                            |
+| DefaultGamemode | fakedeathban.defaultgamemode | Sets the gamemode after a revival (to use minecraft default, type `minecraft:defaultgamemode`) |
+| Freeze          | fakedeathban.freeze          | Freeze a dead player                                                                           |
+| FDBui           | fakedeathban.fdbui           | Shows the player management GUI                                                                |
+| Immortality     | fakedeathban.immortality     | Toggles immortality ON/OFF                                                                     |
+| SetImmunity     | fakedeathban.setimmunity     | Toggles a immunity for a player                                                                |
+| SetSound        | fakedeathban.setsound        | Sets the sound after a death or a revive                                                       |
+| DefaultSpectate | fakedeathban.defaultspectate | Sets the player which is spectated after death                                                 |
+| ToggleFDB       | fakedeathban.togglefdb       | Toggle the plugin's event listeners                                                            |
+| UnDeathBan      | fakedeathban.undeathban      | Revive a player                                                                                |
+| UnFreeze        | fakedeathban.freeze          | Unreeze a player                                                                               |
+| Version         | fakedeathban.version         | Check the plugin version                                                                       |

@@ -1,10 +1,11 @@
 name: FakeDeathBan
-version: 1.11-pre4
+version: 1.11-pre5
 load: STARTUP
 main: org.dpdns.sazenice.fakeDeathBan.FakeDeathBan
 api-version: 1.21
 author: sazenice
-website: https://github.com/sazenice/FakeDeathBan
+website: https://sazenice.dpdns.org
+description: "A deathban plugin that allows players to stay connected to the server after a deathban"
 
 commands:
   revive:
@@ -16,15 +17,14 @@ commands:
       - res
       - rev
     permission: fakedeathban.revive
-  setspectate:
+  defaultspectate:
     description: "Sets the default spectator"
     usage: /<command> <player>
     aliases:
-      - sets
-      - setspec
-      - sspec
-      - ss
-    permission: fakedeathban.setspectate
+      - defspectate
+      - defspec
+      - defs
+    permission: fakedeathban.defaultspectate
   spectate:
     description: "Spectates a player"
     usage: /<command> <player>
@@ -32,12 +32,15 @@ commands:
       - spec
       - s
     permission: fakedeathban.spectate
-  freeze:
+  freezebanned:
     description: "Freezes a player"
     usage: /<command> [player...]
     aliases:
+      - fb
+      - freezeb
+      - fbanned
       - fr
-    permission: fakedeathban.freeze
+    permission: fakedeathban.freezebanned
   defaultgamemode:
     description: "Sets the default gamemode after a revive"
     usage: /<command> <gamemode>
@@ -47,12 +50,15 @@ commands:
       - defaultg
       - dg
     permission: fakedeathban.defaultgamemode
-  unfreeze:
+  unfreezebanned:
     description: "Unfreezes a player"
     usage: /<command> [player...]
     aliases:
-      - unfr
-    permission: fakedeathban.unfreeze
+      - unfreezeb
+      - unfbanned
+      - ufb
+      - unfrb
+    permission: fakedeathban.unfreezebanned
   setsound:
     description: "Sets the sound after a death/revive"
     usage: /<command> <death|revive> <sound>
@@ -74,25 +80,17 @@ commands:
     description: "Turns listeners on or off"
     usage: /<command>
     permission: fakedeathban.togglefdb
-  gui:
+  fdbui:
     description: "Shows a GUI for FakeDeathBan"
     usage: /<command>
-    permission: fakedeathban.gui
+    permission: fakedeathban.fdbui
     aliases:
       - menu
       - open
-  language:
-    description: "Changes the language"
-    usage: /<command> <language>
-    permission: fakedeathban.language
-    aliases:
-      - lang
-      - lng
-      - lg
-  banlist:
+  fdblist:
     description: "Shows deathbanned players"
     usage: /<command>
-    permission: fakedeathban.banlist
+    permission: fakedeathban.fdblist
   simulateban:
     description: "Fakes a player ban"
     usage: /<command> <player> <message>
@@ -102,25 +100,19 @@ commands:
       - simban
       - fakeb
       - fakeban
-  deathlightning:
-    description: "Toggles if lightning bolt will be summoned on death"
-    usage: /<command>
-    permission: fakedeathban.deathlighting
-    aliases:
-      - dl
 permissions:
   # Command permissions
   fakedeathban.revive:
     default: op
-  fakedeathban.setspectate:
+  fakedeathban.defaultspectate:
     default: op
   fakedeathban.spectate:
     default: true
-  fakedeathban.freeze:
+  fakedeathban.freezebanned:
     default: op
   fakedeathban.defaultgamemode:
     default: op
-  fakedeathban.unfreeze:
+  fakedeathban.unfreezebanned:
     default: op
   fakedeathban.setsound:
     default: op
@@ -130,19 +122,15 @@ permissions:
     default: op
   fakedeathban.togglefdb:
     default: op
-  fakedeathban.gui:
+  fakedeathban.fdbui:
     default: op
-  fakedeathban.language:
-    default: op
-  fakedeathban.banlist:
+  fakedeathban.fdblist:
     default: op
   fakedeathban.simulateban:
     default: op
-  fakedeathban.deathlighting:
-    default: op
   # Immunity permissions
   fakedeathban.bypass.deathban:
-    description: Immunity against DeathBanu
+    description: Immunity against DeathBan
     default: false
   fakedeathban.bypass.freeze:
     description: Immunity against freezes

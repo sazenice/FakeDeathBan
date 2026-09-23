@@ -10,11 +10,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jspecify.annotations.NonNull;
 
-public class Freeze implements CommandExecutor {
+public class FreezeBanned implements CommandExecutor {
 
     private final FakeDeathBan plugin;
 
-    public Freeze(FakeDeathBan plugin) {
+    public FreezeBanned(FakeDeathBan plugin) {
         this.plugin = plugin;
     }
 

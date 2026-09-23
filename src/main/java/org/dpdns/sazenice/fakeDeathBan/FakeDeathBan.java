@@ -2,8 +2,6 @@ package org.dpdns.sazenice.fakeDeathBan;
 
 import org.dpdns.sazenice.fakeDeathBan.commands.*;
 import org.dpdns.sazenice.fakeDeathBan.listeners.*;
-import org.dpdns.sazenice.fakeDeathBan.commands.*;
-import org.dpdns.sazenice.fakeDeathBan.listeners.*;
 import org.dpdns.sazenice.fakeDeathBan.other.AutoComplete;
 import org.dpdns.sazenice.fakeDeathBan.other.ImmunityManager;
 import org.dpdns.sazenice.fakeDeathBan.other.Messages;
@@ -92,21 +90,19 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         // Register immunity manager
         immunityManager = new ImmunityManager(this);
         // Register commands
-        registerCommand("setspectate", new SetSpectate(this));
+        registerCommand("defaultspectate", new DefaultSpectate(this));
         registerCommand("revive", new Revive(this));
         registerCommand("spectate", new Spectate());
-        registerCommand("freeze", new Freeze(this));
-        registerCommand("unfreeze", new Unfreeze(this));
+        registerCommand("freezebanned", new FreezeBanned(this));
+        registerCommand("unfreezebanned", new UnfreezeBanned(this));
         registerCommand("defaultgamemode", new DefaultGamemode(this));
         registerCommand("setsound", new SetSound(this));
         registerCommand("immortality", new Immortality(this));
         registerCommand("setimmunity", new SetImmunity(this));
         registerCommand("togglefdb", new ToggleFDB());
-        registerCommand("gui", new Gui());
-        registerCommand("banlist", new BanList());
-        registerCommand("language", new Language(this));
+        registerCommand("fdbui", new FDBui());
+        registerCommand("fdblist", new FDBlist());
         registerCommand("simulateban", new SimulateBan(this));
-        registerCommand("deathlightning", new DeathLightning(this));
 
         sendDebug(ChatColor.GREEN + "Commands and Immunity manager registered");
         if (getConfig().getBoolean("updates")){
@@ -148,11 +144,11 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
         sendMessage(ChatColor.RED + Messages.getMessage("disabling"));
     }
     private void registerEvent(Listener listener){
-        sendDebug(ChatColor.GREEN + Messages.getMessage("r-listener", listener.getClass().getSimpleName()));
+        sendDebug(ChatColor.GREEN + Messages.getMessage("r-listener") + ChatColor.YELLOW + listener.getClass().getSimpleName());
         Bukkit.getPluginManager().registerEvents(listener, this);
     }
     private void registerCommand(String name, @NonNull CommandExecutor command){
-        sendDebug(ChatColor.GREEN + Messages.getMessage("r-command", command.toString()) + ChatColor.YELLOW + name);
+        sendDebug(ChatColor.GREEN + Messages.getMessage("r-command") + ChatColor.YELLOW + name);
         Objects.requireNonNull(getCommand(name)).setTabCompleter(autoComplete);
         Objects.requireNonNull(getCommand(name)).setExecutor(command);
     }

@@ -17,4 +17,4 @@ Players will often get bored because they cannot see the battle or something hap
 
 [^1]: In the configuration as default-spectator. Can be changed with
 
-    /setspectate
+    /defaultspectate

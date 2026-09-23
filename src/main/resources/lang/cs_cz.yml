@@ -3,14 +3,14 @@
 enabling: "Zapíná se FakeDeathban"
 disabling: "Vypíná se FakeDeathban"
 r-command: "Registruji příkaz "
-r-listener: "Registruji posluchače %s"
+r-listener: "Registruji posluchače"
 
 ### Příkazové zprávy
 
 defg-s: "Výchozí herní mód po oživení: %s"
 defg-f-1: "Nedostatek argumentů! /defg <gamemode>"
 defg-f-2: "Gamemode musí být 'adventure', 'creative', 'survival' nebo 'spectator'!"
-sets-s: "Výchozí spectatovaný hráč: %s"
+defs-s: "Výchozí spectatovaný hráč: %s"
 spectate-s: "Nyní spectatuješ: %s"
 spectate-1-f: "Nedostatek argumenů! /spectate <hráč>!"
 spectate-2-f: "Nemáš spectator mód!"
@@ -39,7 +39,7 @@ p-db-f: "Hráč %s nemá deathban"
 p-immune: "Hráč %s má imunitu!"
 player-not-found: "Hráč %s neexistuje nebo je offline."
 simulateban-1-f: "Nedostatek argumentů! /simulateban <hráč> <zpráva>"
-deathlightning-toggle: "Blesk na smrti %s"
+deathlightning-toggle: "Blesk po smrti %s"
 
 ### Zprávy posluchačů
 

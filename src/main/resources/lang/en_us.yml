@@ -3,14 +3,14 @@
 enabling: "Enabling FakeDeathban"
 disabling: "Disabling FakeDeathban"
 r-command: "Registering command "
-r-listener: "Registering listener %s"
+r-listener: "Registering listener "
 
 ### Command Messages
 
 defg-s: "Default game mode after respawn: %s"
 defg-f-1: "Insufficient arguments! /defg <gamemode>"
 defg-f-2: "Gamemode must be 'adventure', 'creative', 'survival', or 'spectator'!"
-sets-s: "Default spectated player: %s"
+defs-s: "Default spectated player: %s"
 spectate-s: "You are now spectating: %s"
 spectate-1-f: "Insufficient arguments! /spectate <player>!"
 spectate-2-f: "You do not have spectator mode!"
@@ -39,6 +39,7 @@ p-db-f: "Player %s does not have a deathban"
 p-immune: "Player %s has immunity!"
 player-not-found: "Player %s does not exist or is offline."
 simulateban-1-f: "Insufficient arguments! /simulateban <player> <message>"
+deathlightning-toggle: "Lightning on death %s"
 
 ### Listener messages
 

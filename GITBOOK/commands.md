@@ -98,20 +98,19 @@ Unfreezes all players who are frozen.
 
 <details>
 
-<summary><strong>SetSpectate</strong></summary>
+<summary><strong>DefaultSpectate</strong></summary>
 
 Sets the player who will be spectated when someone dies.
 
 **Permission:** OP
 
-**Usage:** `/setspectate <player>`
+**Usage:** `/defaultspectate <player>`
 
 **Aliases:**
 
-* sets
-* setspec
-* sspec
-* ss
+* defspectate
+* defspec
+* defs
 
 </details>
 
@@ -206,30 +205,12 @@ Turns listeners on or off.
 
 <details>
 
-<summary><strong>Language</strong></summary>
-
-Switches the language.
-
-**Permission:** OP
-
-**Usage:** /language \<language>
-
-**Aliases:**
-
-* lang
-* lng
-* lg
-
-</details>
-
-<details>
-
-<summary><strong>Banlist</strong></summary>
+<summary><strong>FDBList</strong></summary>
 
 Shows the list of banned players and their UUIDs.
 
 **Permission:** OP
 
-**Usage:** /banlist
+**Usage:** /fdblist
 
 </details>

@@ -13,7 +13,7 @@ Players who die will be switched to Spectator mode.
 Unless you set otherwise, dead players will not be able to move freely around the world. Instead, they will spectate the player that is in config.yml
 
 {% hint style="info" %}
-You can set a player to spectate using /setspectate
+You can set a player to spectate using /defaultspectate
 {% endhint %}
 
 If the player who is dead is the same as the one being spectated, they can move freely

@@ -10,11 +10,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jspecify.annotations.NonNull;
 
-public class SetSpectate implements CommandExecutor {
+public class DefaultSpectate implements CommandExecutor {
 
     private final FakeDeathBan plugin;
 
-    public SetSpectate(FakeDeathBan plugin){
+    public DefaultSpectate(FakeDeathBan plugin){
         this.plugin = plugin;
     }
 
@@ -22,7 +22,7 @@ public class SetSpectate implements CommandExecutor {
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String[] args) {
 
         if (args.length < 1) {
-            sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + "/setspectate <player>");
+            sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + "/defaultspectate <player>");
             return true;
         }
 
