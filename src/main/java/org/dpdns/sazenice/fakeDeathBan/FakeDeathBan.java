@@ -26,8 +26,9 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
     public static final ConsoleCommandSender console = Bukkit.getConsoleSender();
     public static final String prefix = "[" + ChatColor.BOLD + ChatColor.LIGHT_PURPLE + "FakeDeathBan" + ChatColor.RESET + "] ";
     public static void sendMessage(String message){console.sendMessage(prefix + message);}
-    private void sendDebug(String message){
-        if(this.getConfig().getBoolean("debug")){
+    private static boolean debugEnabled;
+    public static void sendDebug(String message){
+        if(debugEnabled){
             console.sendMessage(prefix + ChatColor.YELLOW + " DEBUG " + ChatColor.RESET + message);
         }
     }
@@ -61,6 +62,7 @@ public final class FakeDeathBan extends JavaPlugin implements Listener {
             saveResource("lang/sk_sk.yml", true);
             saveResource("lang/en_us.yml", true);
         }
+        debugEnabled = this.getConfig().getBoolean("debug");
 
         Messages.setup(this);
 

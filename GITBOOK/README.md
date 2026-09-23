@@ -9,7 +9,7 @@ Current release is [1.10](https://github.com/sazenice/FakeDeathBan/releases/tag/
 
 Pre-Release version is [1.11-pre4](https://github.com/sazenice/FakeDeathBan/releases/tag/1.11-pre4)
 
-Plugin is for versions **1.21.11-26.3**, [paper and its major forks](#user-content-fn-1)[^1]
+Plugin is for versions **1.21.11-26.3**, [paper and its major forks][^1]
 
 ### Links
 
