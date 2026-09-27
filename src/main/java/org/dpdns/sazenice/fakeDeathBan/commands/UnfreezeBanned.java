@@ -39,9 +39,9 @@ public class UnfreezeBanned implements CommandExecutor {
                 String uuid = target.getUniqueId().toString();
 
                 if (FakeDeathBan.frozen.remove(uuid)) {
-                    sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("unfreeze-2-s", target.getName()));
+                    sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("unfreeze-2-s", target.getDisplayName()));
                 } else {
-                    sender.sendMessage(FakeDeathBan.prefix + ChatColor.YELLOW + Messages.getMessage("unfreeze-1-f", target.getName()));
+                    sender.sendMessage(FakeDeathBan.prefix + ChatColor.YELLOW + Messages.getMessage("unfreeze-1-f", target.getDisplayName()));
                 }
             }
         }

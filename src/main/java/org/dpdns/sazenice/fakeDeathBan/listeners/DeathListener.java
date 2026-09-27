@@ -35,7 +35,7 @@ public class DeathListener implements Listener {
 
         if (player.getKiller() != null && plugin.getConfig().getBoolean("hide-invis")){
             if (player.getKiller().hasPotionEffect(PotionEffectType.INVISIBILITY)){
-                e.setDeathMessage(player.getName() + " was killed by " + ChatColor.MAGIC + player.getKiller().getName());
+                e.setDeathMessage(player.getDisplayName() + " was killed by " + ChatColor.MAGIC + player.getKiller().getName());
             }
         }
 
@@ -45,7 +45,7 @@ public class DeathListener implements Listener {
         }
 
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
-            Bukkit.broadcastMessage(ChatColor.YELLOW + player.getName() + " left the game");
+            Bukkit.broadcastMessage(ChatColor.YELLOW + player.getDisplayName() + " left the game");
             player.setGameMode(GameMode.SPECTATOR);
             if (deathSound != null){
                 player.getWorld().playSound(playerLocation, deathSound, 5f, 1);

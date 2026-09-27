@@ -35,8 +35,8 @@ public class InventoryListener implements Listener {
                             item.setType(Material.BARRIER);
                             ItemMeta fMeta = item.getItemMeta();
                             List<String> lore = new ArrayList<>();
-                            lore.add(ChatColor.RED + "Nastala chyba!");
-                            lore.add(ChatColor.YELLOW + "\nHráč není online!");
+                            lore.add(ChatColor.RED + "Error!");
+                            lore.add(ChatColor.YELLOW + "\nPlayer isn't online!");
                             fMeta.setLore(lore);
                             fMeta.setDisplayName(ChatColor.BOLD + "" + ChatColor.RED + "X");
                             item.setItemMeta(fMeta);
@@ -48,14 +48,14 @@ public class InventoryListener implements Listener {
                             item.setType(Material.BARRIER);
                             ItemMeta fMeta = item.getItemMeta();
                             List<String> lore = new ArrayList<>();
-                            lore.add(ChatColor.RED + "Nastala chyba!");
-                            lore.add(ChatColor.YELLOW + "\nHráč " + ChatColor.AQUA + meta.getOwningPlayer().getName() + ChatColor.YELLOW + " není online!");
+                            lore.add(ChatColor.RED + "Error!");
+                            lore.add(ChatColor.YELLOW + "\nPlayer " + ChatColor.AQUA + meta.getOwningPlayer().getName() + ChatColor.YELLOW + " isn't online!");
                             fMeta.setLore(lore);
                             fMeta.setDisplayName(ChatColor.BOLD + "" + ChatColor.RED + "X");
                             item.setItemMeta(fMeta);
                             player.playSound(player, Sound.ENTITY_VILLAGER_NO, 1, 1);
                         }else{
-                            Inventory inventory = Bukkit.createInventory(null, 27, Shared.title + " - " + ChatColor.AQUA + Objects.requireNonNull(skullPlayer).getName());
+                            Inventory inventory = Bukkit.createInventory(null, 27, Shared.title + " - " + ChatColor.AQUA + Objects.requireNonNull(skullPlayer).getDisplayName());
                             int index = 0;
                             // Beacon
                             ItemStack beacon = new ItemStack(Material.BEACON);
@@ -121,7 +121,7 @@ public class InventoryListener implements Listener {
                     ItemStack currentItem = event.getCurrentItem();
                     if (currentItem == null) return;
                     Material clicked = currentItem.getType();
-                    String skullPlayerName = skullPlayer.getName();
+                    String skullPlayerName = skullPlayer.getDisplayName();
                     switch (clicked){
                         case BEACON:
                             sendCommand(player, "revive", skullPlayerName, "");

@@ -52,15 +52,15 @@ public class FreezeBanned implements CommandExecutor {
             String uuid = target.getUniqueId().toString();
 
             if (!FakeDeathBan.deathbanned.contains(uuid)) {
-                sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("p-db-f", target.getName()));
+                sender.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("p-db-f", target.getDisplayName()));
                 continue;
             }
 
             if (!FakeDeathBan.frozen.contains(uuid)) {
                 FakeDeathBan.frozen.add(uuid);
-                sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("freeze-2-s", target.getName()));
+                sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("freeze-2-s", target.getDisplayName()));
             } else {
-                sender.sendMessage(FakeDeathBan.prefix + ChatColor.YELLOW + Messages.getMessage("freeze-1-f", target.getName()));
+                sender.sendMessage(FakeDeathBan.prefix + ChatColor.YELLOW + Messages.getMessage("freeze-1-f", target.getDisplayName()));
             }
         }
 

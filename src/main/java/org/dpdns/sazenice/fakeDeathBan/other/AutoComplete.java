@@ -64,7 +64,7 @@ public class AutoComplete implements TabCompleter {
                     String t = args[0] == null ? "" : args[0].toLowerCase();
                     List<String> completions = new ArrayList<>();
                     for (Player p : Bukkit.getOnlinePlayers()) {
-                        if (p.getName().toLowerCase().contains(t)) completions.add(p.getName());
+                        if (p.getDisplayName().toLowerCase().contains(t)) completions.add(p.getDisplayName());
                     }
                     return completions;
                 }
@@ -85,7 +85,7 @@ public class AutoComplete implements TabCompleter {
                     String t = args[0] == null ? "" : args[0].toLowerCase();
                     List<String> completions = new ArrayList<>();
                     for (Player p : Bukkit.getOnlinePlayers()) {
-                        if (p.getName().toLowerCase().startsWith(t)) completions.add(p.getName());
+                        if (p.getDisplayName().toLowerCase().startsWith(t)) completions.add(p.getDisplayName());
                     }
                     return completions;
                 } else if (args.length == 2) {

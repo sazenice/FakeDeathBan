@@ -4,6 +4,8 @@
 * [Why](why.md)
 * [How](how.md)
 * [Commands](commands.md)
+* [GUI](gui.md)
+* [Permissions](permissions.md)
 * [Tutorial](tutorial/README.md)
   * [Server](tutorial/server.md)
   * [Downloading](tutorial/downloading.md)

@@ -36,7 +36,7 @@ public class DefaultSpectate implements CommandExecutor {
         plugin.getConfig().set("default-spectator", target.getName());
         plugin.saveConfig();
 
-        sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("sets-s", target.getName()));
+        sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("sets-s", target.getDisplayName()));
 
         return true;
     }

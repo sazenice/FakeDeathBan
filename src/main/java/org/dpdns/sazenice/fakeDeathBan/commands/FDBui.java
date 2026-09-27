@@ -26,7 +26,7 @@ public class FDBui implements CommandExecutor {
                     SkullMeta meta = (SkullMeta) head.getItemMeta();
                     if (meta != null){
                         meta.setOwnerProfile(p.getPlayerProfile());
-                        meta.setItemName(p.getName());
+                        meta.setItemName(p.getDisplayName());
                     }
                     head.setItemMeta(meta);
 

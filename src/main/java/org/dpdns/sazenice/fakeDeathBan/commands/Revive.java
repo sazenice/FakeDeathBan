@@ -97,9 +97,9 @@ public class Revive implements CommandExecutor {
                         onlinePlayer.showPlayer(plugin, target);
                     }
                 }
-                sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("revive-2-s", target.getName()));
+                sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("revive-2-s", target.getDisplayName()));
             } else {
-                sender.sendMessage(FakeDeathBan.prefix + ChatColor.YELLOW + Messages.getMessage("p-db-f", target.getName()));
+                sender.sendMessage(FakeDeathBan.prefix + ChatColor.YELLOW + Messages.getMessage("p-db-f", target.getDisplayName()));
             }
         }
 

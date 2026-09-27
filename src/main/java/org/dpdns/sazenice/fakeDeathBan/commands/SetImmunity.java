@@ -53,14 +53,14 @@ public class SetImmunity implements CommandExecutor {
         if (plugin.immunityManager.hasImmunity(uuid, nodePart)) {
             plugin.immunityManager.setImmunity(uuid, nodePart, false);
             plugin.immunityManager.revokeImmunity(player, nodePart);
-            sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("setimmunity-2-s", player.getName(), node));
+            sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("setimmunity-2-s", player.getDisplayName(), node));
             if (nodePart.equals("immortality")){
                 FakeDeathBan.immortalityBar.removePlayer(player);
             }
         } else {
             plugin.immunityManager.setImmunity(uuid, nodePart, true);
             plugin.immunityManager.grantImmunity(player, nodePart);
-            sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("setimmunity-1-s", player.getName(), node));
+            sender.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("setimmunity-1-s", player.getDisplayName(), node));
             if (nodePart.equals("immortality")){
                 FakeDeathBan.immortalityBar.addPlayer(player);
             }

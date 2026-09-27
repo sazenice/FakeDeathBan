@@ -5,94 +5,40 @@ icon: terminal
 
 # Commands
 
-There are a total of **14** commands
+There are a total of **13** commands.
 
-<details>
+Most commands accept player names as arguments. Wherever a player can be named, the plugin tab-completes online player names for you.
 
-<summary><strong>UnDeathBan</strong></summary>
-
-Teleports all dead players to you and revives them.
-
-**Permission:** OP
-
-**Usage:** `/undeathban [player...]`
-
-**Aliases:**
-
-* udb
-* undb
-* udban
-* udeathb
-* undeathb
-* undban
-* udeathban
-
-</details>
-
-<details>
-
-<summary><strong>DefaultGamemode</strong></summary>
-
-Sets the default game mode for players who are revived.
-
-**Permission:** OP
-
-**Usage:** `/defg <gamemode>`
-
-**Aliases:**
-
-* defaultgamemode
-* dgamemode
-* defaultg
-* dg
+Permissions are listed per command. Every command requires **OP** by default, except `/spectate`, which is available to **everyone**.
 
 {% hint style="info" %}
-To use the vanilla `defaultgamemode`, type `/minecraft:defaultgamemode`
+The full list of permission nodes, including immunity bypass nodes, is on the [Permissions](permissions.md) page.
 {% endhint %}
 
-</details>
-
 <details>
 
-<summary><strong>Version</strong></summary>
+<summary><strong>Revive</strong></summary>
 
-Shows the plugin information
+Removes the deathban from one, some, or all deathbanned players.
 
-**Permission:** Everyone
+Revived players are unfrozen, switched to the [default gamemode](tutorial/setting-up/configuration/default-gamemode.md), teleported to you, and made visible to everyone again. The [revive sound](tutorial/setting-up/configuration/revive-sound.md) is played.
 
-**Usage:** `/version`
+**Permission:** OP (`fakedeathban.revive`)
 
-</details>
-
-<details>
-
-<summary><strong>Freeze</strong></summary>
-
-Freezes all players who are dead.
-
-**Permission:** OP
-
-**Usage:** `/freeze [player...]`
+**Usage:** `/revive [player...]`
 
 **Aliases:**
 
-* fr
+* res
+* rev
+* udb
+* undeathban
 
-</details>
+{% hint style="warning" %}
+`/udb` and `/undeathban` still work, but they print a notice that the command has been renamed to `/revive`. Prefer `/revive`.
+{% endhint %}
 
-<details>
-
-<summary><strong>UnFreeze</strong></summary>
-
-Unfreezes all players who are frozen.
-
-**Permission:** OP
-
-**Usage:** `/unfreeze [player...]`
-
-**Aliases:**
-
-* unfr
+Teleporting only happens when a **player** runs the command. From the console, revived players are simply released where they are.
 
 </details>
 
@@ -100,9 +46,11 @@ Unfreezes all players who are frozen.
 
 <summary><strong>DefaultSpectate</strong></summary>
 
-Sets the player who will be spectated when someone dies.
+Sets the player who will be spectated by default when someone dies.
 
-**Permission:** OP
+The target must be **online** — the command stores a player name, not a UUID.
+
+**Permission:** OP (`fakedeathban.defaultspectate`)
 
 **Usage:** `/defaultspectate <player>`
 
@@ -118,9 +66,11 @@ Sets the player who will be spectated when someone dies.
 
 <summary><strong>Spectate</strong></summary>
 
-Switches the spectated player
+Changes who you are spectating.
 
-**Permission:** Everyone
+You must be in **spectator mode** to use this, and you can only spectate yourself back out of a deathban by being revived.
+
+**Permission:** Everyone (`fakedeathban.spectate`)
 
 **Usage:** `/spectate <player>`
 
@@ -133,18 +83,76 @@ Switches the spectated player
 
 <details>
 
-<summary><strong>Check</strong></summary>
+<summary><strong>FreezeBanned</strong></summary>
 
-Checks the health of the plugin
+Freezes deathbanned players so they cannot move or change their spectate target.
 
-**Permission:** OP
+**Permission:** OP (`fakedeathban.freezebanned`)
 
-**Usage:** `/check`
+**Usage:** `/freezebanned [player...]`
 
 **Aliases:**
 
-* health
-* chk
+* fb
+* freezeb
+* fbanned
+* fr
+
+**Notes:**
+
+* With **no arguments**, every online deathbanned player who is not already frozen is frozen.
+* With **arguments**, each named player must have a deathban. Players with the [freeze immunity](permissions.md) are skipped.
+
+</details>
+
+<details>
+
+<summary><strong>UnfreezeBanned</strong></summary>
+
+Unfreezes frozen players.
+
+**Permission:** OP (`fakedeathban.unfreezebanned`)
+
+**Usage:** `/unfreezebanned [player...]`
+
+**Aliases:**
+
+* unfreezeb
+* unfbanned
+* ufb
+* unfrb
+
+**Notes:**
+
+* With **no arguments**, every online player is unfrozen.
+* With **arguments**, only the named players are unfrozen.
+
+</details>
+
+<details>
+
+<summary><strong>DefaultGamemode</strong></summary>
+
+Sets the gamemode players are switched to when revived.
+
+**Permission:** OP (`fakedeathban.defaultgamemode`)
+
+**Usage:** `/defaultgamemode <gamemode>`
+
+**Aliases:**
+
+* defg
+* dgamemode
+* defaultg
+* dg
+
+**Accepted values:** `survival`, `creative`, `spectator`, `adventure` (**lowercase**)
+
+The value is stored uppercase in the config file. An invalid stored value falls back to `ADVENTURE`.
+
+{% hint style="info" %}
+To use the vanilla `defaultgamemode`, type `/minecraft:defaultgamemode`
+{% endhint %}
 
 </details>
 
@@ -152,11 +160,26 @@ Checks the health of the plugin
 
 <summary><strong>SetSound</strong></summary>
 
-Sets the sound that plays when someone dies or gets revived.
+Sets or removes the sound played on death and on revival.
 
-**Povolení:** OP
+**Permission:** OP (`fakedeathban.setsound`)
 
-**Použití:** /setsound \<revive|death> \<zvuk>
+**Usage:** `/setsound <death|revive> [sound]`
+
+**Sound format:** a valid namespaced sound ID, for example `minecraft:entity.wither.spawn`
+
+{% hint style="success" %}
+The sound argument is tab-completed, so you can type `/setsound death minecraft:` and pick from the list.
+{% endhint %}
+
+To **remove** a sound, pass the type with no sound:
+
+```
+/setsound death
+/setsound revive
+```
+
+A removed sound leaves no `death-sound` / `revive-sound` key in the config, and the plugin stays silent.
 
 </details>
 
@@ -164,11 +187,31 @@ Sets the sound that plays when someone dies or gets revived.
 
 <summary><strong>Immortality</strong></summary>
 
-Sets the immortality mode.
+Toggles immortality mode.
 
-**Permission:** OP
+**Permission:** OP (`fakedeathban.immortality`)
 
-**Usage:** /immortality
+**Usage:** `/immortality`
+
+**When turned ON:**
+
+* All deathbanned players are revived
+* Players gain infinite **saturation** and are made invulnerable
+* A **boss bar** appears
+* Everyone is notified with a title, an action bar message, and a sound
+
+**When turned OFF:**
+
+* Saturation and regeneration effects are removed
+* Invulnerability is lifted
+* The boss bar is hidden
+* Everyone is notified
+
+{% hint style="warning" %}
+Whether players can still take damage while immortal is controlled separately by [`damage-immortal`](tutorial/setting-up/configuration/damage-immortal.md).
+{% endhint %}
+
+Players with the [immortality immunity](permissions.md) are never affected.
 
 </details>
 
@@ -176,11 +219,11 @@ Sets the immortality mode.
 
 <summary><strong>SetImmunity</strong></summary>
 
-Grants the player immunity.
+Toggles an immunity for a player.
 
-**Permission:** OP
+**Permission:** OP (`fakedeathban.setimmunity`)
 
-**Usage:** /setimmunity \<player> \<immunity>
+**Usage:** `/setimmunity <player> <immunity>`
 
 **Aliases:**
 
@@ -189,17 +232,54 @@ Grants the player immunity.
 * simmune
 * sim
 
+**Available immunities:**
+
+| Immunity     | Bypasses                                          |
+|--------------|---------------------------------------------------|
+| `deathban`   | Not being deathbanned at all                     |
+| `freeze`     | Being frozen                                     |
+| `move`       | The movement / spectate restriction              |
+| `joinquit`   | Join and quit messages being muted                |
+| `immortality`| Immortality mode effects                          |
+
+**Notes:**
+
+* Running the command a second time with the same immunity **revokes** it.
+* Immunities are stored per type in `plugins/FakeDeathBan/immunity/<immunity>.yml` and are reapplied when the player joins.
+* The immunity argument is tab-completed.
+
 </details>
 
 <details>
 
 <summary><strong>ToggleFDB</strong></summary>
 
-Turns listeners on or off.
+Turns all of the plugin's event listeners on or off.
 
-**Permission:** OP
+**Permission:** OP (`fakedeathban.togglefdb`)
 
-**Usage:** /togglefdb
+**Usage:** `/togglefdb`
+
+While listeners are off, deaths are not deathbanned, movement is not restricted, and join/quit messages are not muted. The current state is **not** saved — it resets on restart.
+
+</details>
+
+<details>
+
+<summary><strong>FDBui</strong></summary>
+
+Opens the player management GUI.
+
+**Permission:** OP (`fakedeathban.fdbui`)
+
+**Usage:** `/fdbui`
+
+**Aliases:**
+
+* menu
+* open
+
+Players only. See the [GUI](gui.md) page for what each button does.
 
 </details>
 
@@ -207,11 +287,11 @@ Turns listeners on or off.
 
 <summary><strong>FDBList</strong></summary>
 
-Shows the list of banned players and their UUIDs.
+Shows every deathbanned player with their UUID.
 
-**Permission:** OP
+**Permission:** OP (`fakedeathban.fdblist`)
 
-**Usage:** /fdblist
+**Usage:** `/fdblist`
 
 </details>
 
@@ -219,33 +299,27 @@ Shows the list of banned players and their UUIDs.
 
 <summary><strong>SimulateBan</strong></summary>
 
-Simulates a ban message
+Fakes the visuals of a player being banned, for testing and for scripted moments.
 
-**Permission:** OP
+**Permission:** OP (`fakedeathban.simulateban`)
 
-**Usage:** /simulateban \<player> \<message>
+**Usage:** `/simulateban <player> <message>`
 
-**Aliases**
+**Aliases:**
 
 * simb
 * simban
 * fakeb
 * fakeban
 
-</details>
+**What it does:**
 
-<details>
+1. Broadcasts your message to the whole server
+2. Broadcasts `<player> left the game`
+3. Plays the configured [death sound](tutorial/setting-up/configuration/death-sound.md)
 
-<summary><strong>DeathLightning</strong></summary>
-
-Toggles if lightning is summoned on death
-
-**Permission:** OP
-
-**Usage:** /deathlightning
-
-**Aliases:**
-
-* dl
+{% hint style="warning" %}
+`/simulateban` is purely cosmetic. It does **not** deathban the player, does not freeze them, and does not change any state. Use `/revive` to actually release a deathbanned player.
+{% endhint %}
 
 </details>

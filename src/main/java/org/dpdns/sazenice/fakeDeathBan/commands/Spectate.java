@@ -35,7 +35,7 @@ public class Spectate implements CommandExecutor {
 
         if (player.getGameMode() == GameMode.SPECTATOR){
             player.setSpectatorTarget(target);
-            player.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("spectate-s", target.getName()));
+            player.sendMessage(FakeDeathBan.prefix + ChatColor.GREEN + Messages.getMessage("spectate-s", target.getDisplayName()));
         }else{
             player.sendMessage(FakeDeathBan.prefix + ChatColor.RED + Messages.getMessage("spectate-2-f"));
         }

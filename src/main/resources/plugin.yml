@@ -1,8 +1,8 @@
 name: FakeDeathBan
-version: 1.11-pre5
+version: ${version}
 load: STARTUP
 main: org.dpdns.sazenice.fakeDeathBan.FakeDeathBan
-api-version: 1.21
+api-version: ${spigot.version}
 author: sazenice
 website: https://sazenice.dpdns.org
 description: "A deathban plugin that allows players to stay connected to the server after a deathban"
